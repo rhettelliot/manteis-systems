@@ -106,3 +106,9 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Keyboard navigation — accent outline, only for keyboard focus */
+:focus-visible {
+  outline: 1px solid #0057FF;
+  outline-offset: 3px;
+}
