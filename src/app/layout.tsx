@@ -18,6 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://manteis.systems"),
   title: "Manteis Systems — Sovereign Intelligence Infrastructure",
   description: "Private local AI infrastructure, spatial-audio music production, and breathwork sovereignty. Dephasing the corporate machine since 1998. Pacific Northwest.",
   authors: [{ name: "Rhett Elliot Johnson" }],
@@ -35,11 +36,13 @@ export const metadata: Metadata = {
     siteName: "Manteis.Systems",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 675, alt: "Manteis Systems — Sovereign Intelligence Infrastructure" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Manteis Systems — Sovereign Intelligence Infrastructure",
     description: "Private local AI. Sovereign audio. Embodied intelligence. Subvert. Create. Sovereignty.",
+    images: ["/og.jpg"],
   },
 };
 
