@@ -33,6 +33,17 @@ function isHighlighted(line: string) {
 // ─── Grain ────────────────────────────────────────────────────────────────────
 
 // ─── Nav ──────────────────────────────────────────────────────────────────────
+function SkipLink() {
+  return (
+    <a
+      href="#main-content"
+      className="fixed top-0 left-0 z-[300] -translate-y-full focus:translate-y-0 focus:ring-2 focus:ring-signal-blue focus:ring-offset-2 focus:ring-offset-black bg-white text-black font-mono text-[11px] tracking-[0.2em] uppercase px-5 py-3 transition-transform duration-200"
+    >
+      Skip to main content
+    </a>
+  );
+}
+
 function Nav() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
@@ -49,47 +60,51 @@ function Nav() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-16 bg-black/85 backdrop-blur-xl border-b border-white/[0.06]">
-      <div className="flex items-center gap-3">
-        <div className="w-1.5 h-5 bg-signal-blue" />
-        <span className="font-mono text-xs font-bold tracking-[0.22em] uppercase text-white/80">
-          Manteis.Systems
-        </span>
-      </div>
-      <div className="hidden md:flex gap-10">
-        {['Federation', 'Systems', 'Proof', 'Sounds', 'Self', 'Contact'].map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-white/35 hover:text-white transition-colors duration-200"
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <SkipLink />
+      <nav className="flex items-center justify-between px-8 h-16 bg-black/85 backdrop-blur-xl border-b border-white/[0.06]" aria-label="Primary">
+        <a href="#main-content" className="flex items-center gap-3 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none">
+          <div className="w-1.5 h-5 bg-signal-blue" aria-hidden />
+          <span className="font-mono text-xs font-bold tracking-[0.22em] uppercase text-white/80">
+            Manteis.Systems
+          </span>
+        </a>
+        <ul className="hidden md:flex gap-10 list-none">
+          {['Federation', 'Systems', 'Proof', 'Sounds', 'Self', 'Contact'].map((item) => (
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-white/55 hover:text-white transition-colors duration-200"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-4">
+          <div className="font-mono text-[10px] text-white/55 uppercase tracking-widest hidden sm:block">
+            // SUBVERT. CREATE. SOVEREIGNTY.
+          </div>
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="w-8 h-8 flex items-center justify-center text-white/55 hover:text-white transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none"
           >
-            {item}
-          </a>
-        ))}
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="font-mono text-[10px] text-white/20 uppercase tracking-widest hidden sm:block">
-          // SUBVERT. CREATE. SOVEREIGNTY.
+            {theme === 'dark' ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            )}
+          </button>
         </div>
-        <button
-          onClick={toggleTheme}
-          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white transition-colors duration-200"
-        >
-          {theme === 'dark' ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-            </svg>
-          ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-            </svg>
-          )}
-        </button>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
 
@@ -232,23 +247,23 @@ function TerminalLog() {
 
   return (
     <div className="border border-white/[0.08] bg-void-raised p-4 font-mono text-[11px] leading-6 w-full max-w-md" aria-label="Sovereign Node boot log" role="log">
-      <div className="text-white/25 mb-2 tracking-widest text-[9px] uppercase border-b border-white/[0.06] pb-2">
-        // SOVEREIGN_NODE_01 · BOOT_LOG
-      </div>
+        <div className="text-white/55 mb-2 tracking-widest text-[9px] uppercase border-b border-white/[0.06] pb-2">
+          // SOVEREIGN_NODE_01 · BOOT_LOG
+        </div>
       {logs.map((line, i) => (
         <motion.div
           key={`${i}-${line}`}
           initial={{ opacity: 0, x: -6 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          className={isHighlighted(line) ? 'text-signal-blue' : 'text-white/50'}
+          className={isHighlighted(line) ? 'text-signal-blue' : 'text-white/55'}
         >
-          <span className="text-white/20 mr-2">&gt;</span>
+          <span className="text-white/55 mr-2">{'>'}</span>
           {line}
         </motion.div>
       ))}
-      <div className={isHighlighted(typing) ? 'text-signal-blue' : 'text-white/50'}>
-        <span className="text-white/20 mr-2">&gt;</span>
+      <div className={isHighlighted(typing) ? 'text-signal-blue' : 'text-white/55'}>
+        <span className="text-white/55 mr-2">{'>'}</span>
         {typing}
         <span className="terminal-cursor text-signal-blue">█</span>
       </div>
@@ -315,7 +330,7 @@ function Hero() {
             <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-signal-blue">
               // SOVEREIGN INTELLIGENCE INFRASTRUCTURE //
             </span>
-            <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-white/25">
+            <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-white/55">
               <motion.span
                 className="inline-block w-1.5 h-1.5 bg-signal-teal rounded-full"
                 animate={{ opacity: [1, 0.25, 1] }}
@@ -342,7 +357,7 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-bold text-[clamp(18px,3vw,36px)] tracking-tight text-white/30"
+            className="font-display font-bold text-[clamp(18px,3vw,36px)] tracking-tight text-white/55"
           >
             DEPHASING THE CORPORATE MACHINE<span className="text-signal-blue">.</span>
           </motion.div>
@@ -351,7 +366,7 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/25"
+            className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/55"
           >
             UNIFIED INTELLIGENCE INFRASTRUCTURE
           </motion.div>
@@ -362,12 +377,10 @@ function Hero() {
             transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center gap-4 mt-2"
           >
-            <Magnetic strength={0.25} radius={140}>
-              <a href="mailto:rhett@manteissystems.com">
-                <Button variant="primary" size="lg">INITIATE SOVEREIGNTY AUDIT</Button>
-              </a>
-            </Magnetic>
-            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/15">
+            <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block">
+              <Button variant="primary" size="lg">INITIATE SOVEREIGNTY AUDIT</Button>
+            </a>
+            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/45">
               [47.6062° N, 122.3321° W] · PACIFIC_NODE_01
             </div>
           </motion.div>
@@ -378,7 +391,7 @@ function Hero() {
           style={{ opacity: scrollHintOp }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
         >
-          <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/25">SCROLL TO ENTER</span>
+          <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/55">SCROLL TO ENTER</span>
           <motion.div
             className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent origin-top"
             animate={{ scaleY: [1, 0.3, 1], opacity: [0.5, 1, 0.5] }}
@@ -393,24 +406,24 @@ function Hero() {
 // ─── Marquee ticker ───────────────────────────────────────────────────────────
 const MARQUEE_ITEMS = [
   { text: 'LOCAL AI', color: 'text-signal-blue' },
-  { text: 'AI OS FEDERATION', color: 'text-white/25' },
+  { text: 'AI OS FEDERATION', color: 'text-white/55' },
   { text: 'GIT-AS-BUS', color: 'text-signal-blue' },
-  { text: 'HUMAN-GATED WRITES', color: 'text-white/25' },
-  { text: 'VECTOR STORE', color: 'text-white/25' },
+  { text: 'HUMAN-GATED WRITES', color: 'text-white/55' },
+  { text: 'VECTOR STORE', color: 'text-white/55' },
   { text: 'AGENT ORCHESTRATION', color: 'text-signal-teal' },
-  { text: 'ZERO TRUST', color: 'text-white/25' },
+  { text: 'ZERO TRUST', color: 'text-white/55' },
   { text: 'ZTNA', color: 'text-signal-blue' },
-  { text: 'ENDPOINT PROTECTION', color: 'text-white/25' },
+  { text: 'ENDPOINT PROTECTION', color: 'text-white/55' },
   { text: 'CONTAINERIZED', color: 'text-signal-pink' },
-  { text: 'WORKFLOW AUTOMATION', color: 'text-white/25' },
+  { text: 'WORKFLOW AUTOMATION', color: 'text-white/55' },
   { text: 'OPEN MODELS', color: 'text-signal-teal' },
-  { text: 'MDM GOVERNANCE', color: 'text-white/25' },
+  { text: 'MDM GOVERNANCE', color: 'text-white/55' },
   { text: 'FULL DISK ENCRYPTION', color: 'text-signal-blue' },
-  { text: 'HIPAA COMPLIANT', color: 'text-white/25' },
+  { text: 'HIPAA COMPLIANT', color: 'text-white/55' },
   { text: 'SOC 2', color: 'text-signal-pink' },
-  { text: 'ON-PREM LLM', color: 'text-white/25' },
+  { text: 'ON-PREM LLM', color: 'text-white/55' },
   { text: 'LAN-ONLY', color: 'text-signal-teal' },
-  { text: 'SPATIAL AUDIO', color: 'text-white/25' },
+  { text: 'SPATIAL AUDIO', color: 'text-white/55' },
 ];
 
 // ─── Video section ────────────────────────────────────────────────────────────
@@ -551,14 +564,9 @@ function SovereignNodeDiagram() {
       />
 
       <div className="relative max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
-        >
+        <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4">
           // ANATOMY · LIVE TOPOLOGY
-        </motion.div>
+        </span>
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -567,7 +575,7 @@ function SovereignNodeDiagram() {
         >
           <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">INSIDE THE</GradientText>
           <br />
-          <span className="text-white/30">SOVEREIGN NODE.</span>
+          <span className="text-white/55">SOVEREIGN NODE.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -594,10 +602,10 @@ function SovereignNodeDiagram() {
                 <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
                 <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
               </div>
-              <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/35 truncate hidden sm:inline">
+              <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 truncate hidden sm:inline">
                 sovereign_node_01.topology
               </span>
-              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/35 sm:hidden">
+              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/55 sm:hidden">
                 sovereign_node_01
               </span>
             </div>
@@ -786,7 +794,7 @@ function SovereignNodeDiagram() {
           </svg>
 
           {/* Legend */}
-          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/40">
+          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-signal-blue" />ORCHESTRATION</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-signal-pink" />INFERENCE</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-signal-teal" />MEMORY</span>
@@ -868,7 +876,7 @@ function FederationSection() {
         >
           ONE AI OS PER DEPARTMENT.
           <br />
-          <span className="text-white/30">ONE ORCHESTRATOR ABOVE.</span>
+          <span className="text-white/55">ONE ORCHESTRATOR ABOVE.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -889,7 +897,7 @@ function FederationSection() {
         >
           {/* Header bar */}
           <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06]">
-            <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/35">
+            <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
               federation.topology
             </span>
             <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.25em] uppercase text-signal-blue shrink-0">
@@ -1134,10 +1142,10 @@ function FederationSection() {
           </svg>
 
           {/* Legend */}
-          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/40">
+          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-signal-blue" />PROPOSAL FLOW</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-white/60" />INFERENCE CALL</span>
-            <span className="flex items-center gap-2"><span className="w-3 h-px bg-white/20" />READ PATH</span>
+            <span className="flex items-center gap-2"><span className="w-3 h-px bg-white/55" />READ PATH</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 border border-signal-blue" />HUMAN APPROVAL</span>
           </div>
         </motion.div>
@@ -1217,7 +1225,7 @@ function ThreePillars() {
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-16"
+        className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55 mb-16"
       >
         // THE ECOSYSTEM
       </motion.div>
@@ -1290,7 +1298,7 @@ function Founder() {
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25"
+              className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55"
             >
               // THE ARCHITECT
             </motion.div>
@@ -1302,7 +1310,7 @@ function Founder() {
             >
               FROM MIDI STUDIO
               <br />
-              <span className="text-white/35">TO GLOBAL SYSTEMS.</span>
+              <span className="text-white/55">TO GLOBAL SYSTEMS.</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -1338,12 +1346,12 @@ function Founder() {
               {credentials.map((c, i) => (
                 <motion.span
                   key={c}
-                  className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/25 hover:text-signal-blue transition-colors cursor-default"
+                  className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/55 hover:text-signal-blue transition-colors cursor-default"
                   initial={{ opacity: 0, x: -8 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + i * 0.06 }}
                 >
-                  {c}{i < credentials.length - 1 && <span className="ml-5 text-white/10">·</span>}
+                  {c}{i < credentials.length - 1 && <span className="ml-5 text-white/55">·</span>}
                 </motion.span>
               ))}
             </motion.div>
@@ -1365,7 +1373,7 @@ function Founder() {
                     : <Counter to={s.to} suffix={s.suffix} delay={0.2 + i * 0.1} />
                   }
                 </div>
-                <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/30 mt-1">
+                <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/55 mt-1">
                   {s.label}
                 </div>
               </motion.div>
@@ -1467,7 +1475,7 @@ function SystemsDeepDive() {
                 style={{ borderTopColor: t.accent, borderTopWidth: '1px' }}
               >
                 <div className="flex items-start justify-between mb-1 gap-3">
-                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/40 pt-1.5">
+                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 pt-1.5">
                     {t.name}
                   </span>
                   <span className="font-display font-bold text-2xl tracking-tight" style={{ color: t.accent }}>
@@ -1479,8 +1487,8 @@ function SystemsDeepDive() {
                     MOST DEPLOYED
                   </span>
                 )}
-                <p className="font-mono text-[10px] text-white/45 mb-1">{t.hardware}</p>
-                <p className="font-mono text-[10px]" style={{ color: t.accent, opacity: 0.7 }}>{t.monthly}</p>
+                <p className="font-mono text-[10px] text-white/55 mb-1">{t.hardware}</p>
+                <p className="font-mono text-[10px]" style={{ color: t.accent, opacity: 0.9 }}>{t.monthly}</p>
               </motion.div>
             ))}
           </div>
@@ -1518,7 +1526,7 @@ function CaseStudy() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.06 }}
-          className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/25 mb-12"
+          className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/55 mb-12"
         >
           REGIONAL CONTRACTOR — PACIFIC NORTHWEST · CLIENT ANONYMIZED
         </motion.div>
@@ -1530,7 +1538,7 @@ function CaseStudy() {
           className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-12 max-w-3xl"
         >
           &ldquo;They don&apos;t need another website.<br />
-          <span className="text-white/30">They need an Agent.&rdquo;</span>
+          <span className="text-white/55">They need an Agent.&rdquo;</span>
         </motion.blockquote>
 
         <div className="flex flex-col lg:flex-row gap-16">
@@ -1569,7 +1577,7 @@ function CaseStudy() {
               ].map((ph, i) => (
                 <div key={ph.name}>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/35">
+                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/55">
                       {ph.name}
                     </span>
                     <span className={`font-mono text-[9px] tracking-[0.2em] ${ph.pct === 100 ? 'text-signal-teal' : 'text-signal-blue'}`}>
@@ -1602,7 +1610,7 @@ function CaseStudy() {
                 <div className="font-display font-bold text-2xl text-signal-blue tracking-tight mb-1">
                   {m.value}
                 </div>
-                <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/30 leading-relaxed">
+                <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/55 leading-relaxed">
                   {m.label}
                 </div>
               </motion.div>
@@ -1672,7 +1680,7 @@ function CapabilitiesProof() {
           className="font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-[0.95] mb-16"
         >
           SHOWN,
-          <span className="text-white/30"> NOT TOLD.</span>
+          <span className="text-white/55"> NOT TOLD.</span>
         </motion.h2>
 
         {/* Metrics band */}
@@ -1687,7 +1695,7 @@ function CapabilitiesProof() {
               <div className="font-display font-bold text-3xl md:text-5xl text-signal-blue tracking-tight">
                 <Counter to={m.to} suffix={m.suffix} decimals={m.decimals} delay={0.3 + i * 0.12} />
               </div>
-              <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 leading-relaxed">
+              <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/55 leading-relaxed">
                 {m.label}
               </div>
             </div>
@@ -1705,7 +1713,7 @@ function CapabilitiesProof() {
               whileHover={{ borderTopColor: '#0057FF' }}
               className="bg-void-raised p-8 flex flex-col gap-4 border-t border-transparent hover:bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 group cursor-default"
             >
-              <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/30">
+              <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/55">
                 {c.tag} · ANONYMIZED
               </span>
               <h3 className="font-display font-bold text-lg tracking-tight leading-snug text-white">
