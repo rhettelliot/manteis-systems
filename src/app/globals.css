@@ -20,6 +20,160 @@
   }
 }
 
+/* ─── Light theme token set ──────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-void-base: #F5F5F7;
+  --color-void-raised: #E8E8EC;
+  --color-void-elevated: #DCDCE0;
+  --text-color: #1A1A1A;
+  --border-color: rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
+}
+
+/* ─── Light theme overrides (remap hardcoded dark classes) ─────────────── */
+[data-theme="light"] body {
+  background: var(--color-void-base);
+  color: var(--text-color);
+}
+
+/* Solid colour utilities */
+[data-theme="light"] .bg-black,
+[data-theme="light"] .bg-void-base {
+  background: var(--color-void-base) !important;
+}
+
+[data-theme="light"] .bg-void-raised {
+  background: var(--color-void-raised) !important;
+}
+
+[data-theme="light"] .bg-void-elevated {
+  background: var(--color-void-elevated) !important;
+}
+
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-primary {
+  color: var(--text-color) !important;
+}
+
+/* text-white opacity variants → near-black opacity variants */
+[data-theme="light"] .text-white\/15  { color: rgba(26, 26, 26, 0.15) !important; }
+[data-theme="light"] .text-white\/20  { color: rgba(26, 26, 26, 0.20) !important; }
+[data-theme="light"] .text-white\/25  { color: rgba(26, 26, 26, 0.25) !important; }
+[data-theme="light"] .text-white\/30  { color: rgba(26, 26, 26, 0.30) !important; }
+[data-theme="light"] .text-white\/35  { color: rgba(26, 26, 26, 0.35) !important; }
+[data-theme="light"] .text-white\/40  { color: rgba(26, 26, 26, 0.40) !important; }
+[data-theme="light"] .text-white\/45  { color: rgba(26, 26, 26, 0.45) !important; }
+[data-theme="light"] .text-white\/50  { color: rgba(26, 26, 26, 0.50) !important; }
+[data-theme="light"] .text-white\/55  { color: rgba(26, 26, 26, 0.55) !important; }
+[data-theme="light"] .text-white\/60  { color: rgba(26, 26, 26, 0.60) !important; }
+[data-theme="light"] .text-white\/65  { color: rgba(26, 26, 26, 0.65) !important; }
+[data-theme="light"] .text-white\/70  { color: rgba(26, 26, 26, 0.70) !important; }
+[data-theme="light"] .text-white\/75  { color: rgba(26, 26, 26, 0.75) !important; }
+[data-theme="light"] .text-white\/80  { color: rgba(26, 26, 26, 0.80) !important; }
+[data-theme="light"] .text-white\/85  { color: rgba(26, 26, 26, 0.85) !important; }
+[data-theme="light"] .text-white\/90  { color: rgba(26, 26, 26, 0.90) !important; }
+[data-theme="light"] .text-white\/95  { color: rgba(26, 26, 26, 0.95) !important; }
+
+/* Hover states */
+[data-theme="light"] .hover\:text-white:hover,
+[data-theme="light"] .hover\:text-secondary:hover {
+  color: var(--text-color) !important;
+}
+
+[data-theme="light"] .hover\:bg-white\/\[0\.02\]:hover,
+[data-theme="light"] .hover\:bg-white\/5:hover,
+[data-theme="light"] .hover\:bg-white\/10:hover {
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .hover\:border-white\/25:hover,
+[data-theme="light"] .hover\:border-white\/50:hover {
+  border-color: rgba(0, 0, 0, 0.22) !important;
+}
+
+[data-theme="light"] .hover\:text-white\/30:hover { color: rgba(26, 26, 26, 0.30) !important; }
+[data-theme="light"] .hover\:text-white\/40:hover { color: rgba(26, 26, 26, 0.40) !important; }
+
+/* Group hover opacity adjustments */
+[data-theme="light"] .group:hover .group-hover\:text-white { color: var(--text-color) !important; }
+[data-theme="light"] .group:hover .group-hover\:text-white\/40 { color: rgba(26, 26, 26, 0.40) !important; }
+[data-theme="light"] .group:hover .group-hover\:opacity-90 { opacity: 0.90 !important; }
+
+/* border-white/[...] → black opacity variants */
+[data-theme="light"] .border-white,
+[data-theme="light"] .border-white\/\[0\.04\]  { border-color: rgba(0, 0, 0, 0.04) !important; }
+[data-theme="light"] .border-white\/\[0\.06\]  { border-color: rgba(0, 0, 0, 0.08) !important; }
+[data-theme="light"] .border-white\/\[0\.08\]  { border-color: rgba(0, 0, 0, 0.10) !important; }
+[data-theme="light"] .border-white\/\[0\.10\]  { border-color: rgba(0, 0, 0, 0.12) !important; }
+[data-theme="light"] .border-white\/10        { border-color: rgba(0, 0, 0, 0.10) !important; }
+[data-theme="light"] .border-white\/20        { border-color: rgba(0, 0, 0, 0.18) !important; }
+[data-theme="light"] .border-white\/25        { border-color: rgba(0, 0, 0, 0.22) !important; }
+[data-theme="light"] .border-white\/50        { border-color: rgba(0, 0, 0, 0.32) !important; }
+
+/* Dividers and border utility helpers */
+[data-theme="light"] .bg-white\/\[0\.06\]  { background: rgba(0, 0, 0, 0.06) !important; }
+[data-theme="light"] .bg-white\/\[0\.08\]  { background: rgba(0, 0, 0, 0.08) !important; }
+[data-theme="light"] .bg-white\/10         { background: rgba(0, 0, 0, 0.10) !important; }
+[data-theme="light"] .bg-white\/20         { background: rgba(0, 0, 0, 0.18) !important; }
+
+[data-theme="light"] .border-signal-blue\/40 { border-color: rgba(0, 87, 255, 0.45) !important; }
+[data-theme="light"] .text-signal-blue\/60  { color: rgba(0, 87, 255, 0.75) !important; }
+
+/* Glass panel / nav backdrop */
+[data-theme="light"] .glass-panel {
+  background: rgba(232, 232, 236, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .bg-black\/85 {
+  background: rgba(245, 245, 247, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+[data-theme="light"] .backdrop-blur-xl,
+[data-theme="light"] .backdrop-blur-md,
+[data-theme="light"] .backdrop-blur-sm {
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Cursor glow: less intense on light background */
+[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle, rgba(0, 87, 255, 0.12) 0%, rgba(0, 87, 255, 0.04) 40%, transparent 70%) !important;
+}
+
+/* Orbs / particles — visible but softened */
+[data-theme="light"] .orb {
+  opacity: 0.45 !important;
+}
+
+[data-theme="light"] .particle {
+  opacity: 0.55 !important;
+}
+
+/* Noise grain — barely there on light */
+[data-theme="light"] .noise-grain {
+  opacity: 0.018 !important;
+}
+
+/* Gradient text overrides for light backgrounds (darker, more contrast) */
+[data-theme="light"] .hero-wordmark-gradient {
+  background-image: linear-gradient(120deg, #1A1A1A 0%, #0057FF 50%, #1A1A1A 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Scroll progress bar — slightly more contrast */
+[data-theme="light"] .scroll-progress {
+  filter: saturate(1.1);
+}
+
+/* Selection highlight */
+[data-theme="light"] ::selection {
+  background: rgba(0, 87, 255, 0.18);
+  color: #0057FF;
+}
+
 @layer components {
 
   .pulse-breath {
