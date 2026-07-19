@@ -344,8 +344,8 @@ function Hero() {
           {/* Brand mark — Manteis Systems icon */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+            transition={{ opacity: { duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }, scale: { duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut' } }}
             className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 mb-2"
           >
             <Image
