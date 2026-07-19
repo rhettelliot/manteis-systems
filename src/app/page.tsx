@@ -137,7 +137,7 @@ function AnimatedOrbs() {
         style={{
           width: 700, height: 700,
           top: '-200px', left: '-150px',
-          background: 'radial-gradient(circle, rgba(0,87,255,0.18) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)',
           filter: 'blur(40px)',
         }}
         animate={{ x: [0, 60, -30, 0], y: [0, -40, 60, 0], scale: [1, 1.1, 0.95, 1] }}
@@ -184,7 +184,7 @@ function FloatingParticles({ count = 24, seed = 1998 }: { count?: number; seed?:
       duration: rand() * 14 + 10,
       delay: rand() * 16,
       drift: (rand() - 0.5) * 120,
-      color: i % 3 === 0 ? 'rgba(0,87,255,0.6)' : i % 3 === 1 ? 'rgba(255,110,199,0.5)' : 'rgba(0,212,168,0.5)',
+      color: i % 3 === 0 ? 'rgba(59,130,246,0.6)' : i % 3 === 1 ? 'rgba(255,110,199,0.5)' : 'rgba(0,212,168,0.5)',
     }));
   }, [count, seed]);
   return (
@@ -305,7 +305,7 @@ function Hero() {
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-[1]"
         >
           <motion.div
-            className="w-[1000px] h-[1000px] border border-[rgba(0,87,255,0.04)]"
+            className="w-[1000px] h-[1000px] border border-[rgba(59,130,246,0.04)]"
             animate={{ rotate: 360 }}
             transition={{ duration: 240, repeat: Infinity, ease: 'linear' }}
           />
@@ -554,7 +554,7 @@ function SovereignNodeDiagram() {
   // Node positions on a 900×520 canvas
   const NODES = [
     { id: 'user',   x: 70,  y: 260, w: 110, h: 60, label: 'USER QUERY',   kind: 'ext', color: '#FFFFFF' },
-    { id: 'agent',  x: 260, y: 120, w: 150, h: 68, label: 'AGENT LAYER',  sub: 'ORCHESTRATOR',   color: '#0057FF' },
+    { id: 'agent',  x: 260, y: 120, w: 150, h: 68, label: 'AGENT LAYER',  sub: 'ORCHESTRATOR',   color: '#3B82F6' },
     { id: 'model', x: 500, y: 120, w: 150, h: 68, label: 'LOCAL AI',     sub: 'OPEN MODELS',    color: '#FF6EC7' },
     { id: 'memory', x: 260, y: 340, w: 150, h: 68, label: 'VECTOR STORE', sub: 'LOCAL MEMORY',   color: '#00D4A8' },
     { id: 'disk',   x: 500, y: 340, w: 150, h: 68, label: 'YOUR DATA',    sub: 'LOCAL · ENCRYPTED', color: '#FFB547' },
@@ -565,7 +565,7 @@ function SovereignNodeDiagram() {
 
   // Edges: [from, to, color, animated?]
   const EDGES: Array<{ from: string; to: string; color: string; flow: boolean; dashed?: boolean }> = [
-    { from: 'user',   to: 'agent',  color: '#0057FF', flow: true },
+    { from: 'user',   to: 'agent',  color: '#3B82F6', flow: true },
     { from: 'agent',  to: 'model',  color: '#FF6EC7', flow: true },
     { from: 'agent',  to: 'memory', color: '#00D4A8', flow: true },
     { from: 'model',  to: 'memory', color: '#7AA9FF', flow: true },
@@ -667,7 +667,7 @@ function SovereignNodeDiagram() {
             <motion.rect
               x="200" y="50" width="500" height="420" rx="4"
               fill="none"
-              stroke="rgba(0,87,255,0.35)"
+              stroke="rgba(59,130,246,0.35)"
               strokeWidth="1"
               strokeDasharray="4 6"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -676,7 +676,7 @@ function SovereignNodeDiagram() {
             />
             <text
               x="210" y="42"
-              fill="rgba(0,87,255,0.55)"
+              fill="rgba(59,130,246,0.55)"
               fontFamily="var(--font-mono), monospace"
               fontSize="10"
               letterSpacing="2"
@@ -987,7 +987,7 @@ function FederationSection() {
             {/* Gate → orchestrator edge */}
             <motion.line
               x1={cx(GATE)} y1={GATE.y + GATE.h} x2={cx(ORCH)} y2={ORCH.y}
-              stroke="#0057FF"
+              stroke="#3B82F6"
               strokeOpacity="0.45"
               strokeWidth="1"
               initial={{ pathLength: 0 }}
@@ -1000,7 +1000,7 @@ function FederationSection() {
               <g key={`de-${i}`}>
                 <motion.line
                   x1={cx(ORCH)} y1={ORCH.y + ORCH.h} x2={cx(d)} y2={d.y}
-                  stroke="#0057FF"
+                  stroke="#3B82F6"
                   strokeOpacity="0.28"
                   strokeWidth="1"
                   initial={{ pathLength: 0 }}
@@ -1010,7 +1010,7 @@ function FederationSection() {
                 {/* Proposal pulse travelling the bus — connections light up in turn */}
                 <motion.circle
                   r="3"
-                  fill="#0057FF"
+                  fill="#3B82F6"
                   initial={{ opacity: 0 }}
                   animate={
                     inView
@@ -1057,7 +1057,7 @@ function FederationSection() {
             {/* Bus label */}
             <motion.text
               x={cx(ORCH)} y={ORCH.y + ORCH.h + 42}
-              fill="rgba(0,87,255,0.8)"
+              fill="rgba(59,130,246,0.8)"
               fontFamily="var(--font-mono), monospace"
               fontSize="9"
               letterSpacing="2"
@@ -1094,10 +1094,10 @@ function FederationSection() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
             >
-              <rect x={GATE.x} y={GATE.y} width={GATE.w} height={GATE.h} fill="rgba(0,87,255,0.06)" stroke="#0057FF" strokeOpacity="0.7" strokeWidth="1" />
+              <rect x={GATE.x} y={GATE.y} width={GATE.w} height={GATE.h} fill="rgba(59,130,246,0.06)" stroke="#3B82F6" strokeOpacity="0.7" strokeWidth="1" />
               <motion.rect
                 x={GATE.x} y={GATE.y} width={GATE.w} height={GATE.h}
-                fill="none" stroke="#0057FF" strokeWidth="1"
+                fill="none" stroke="#3B82F6" strokeWidth="1"
                 animate={{ opacity: [0.6, 0, 0.6] }}
                 transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
               />
@@ -1115,14 +1115,14 @@ function FederationSection() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <rect x={ORCH.x} y={ORCH.y} width={ORCH.w} height={ORCH.h} fill="rgba(0,87,255,0.1)" stroke="#0057FF" strokeWidth="1" />
+              <rect x={ORCH.x} y={ORCH.y} width={ORCH.w} height={ORCH.h} fill="rgba(59,130,246,0.1)" stroke="#3B82F6" strokeWidth="1" />
               <motion.rect
                 x={ORCH.x} y={ORCH.y} width={ORCH.w} height={ORCH.h}
-                fill="none" stroke="#0057FF" strokeWidth="1"
+                fill="none" stroke="#3B82F6" strokeWidth="1"
                 animate={{ opacity: [0.7, 0.15, 0.7] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <text x={cx(ORCH)} y={ORCH.y + 28} textAnchor="middle" fill="#0057FF" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="14" letterSpacing="1.5">
+              <text x={cx(ORCH)} y={ORCH.y + 28} textAnchor="middle" fill="#3B82F6" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="14" letterSpacing="1.5">
                 ORCHESTRATOR OS
               </text>
               <text x={cx(ORCH)} y={ORCH.y + 46} textAnchor="middle" fill="rgba(255,255,255,0.45)" fontFamily="var(--font-mono), monospace" fontSize="8.5" letterSpacing="1.5">
@@ -1154,7 +1154,7 @@ function FederationSection() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <rect x={INFER.x} y={INFER.y} width={INFER.w} height={INFER.h} fill="rgba(0,87,255,0.05)" stroke="rgba(0,87,255,0.5)" strokeWidth="1" strokeDasharray="6 4" />
+              <rect x={INFER.x} y={INFER.y} width={INFER.w} height={INFER.h} fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.5)" strokeWidth="1" strokeDasharray="6 4" />
               <text x={cx(INFER)} y={INFER.y + 24} textAnchor="middle" fill="rgba(255,255,255,0.85)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="13" letterSpacing="1.5">
                 PRIVATE INFERENCE PLANE
               </text>
@@ -1210,7 +1210,7 @@ function ThreePillars() {
       title: 'THE SOVEREIGN NODE',
       tagline: 'Your data. Your machine. Your intelligence.',
       desc: 'A dedicated local AI server — compact desktop, pro workstation, or custom build — running a local inference engine, a local vector store, and a custom agent orchestrator. Private by design. Zero cloud dependency.',
-      accent: '#0057FF',
+      accent: '#3B82F6',
       accentClass: 'text-signal-blue',
       icon: Cpu,
       detail: '$2,500–$7,500 setup · $2,000/mo managed',
@@ -1266,7 +1266,7 @@ function ThreePillars() {
               className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default transition-all duration-500 hover:scale-[1.02] hover:bg-white/[0.03] relative overflow-hidden"
               style={{ borderTop: `1px solid ${p.accent}` }}
             >
-              <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-[#0057FF] transition-all duration-500 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-[#3B82F6] transition-all duration-500 pointer-events-none" />
               <div className="flex items-center justify-between">
                 <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
                   {p.label}
@@ -1424,9 +1424,9 @@ function SystemsDeepDive() {
   ];
 
   const tiers = [
-    { name: 'STARTER NODE',       price: '$2,500',        hardware: 'Compact Desktop · 4 agents · 1 model',          monthly: '$2,000/mo managed', accent: '#0057FF' },
-    { name: 'PROFESSIONAL NODE',  price: '$5,000',        hardware: 'Pro Workstation · 10 agents · 3 models',        monthly: '$2,000/mo managed', accent: '#0057FF', featured: true },
-    { name: 'ENTERPRISE NODE',    price: '$7,500',        hardware: 'High-End Workstation · Unlimited agents',       monthly: '$2,000/mo managed', accent: '#0057FF' },
+    { name: 'STARTER NODE',       price: '$2,500',        hardware: 'Compact Desktop · 4 agents · 1 model',          monthly: '$2,000/mo managed', accent: '#3B82F6' },
+    { name: 'PROFESSIONAL NODE',  price: '$5,000',        hardware: 'Pro Workstation · 10 agents · 3 models',        monthly: '$2,000/mo managed', accent: '#3B82F6', featured: true },
+    { name: 'ENTERPRISE NODE',    price: '$7,500',        hardware: 'High-End Workstation · Unlimited agents',       monthly: '$2,000/mo managed', accent: '#3B82F6' },
     { name: 'NON-PROFIT SUBSIDY', price: '$1,500–$3,000', hardware: 'Qualifying mission-driven organizations',       monthly: 'Reduced managed rate', accent: '#00D4A8' },
   ];
 
@@ -1495,7 +1495,7 @@ function SystemsDeepDive() {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ x: 4, scale: 1.05, transition: { duration: 0.2 } }}
-                className={`border p-5 sm:p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 hover:scale-105 ${t.featured ? 'border-signal-blue/40 border-t-2 border-[#0057FF]' : 'border-white/[0.08]'}`}
+                className={`border p-5 sm:p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 hover:scale-105 ${t.featured ? 'border-signal-blue/40 border-t-2 border-[#3B82F6]' : 'border-white/[0.08]'}`}
                 style={{ borderTopColor: t.accent, borderTopWidth: t.featured ? '2px' : '1px' }}
               >
                 <div className="flex items-start justify-between mb-1 gap-3">
@@ -1628,7 +1628,7 @@ function CaseStudy() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.55, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ borderTopColor: '#0057FF' }}
+                whileHover={{ borderTopColor: '#3B82F6' }}
                 className="p-4 sm:p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group"
               >
                 <div className="font-display font-bold text-xl sm:text-2xl text-signal-blue tracking-tight mb-1">
@@ -1734,7 +1734,7 @@ function CapabilitiesProof() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ borderTopColor: '#0057FF' }}
+              whileHover={{ borderTopColor: '#3B82F6' }}
               className="bg-void-raised p-6 sm:p-8 flex flex-col gap-4 border-t border-transparent hover:bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 group cursor-default"
             >
               <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/55">
@@ -1796,7 +1796,7 @@ function WhatWeOffer() {
         'Custom MCP development',
       ],
       price: '$350/hr consultation · $2k/mo managed',
-      accent: '#0057FF',
+      accent: '#3B82F6',
     },
     {
       icon: Shield,
@@ -1930,7 +1930,7 @@ function Manifesto() {
         >
           <motion.div
             className="w-16 h-16 border-2 border-signal-blue flex items-center justify-center shrink-0"
-            animate={{ borderColor: ['#0057FF', '#00D4A8', '#FF6EC7', '#0057FF'] }}
+            animate={{ borderColor: ['#3B82F6', '#00D4A8', '#FF6EC7', '#3B82F6'] }}
             transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
           >
             <Terminal size={24} className="text-signal-blue" />
@@ -2005,15 +2005,15 @@ function FinalCTA() {
         className="absolute inset-0 pointer-events-none"
         animate={{
           background: [
-            'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(0,87,255,0.08) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(59,130,246,0.08) 0%, transparent 70%)',
             'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(0,212,168,0.08) 0%, transparent 70%)',
             'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(255,110,199,0.06) 0%, transparent 70%)',
-            'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(0,87,255,0.08) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 50% 80%, rgba(59,130,246,0.08) 0%, transparent 70%)',
           ],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
       />
-      <div className="absolute w-64 h-64 rounded-full bg-[#0057FF]/20 blur-3xl animate-pulse pointer-events-none" />
+      <div className="absolute w-64 h-64 rounded-full bg-[#3B82F6]/20 blur-3xl animate-pulse pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
