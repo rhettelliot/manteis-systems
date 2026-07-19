@@ -291,7 +291,7 @@ function Hero() {
 
   return (
     <div ref={containerRef} style={{ height: '180vh' }}>
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-8">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-4 sm:px-8">
 
         {/* Aurora orbs + particles — deeper space, less screensaver */}
         <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
@@ -359,15 +359,20 @@ function Hero() {
           </motion.div>
 
           {/* H1 — MANTEIS.SYSTEMS massive, centered */}
-          <h1 className="font-display font-bold text-[clamp(48px,10vw,140px)] leading-[0.9] tracking-tight flex flex-col items-center overflow-hidden w-full">
+          <h1 className="font-display font-bold text-[clamp(32px,10vw,140px)] leading-[0.95] tracking-tighter sm:tracking-tight flex flex-col items-center overflow-hidden w-full px-1">
             <motion.span
               initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">MANTEIS</GradientText>
-              <span className="text-signal-blue">.</span>
-              <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">SYSTEMS</GradientText>
+              {/* Two nowrap chunks so the wordmark breaks after the dot instead of clipping on narrow screens */}
+              <span className="inline-block whitespace-nowrap">
+                <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">MANTEIS</GradientText>
+                <span className="text-signal-blue">.</span>
+              </span>
+              <span className="inline-block whitespace-nowrap">
+                <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">SYSTEMS</GradientText>
+              </span>
             </motion.span>
           </h1>
 
@@ -638,9 +643,11 @@ function SovereignNodeDiagram() {
             </div>
           </div>
 
+          {/* min-w + scroll keeps diagram labels legible on phones */}
+          <div className="overflow-x-auto">
           <svg
             viewBox="0 0 900 520"
-            className="w-full h-auto"
+            className="w-full h-auto min-w-[560px]"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="Sovereign Node architecture diagram"
@@ -810,6 +817,7 @@ function SovereignNodeDiagram() {
               );
             })}
           </svg>
+          </div>
 
           {/* Legend */}
           <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
@@ -929,9 +937,11 @@ function FederationSection() {
             </div>
           </div>
 
+          {/* min-w + scroll keeps diagram labels legible on phones */}
+          <div className="overflow-x-auto">
           <svg
             viewBox="0 0 900 640"
-            className="w-full h-auto"
+            className="w-full h-auto min-w-[560px]"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="AI OS Federation diagram: staff tier feeds a human approval gate, an orchestrator AI OS coordinates five departmental AI OSes over a git bus, all backed by a private inference tier"
@@ -1158,6 +1168,7 @@ function FederationSection() {
               </text>
             </motion.g>
           </svg>
+          </div>
 
           {/* Legend */}
           <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
@@ -2090,7 +2101,7 @@ export default function Home() {
       <FinalCTA />
       <footer className="border-t border-white/[0.06] px-8 py-8">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/20">
+          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/20 text-center sm:text-left">
             MANTEIS.SYSTEMS · SOVEREIGN INTELLIGENCE INFRASTRUCTURE
           </span>
           <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/15">
