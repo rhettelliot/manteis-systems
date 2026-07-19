@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'motion/react';
-import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight } from 'lucide-react';
+import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight, GitBranch, ShieldCheck, Layers } from 'lucide-react';
 import Button from '../components/ui/Button';
 import {
   ScrollProgress, CursorGlow, Counter,
@@ -15,9 +15,13 @@ const LOG_MESSAGES = [
   "LOADING LOCAL INFERENCE ENGINE [OK]",
   "VECTOR STORE MOUNTED [OK]",
   "AGENT ORCHESTRATOR ACTIVE [OK]",
+  "FEDERATION BUS: GIT PROTOCOL [OK]",
+  "HUMAN GATE: ARMED — WRITES REQUIRE APPROVAL",
+  "DEPARTMENT OS ×5: SYNCED [OK]",
   "LOCAL AI: RUNNING — NO CLOUD DEPENDENCY",
   "DATA SOVEREIGNTY: ENFORCED",
   "LATENCY: 8ms LOCAL",
+  "AUDIT TRAIL: RECORDING",
   "CORPORATE MACHINE: DEPHASED.",
   "MANTEIS.SYSTEMS ONLINE.",
 ];
@@ -39,7 +43,7 @@ function Nav() {
         </span>
       </div>
       <div className="hidden md:flex gap-10">
-        {['Systems', 'Sounds', 'Self', 'Contact'].map((item) => (
+        {['Federation', 'Systems', 'Proof', 'Sounds', 'Self', 'Contact'].map((item) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
@@ -149,22 +153,34 @@ function FloatingParticles({ count = 24, seed = 1998 }: { count?: number; seed?:
 
 // ─── Terminal log ─────────────────────────────────────────────────────────────
 function TerminalLog() {
-  const [logs, setLogs] = useState<string[]>([LOG_MESSAGES[0]]);
-  const [, setIdx] = useState(0);
+  const [logs, setLogs] = useState<string[]>([]);
+  const [typing, setTyping] = useState('');
 
+  // Type each line character-by-character, commit it, pause, move on. Loops.
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIdx((prev) => {
-        const next = (prev + 1) % LOG_MESSAGES.length;
-        setLogs((cur) => [...cur, LOG_MESSAGES[next]].slice(-6));
-        return next;
-      });
-    }, 1400);
-    return () => clearInterval(interval);
+    let line = 0;
+    let char = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      const msg = LOG_MESSAGES[line % LOG_MESSAGES.length];
+      if (char < msg.length) {
+        char = Math.min(char + 2, msg.length);
+        setTyping(msg.slice(0, char));
+        timer = setTimeout(tick, 26);
+      } else {
+        setLogs((cur) => [...cur, msg].slice(-5));
+        setTyping('');
+        line += 1;
+        char = 0;
+        timer = setTimeout(tick, 700);
+      }
+    };
+    timer = setTimeout(tick, 350);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="border border-white/[0.08] bg-void-raised p-4 font-mono text-[11px] leading-6 w-full max-w-md">
+    <div className="border border-white/[0.08] bg-void-raised p-4 font-mono text-[11px] leading-6 w-full max-w-md" aria-label="Sovereign Node boot log" role="log">
       <div className="text-white/25 mb-2 tracking-widest text-[9px] uppercase border-b border-white/[0.06] pb-2">
         // SOVEREIGN_NODE_01 · BOOT_LOG
       </div>
@@ -180,7 +196,11 @@ function TerminalLog() {
           {line}
         </motion.div>
       ))}
-      <span className="terminal-cursor text-signal-blue">█</span>
+      <div className={isHighlighted(typing) ? 'text-signal-blue' : 'text-white/50'}>
+        <span className="text-white/20 mr-2">&gt;</span>
+        {typing}
+        <span className="terminal-cursor text-signal-blue">█</span>
+      </div>
     </div>
   );
 }
@@ -351,6 +371,9 @@ function Hero() {
 // ─── Marquee ticker ───────────────────────────────────────────────────────────
 const MARQUEE_ITEMS = [
   { text: 'LOCAL AI', color: 'text-signal-blue' },
+  { text: 'AI OS FEDERATION', color: 'text-white/25' },
+  { text: 'GIT-AS-BUS', color: 'text-signal-blue' },
+  { text: 'HUMAN-GATED WRITES', color: 'text-white/25' },
   { text: 'VECTOR STORE', color: 'text-white/25' },
   { text: 'AGENT ORCHESTRATION', color: 'text-signal-teal' },
   { text: 'ZERO TRUST', color: 'text-white/25' },
@@ -446,7 +469,7 @@ function VideoSection() {
 function Marquee() {
   const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
-    <div className="overflow-hidden border-y border-white/[0.06] py-3 bg-void-raised">
+    <div className="overflow-hidden border-y border-white/[0.06] py-3 bg-void-raised" aria-hidden>
       <motion.div
         className="flex gap-0 whitespace-nowrap"
         animate={{ x: ['0%', '-50%'] }}
@@ -754,6 +777,377 @@ function SovereignNodeDiagram() {
   );
 }
 
+// ─── AI OS Federation — the differentiator ────────────────────────────────────
+function FederationSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-120px' });
+
+  // Diagram geometry on a 900×640 canvas. Three tiers, top to bottom:
+  // STAFF → ORCHESTRATION (orchestrator + department OSes) → PRIVATE INFERENCE
+  const STAFF = Array.from({ length: 5 }, (_, i) => ({ x: 250 + i * 90, y: 58, w: 56, h: 26 }));
+  const GATE = { x: 360, y: 138, w: 180, h: 44 };
+  const ORCH = { x: 350, y: 250, w: 200, h: 64 };
+  const DEPTS = [
+    { x: 40,  label: 'OPS.OS' },
+    { x: 212, label: 'FINANCE.OS' },
+    { x: 384, label: 'SECURITY.OS' },
+    { x: 556, label: 'DATA.OS' },
+    { x: 728, label: 'COMMS.OS' },
+  ].map((d) => ({ ...d, y: 400, w: 132, h: 54 }));
+  const INFER = { x: 150, y: 522, w: 600, h: 56 };
+
+  const cx = (n: { x: number; w: number }) => n.x + n.w / 2;
+
+  const pillars = [
+    {
+      icon: GitBranch,
+      title: 'GIT-AS-BUS PROTOCOL',
+      desc: 'Departments never talk over fragile APIs. Every change moves as a versioned proposal on a git bus — diffable, revertable, and permanently recorded. The org chart becomes a commit graph.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'HUMAN-GATED WRITES',
+      desc: 'Agents read freely. Agents write never — without a human. Every write operation queues as a proposal, waits for approval, and lands with a full audit trail. Autonomy without anarchy.',
+    },
+    {
+      icon: Layers,
+      title: 'THREE-TIER ARCHITECTURE',
+      desc: 'Staff at the top, orchestration in the middle, private inference at the bottom. People direct, agents coordinate, and models think — on hardware you own, behind your firewall.',
+    },
+  ];
+
+  return (
+    <section id="federation" ref={ref} className="relative px-8 py-32 border-t border-white/[0.06] overflow-hidden">
+      {/* Subtle grid background */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+        }}
+      />
+
+      <div className="relative max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+        >
+          {'// AI OS FEDERATION · THE PATTERN NO ONE ELSE RUNS'}
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display font-bold text-[clamp(30px,4.5vw,56px)] leading-[0.95] tracking-tight mb-4 max-w-4xl"
+        >
+          ONE AI OS PER DEPARTMENT.
+          <br />
+          <span className="text-white/30">ONE ORCHESTRATOR ABOVE.</span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-white/55 text-base leading-relaxed max-w-xl mb-14"
+        >
+          Not one chatbot bolted onto the org. A federation: every department runs
+          its own AI operating system, and an orchestrator OS coordinates them all —
+          through versioned proposals, with a human approving every write.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="relative border border-white/[0.08] bg-void-raised p-4 sm:p-8"
+        >
+          {/* Header bar */}
+          <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06]">
+            <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/35">
+              federation.topology
+            </span>
+            <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.25em] uppercase text-signal-blue shrink-0">
+              <motion.span
+                className="inline-block w-1.5 h-1.5 bg-signal-blue"
+                animate={{ opacity: [1, 0.2, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity }}
+              />
+              <span className="hidden sm:inline">BUS ACTIVE · WRITES GATED</span>
+              <span className="sm:hidden">GATED</span>
+            </div>
+          </div>
+
+          <svg
+            viewBox="0 0 900 640"
+            className="w-full h-auto"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="AI OS Federation diagram: staff tier feeds a human approval gate, an orchestrator AI OS coordinates five departmental AI OSes over a git bus, all backed by a private inference tier"
+          >
+            {/* Tier separators + labels */}
+            {[
+              { y: 110, label: 'TIER 1 — STAFF · HUMANS IN COMMAND' },
+              { y: 370, label: 'TIER 2 — ORCHESTRATION · FEDERATED AI OS' },
+              { y: 496, label: 'TIER 3 — PRIVATE INFERENCE · YOUR HARDWARE' },
+            ].map((t, i) => (
+              <g key={t.y}>
+                <motion.line
+                  x1="0" y1={t.y} x2="900" y2={t.y}
+                  stroke="rgba(255,255,255,0.07)"
+                  strokeDasharray="2 6"
+                  initial={{ pathLength: 0 }}
+                  animate={inView ? { pathLength: 1 } : {}}
+                  transition={{ duration: 1.2, delay: 0.4 + i * 0.2 }}
+                />
+                <motion.text
+                  x="6" y={t.y + 16}
+                  fill="rgba(255,255,255,0.28)"
+                  fontFamily="var(--font-mono), monospace"
+                  fontSize="9"
+                  letterSpacing="2"
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 + i * 0.2 }}
+                >
+                  {t.label}
+                </motion.text>
+              </g>
+            ))}
+
+            {/* Staff → gate edges */}
+            {STAFF.map((s, i) => (
+              <motion.line
+                key={`se-${i}`}
+                x1={cx(s)} y1={s.y + s.h} x2={cx(GATE)} y2={GATE.y}
+                stroke="rgba(255,255,255,0.18)"
+                strokeWidth="1"
+                initial={{ pathLength: 0 }}
+                animate={inView ? { pathLength: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.7 + i * 0.06 }}
+              />
+            ))}
+
+            {/* Gate → orchestrator edge */}
+            <motion.line
+              x1={cx(GATE)} y1={GATE.y + GATE.h} x2={cx(ORCH)} y2={ORCH.y}
+              stroke="#0057FF"
+              strokeOpacity="0.45"
+              strokeWidth="1"
+              initial={{ pathLength: 0 }}
+              animate={inView ? { pathLength: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+            />
+
+            {/* Orchestrator ↔ departments (the git bus) */}
+            {DEPTS.map((d, i) => (
+              <g key={`de-${i}`}>
+                <motion.line
+                  x1={cx(ORCH)} y1={ORCH.y + ORCH.h} x2={cx(d)} y2={d.y}
+                  stroke="#0057FF"
+                  strokeOpacity="0.28"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={inView ? { pathLength: 1 } : {}}
+                  transition={{ duration: 0.9, delay: 1.1 + i * 0.08 }}
+                />
+                {/* Proposal pulse travelling the bus — connections light up in turn */}
+                <motion.circle
+                  r="3"
+                  fill="#0057FF"
+                  initial={{ opacity: 0 }}
+                  animate={
+                    inView
+                      ? { cx: [cx(ORCH), cx(d)], cy: [ORCH.y + ORCH.h, d.y], opacity: [0, 1, 1, 0] }
+                      : {}
+                  }
+                  transition={{
+                    duration: 1.8,
+                    delay: 2 + i * 0.55,
+                    repeat: Infinity,
+                    repeatDelay: DEPTS.length * 0.55,
+                    ease: 'easeInOut',
+                  }}
+                />
+                {/* Department → inference plane */}
+                <motion.line
+                  x1={cx(d)} y1={d.y + d.h} x2={cx(d)} y2={INFER.y}
+                  stroke="rgba(255,255,255,0.14)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={inView ? { pathLength: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 1.4 + i * 0.08 }}
+                />
+                <motion.circle
+                  r="2.5"
+                  fill="rgba(255,255,255,0.6)"
+                  initial={{ opacity: 0 }}
+                  animate={
+                    inView
+                      ? { cx: [cx(d), cx(d)], cy: [d.y + d.h, INFER.y], opacity: [0, 1, 1, 0] }
+                      : {}
+                  }
+                  transition={{
+                    duration: 1.4,
+                    delay: 2.4 + i * 0.55,
+                    repeat: Infinity,
+                    repeatDelay: DEPTS.length * 0.55,
+                    ease: 'easeIn',
+                  }}
+                />
+              </g>
+            ))}
+
+            {/* Bus label */}
+            <motion.text
+              x={cx(ORCH)} y={ORCH.y + ORCH.h + 42}
+              fill="rgba(0,87,255,0.8)"
+              fontFamily="var(--font-mono), monospace"
+              fontSize="9"
+              letterSpacing="2"
+              textAnchor="middle"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 1.8 }}
+            >
+              GIT-AS-BUS · PROPOSAL → REVIEW → COMMIT
+            </motion.text>
+
+            {/* Staff nodes */}
+            {STAFF.map((s, i) => (
+              <motion.g
+                key={`s-${i}`}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <rect x={s.x} y={s.y} width={s.w} height={s.h} fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" strokeWidth="1" />
+                <text
+                  x={cx(s)} y={s.y + 17} textAnchor="middle"
+                  fill="rgba(255,255,255,0.6)"
+                  fontFamily="var(--font-mono), monospace" fontSize="9" letterSpacing="1.5"
+                >
+                  STAFF
+                </text>
+              </motion.g>
+            ))}
+
+            {/* Human gate */}
+            <motion.g
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <rect x={GATE.x} y={GATE.y} width={GATE.w} height={GATE.h} fill="rgba(0,87,255,0.06)" stroke="#0057FF" strokeOpacity="0.7" strokeWidth="1" />
+              <motion.rect
+                x={GATE.x} y={GATE.y} width={GATE.w} height={GATE.h}
+                fill="none" stroke="#0057FF" strokeWidth="1"
+                animate={{ opacity: [0.6, 0, 0.6] }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <text x={cx(GATE)} y={GATE.y + 19} textAnchor="middle" fill="#FFFFFF" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="12" letterSpacing="1">
+                HUMAN GATE
+              </text>
+              <text x={cx(GATE)} y={GATE.y + 34} textAnchor="middle" fill="rgba(255,255,255,0.45)" fontFamily="var(--font-mono), monospace" fontSize="8.5" letterSpacing="1.5">
+                EVERY WRITE · APPROVE / DENY
+              </text>
+            </motion.g>
+
+            {/* Orchestrator */}
+            <motion.g
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <rect x={ORCH.x} y={ORCH.y} width={ORCH.w} height={ORCH.h} fill="rgba(0,87,255,0.1)" stroke="#0057FF" strokeWidth="1" />
+              <motion.rect
+                x={ORCH.x} y={ORCH.y} width={ORCH.w} height={ORCH.h}
+                fill="none" stroke="#0057FF" strokeWidth="1"
+                animate={{ opacity: [0.7, 0.15, 0.7] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <text x={cx(ORCH)} y={ORCH.y + 28} textAnchor="middle" fill="#0057FF" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="14" letterSpacing="1.5">
+                ORCHESTRATOR OS
+              </text>
+              <text x={cx(ORCH)} y={ORCH.y + 46} textAnchor="middle" fill="rgba(255,255,255,0.45)" fontFamily="var(--font-mono), monospace" fontSize="8.5" letterSpacing="1.5">
+                ROUTES · MERGES · AUDITS
+              </text>
+            </motion.g>
+
+            {/* Department nodes */}
+            {DEPTS.map((d, i) => (
+              <motion.g
+                key={d.label}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.7, delay: 1.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <rect x={d.x} y={d.y} width={d.w} height={d.h} fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.35)" strokeWidth="1" />
+                <text x={cx(d)} y={d.y + 24} textAnchor="middle" fill="rgba(255,255,255,0.85)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="12" letterSpacing="1">
+                  {d.label}
+                </text>
+                <text x={cx(d)} y={d.y + 40} textAnchor="middle" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-mono), monospace" fontSize="8" letterSpacing="1.5">
+                  DEPARTMENT AI OS
+                </text>
+              </motion.g>
+            ))}
+
+            {/* Private inference plane */}
+            <motion.g
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <rect x={INFER.x} y={INFER.y} width={INFER.w} height={INFER.h} fill="rgba(0,87,255,0.05)" stroke="rgba(0,87,255,0.5)" strokeWidth="1" strokeDasharray="6 4" />
+              <text x={cx(INFER)} y={INFER.y + 24} textAnchor="middle" fill="rgba(255,255,255,0.85)" fontFamily="var(--font-display), sans-serif" fontWeight="700" fontSize="13" letterSpacing="1.5">
+                PRIVATE INFERENCE PLANE
+              </text>
+              <text x={cx(INFER)} y={INFER.y + 42} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontFamily="var(--font-mono), monospace" fontSize="8.5" letterSpacing="2">
+                NVIDIA DGX · LOCAL MODELS · ZERO EGRESS
+              </text>
+            </motion.g>
+          </svg>
+
+          {/* Legend */}
+          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/40">
+            <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-signal-blue" />PROPOSAL FLOW</span>
+            <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-white/60" />INFERENCE CALL</span>
+            <span className="flex items-center gap-2"><span className="w-3 h-px bg-white/20" />READ PATH</span>
+            <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 border border-signal-blue" />HUMAN APPROVAL</span>
+          </div>
+        </motion.div>
+
+        {/* Federation pillars */}
+        <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06] mt-12">
+          {pillars.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.75, delay: 0.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-void-raised p-8 flex flex-col gap-4 border-t border-signal-blue/40 hover:bg-white/[0.02] transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <Icon size={16} className="text-signal-blue" aria-hidden />
+                  <h3 className="font-mono text-[10px] font-bold tracking-[0.25em] uppercase text-white">
+                    {p.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-white/50 leading-relaxed">{p.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Three Pillars ────────────────────────────────────────────────────────────
 function ThreePillars() {
   const pillars = [
@@ -974,7 +1368,7 @@ function SystemsDeepDive() {
 
   const tiers = [
     { name: 'STARTER NODE',       price: '$2,500',        hardware: 'Compact Desktop · 4 agents · 1 model',          monthly: '$2,000/mo managed', accent: '#0057FF' },
-    { name: 'PROFESSIONAL NODE',  price: '$5,000',        hardware: 'Pro Workstation · 10 agents · 3 models',        monthly: '$2,000/mo managed', accent: '#0057FF' },
+    { name: 'PROFESSIONAL NODE',  price: '$5,000',        hardware: 'Pro Workstation · 10 agents · 3 models',        monthly: '$2,000/mo managed', accent: '#0057FF', featured: true },
     { name: 'ENTERPRISE NODE',    price: '$7,500',        hardware: 'High-End Workstation · Unlimited agents',       monthly: '$2,000/mo managed', accent: '#0057FF' },
     { name: 'NON-PROFIT SUBSIDY', price: '$1,500–$3,000', hardware: 'Qualifying mission-driven organizations',       monthly: 'Reduced managed rate', accent: '#00D4A8' },
   ];
@@ -1043,17 +1437,22 @@ function SystemsDeepDive() {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                className="border border-white/[0.08] p-6 bg-void-raised cursor-default"
+                className={`border p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 ${t.featured ? 'border-signal-blue/40' : 'border-white/[0.08]'}`}
                 style={{ borderTopColor: t.accent, borderTopWidth: '1px' }}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/30">
+                <div className="flex items-start justify-between mb-1 gap-3">
+                  <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/40 pt-1.5">
                     {t.name}
                   </span>
-                  <span className="font-display font-bold text-xl" style={{ color: t.accent }}>
+                  <span className="font-display font-bold text-2xl tracking-tight" style={{ color: t.accent }}>
                     {t.price}
                   </span>
                 </div>
+                {t.featured && (
+                  <span className="inline-block font-mono text-[8px] tracking-[0.3em] uppercase text-signal-blue border border-signal-blue/40 px-2 py-0.5 mb-3">
+                    MOST DEPLOYED
+                  </span>
+                )}
                 <p className="font-mono text-[10px] text-white/45 mb-1">{t.hardware}</p>
                 <p className="font-mono text-[10px]" style={{ color: t.accent, opacity: 0.7 }}>{t.monthly}</p>
               </motion.div>
@@ -1131,8 +1530,35 @@ function CaseStudy() {
                 transition={{ duration: 1.8, repeat: Infinity }}
               />
               <span className="font-mono text-[10px] tracking-widest uppercase text-signal-teal">
-                DEPLOYMENT: PHASE 1/2 COMPLETE
+                DEPLOYMENT: LIVE
               </span>
+            </div>
+
+            {/* Deployment phases */}
+            <div className="flex flex-col gap-4 pt-2">
+              {[
+                { name: 'PHASE 1 · NODE PROVISIONING', pct: 100 },
+                { name: 'PHASE 2 · AGENT EXPANSION', pct: 45 },
+              ].map((ph, i) => (
+                <div key={ph.name}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/35">
+                      {ph.name}
+                    </span>
+                    <span className={`font-mono text-[9px] tracking-[0.2em] ${ph.pct === 100 ? 'text-signal-teal' : 'text-signal-blue'}`}>
+                      {ph.pct === 100 ? 'COMPLETE' : `${ph.pct}%`}
+                    </span>
+                  </div>
+                  <div className="h-1 bg-white/[0.06] overflow-hidden" role="progressbar" aria-valuenow={ph.pct} aria-valuemin={0} aria-valuemax={100} aria-label={ph.name}>
+                    <motion.div
+                      className={`h-full ${ph.pct === 100 ? 'bg-signal-teal' : 'bg-signal-blue'}`}
+                      initial={{ width: '0%' }}
+                      animate={inView ? { width: `${ph.pct}%` } : {}}
+                      transition={{ duration: 1.3, delay: 0.5 + i * 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
 
@@ -1160,6 +1586,136 @@ function CaseStudy() {
   );
 }
 
+// ─── Capabilities / Proof ─────────────────────────────────────────────────────
+function CapabilitiesProof() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  const metrics = [
+    { to: 42,    suffix: '+', decimals: 0, label: 'AGENT TOOLS DEPLOYED' },
+    { to: 20,    suffix: '+', decimals: 0, label: 'YEARS ENTERPRISE IT' },
+    { to: 15,    suffix: '+', decimals: 0, label: 'CONTAINERS ORCHESTRATED' },
+    { to: 30,    suffix: '+', decimals: 0, label: 'AUTOMATED WORKFLOWS' },
+    { to: 99.99, suffix: '%', decimals: 2, label: 'INFRASTRUCTURE UPTIME' },
+  ];
+
+  const cases = [
+    {
+      tag: 'ENTERPRISE MANUFACTURER',
+      title: 'ONE AGENT. THE WHOLE IT SURFACE.',
+      desc: 'A 42-tool AI agent covering IT operations, security, data, and infrastructure for an enterprise manufacturer — every write human-gated, every action audit-logged.',
+      stat: '42 TOOLS · HUMAN-GATED',
+    },
+    {
+      tag: 'SOVEREIGN NODE DEPLOYMENT',
+      title: 'ZERO CLOUD. EIGHT MILLISECONDS.',
+      desc: 'Local AI inference on dedicated hardware behind the client’s own firewall. No API keys, no per-token bills, no data leaving the building.',
+      stat: '8MS LATENCY · 0 EGRESS',
+    },
+    {
+      tag: 'AI OS FEDERATION',
+      title: 'FIVE DEPARTMENTS. ONE ORCHESTRATOR.',
+      desc: 'Five departmental AI operating systems unified under a single orchestrator OS — coordinating through versioned proposals on a git-as-bus protocol.',
+      stat: '5 OS · 1 ORCHESTRATOR',
+    },
+  ];
+
+  const stack = [
+    'NVIDIA DGX', 'HERMES', 'CLAUDE CODE', 'OLLAMA', 'DOCKER', 'MCP',
+    'N8N', 'TAILSCALE', 'SOPHOS', 'HYPER-V', 'ACTIVE DIRECTORY', 'M365',
+  ];
+
+  return (
+    <section id="proof" ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+        >
+          {'// PROOF OF OPERATION'}
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display font-bold text-[clamp(30px,4.5vw,56px)] tracking-tight leading-[0.95] mb-16"
+        >
+          SHOWN,
+          <span className="text-white/30"> NOT TOLD.</span>
+        </motion.h2>
+
+        {/* Metrics band */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="grid grid-cols-2 md:grid-cols-5 gap-px border border-white/[0.08] mb-12"
+        >
+          {metrics.map((m, i) => (
+            <div key={m.label} className="bg-void-raised p-6 flex flex-col gap-2">
+              <div className="font-mono font-bold text-2xl md:text-3xl text-signal-blue tracking-tight">
+                <Counter to={m.to} suffix={m.suffix} decimals={m.decimals} delay={0.3 + i * 0.12} />
+              </div>
+              <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 leading-relaxed">
+                {m.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Case cards */}
+        <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06] mb-12">
+          {cases.map((c, i) => (
+            <motion.article
+              key={c.tag}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.75, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-void-raised p-8 flex flex-col gap-4 hover:bg-white/[0.02] transition-colors"
+            >
+              <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/30">
+                {c.tag} · ANONYMIZED
+              </span>
+              <h3 className="font-display font-bold text-lg tracking-tight leading-snug text-white">
+                {c.title}
+              </h3>
+              <p className="text-sm text-white/50 leading-relaxed flex-1">{c.desc}</p>
+              <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-signal-blue pt-4 border-t border-white/[0.06]">
+                {c.stat}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* Tech stack grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-4"
+        >
+          {'// OPERATING STACK'}
+        </motion.div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px border border-white/[0.06]">
+          {stack.map((t, i) => (
+            <motion.div
+              key={t}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.5 + i * 0.05 }}
+              className="bg-void-raised px-4 py-5 text-center font-mono text-[10px] tracking-[0.18em] uppercase text-white/40 hover:text-signal-blue hover:bg-white/[0.02] transition-colors cursor-default"
+            >
+              {t}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── What We Offer ────────────────────────────────────────────────────────────
 function WhatWeOffer() {
   const ref = useRef(null);
@@ -1168,25 +1724,44 @@ function WhatWeOffer() {
   const services = [
     {
       icon: Cpu,
-      label: 'AI INFRASTRUCTURE',
-      title: 'Managed Sovereign Node',
-      desc: 'Full provisioning, hardening, and ongoing management of your private local AI stack. Local inference, agent orchestration, and vector memory — delivered and maintained.',
+      label: 'AUTONOMOUS AI CONSULTANCY',
+      title: 'Sovereign AI Infrastructure',
+      desc: 'Local LLM pipelines and agentic workflows on hardware you own. Ollama-served open models, private inference on NVIDIA DGX-class hardware, orchestrated by custom agents.',
+      deliverables: [
+        'Sovereign Node provisioning',
+        'Agent orchestration setup',
+        'Vector memory architecture',
+        'Custom MCP development',
+      ],
       price: '$350/hr consultation · $2k/mo managed',
       accent: '#0057FF',
     },
     {
       icon: Shield,
-      label: 'CYBERSECURITY',
-      title: 'Zero Trust Rollout',
-      desc: '20+ years of enterprise security. ZTNA, endpoint protection, full disk encryption, and MDM governance. SANS-standard audits for every environment.',
+      label: 'THE FORTRESS',
+      title: 'Security & Compliance',
+      desc: 'White-hat security audits and Zero Trust implementations backed by 20+ years of enterprise practice. SOC 2, HIPAA, and PCI compliance built into the infrastructure — not bolted on.',
+      deliverables: [
+        'ZTNA rollout',
+        'Endpoint hardening',
+        'MDM governance',
+        'Full disk encryption',
+        'SANS-standard audits',
+      ],
       price: '$350/hr · Fixed-project from $10k',
       accent: '#FF6EC7',
     },
     {
       icon: Zap,
-      label: 'AGENT AUTOMATION',
-      title: 'Custom MCP Development',
-      desc: 'Bespoke autonomous agents built on the Model Context Protocol. Helpdesk triage, sales automation, communication orchestration — your workflow, automated.',
+      label: 'SYSTEMS ENGINEERING',
+      title: 'Automation & Fleet Management',
+      desc: 'Intune, Jamf Pro, M365, Active Directory, Hyper-V. Docker container orchestration, n8n workflow pipelines, and Python automation across the entire fleet.',
+      deliverables: [
+        'Infrastructure automation',
+        'Container orchestration',
+        'Workflow pipelines',
+        'MDM fleet management',
+      ],
       price: '$350/hr · Fixed-project from $10k',
       accent: '#00D4A8',
     },
@@ -1223,7 +1798,20 @@ function WhatWeOffer() {
                   </span>
                 </div>
                 <h3 className="font-display font-bold text-lg tracking-tight group-hover:text-white transition-colors">{s.title}</h3>
-                <p className="text-sm text-white/50 leading-relaxed flex-1">{s.desc}</p>
+                <p className="text-sm text-white/50 leading-relaxed">{s.desc}</p>
+                <div className="flex-1">
+                  <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/25 mb-3">
+                    DELIVERABLES
+                  </div>
+                  <ul className="flex flex-col gap-2">
+                    {s.deliverables.map((d) => (
+                      <li key={d} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.12em] uppercase text-white/45">
+                        <span className="w-1 h-1 shrink-0" style={{ background: s.accent }} aria-hidden />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="font-mono text-[10px] text-white/25 tracking-wide pt-4 border-t border-white/[0.06]">
                   {s.price}
                 </div>
@@ -1305,8 +1893,11 @@ function Manifesto() {
               className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group"
             >
               <div className="lg:w-52 shrink-0">
+                <span className="block font-display font-bold text-[64px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none" aria-hidden>
+                  0{i + 1}
+                </span>
                 <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/25">
-                  {b.label}
+                  CH.0{i + 1} — {b.label}
                 </span>
               </div>
               <div className="flex-1">
@@ -1433,9 +2024,11 @@ export default function Home() {
       <VideoSection />
       <ThreePillars />
       <SovereignNodeDiagram />
+      <FederationSection />
       <Founder />
       <SystemsDeepDive />
       <CaseStudy />
+      <CapabilitiesProof />
       <WhatWeOffer />
       <Manifesto />
       <FinalCTA />
