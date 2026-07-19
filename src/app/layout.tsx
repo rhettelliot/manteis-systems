@@ -119,6 +119,21 @@ export default function RootLayout({
         <noscript>
           <style>{`main *{opacity:1 !important;transform:none !important;filter:none !important}`}</style>
         </noscript>
+        {/* JS safety net: if Motion's useInView hasn't fired after 4s,
+            force all hidden elements visible. This catches cases where
+            IntersectionObserver doesn't trigger (long pages, SSR hydration
+            issues, element never scrolled into view). */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            setTimeout(function() {
+              var els = document.querySelectorAll('main [style*="opacity: 0"], main [style*="opacity:0"]');
+              els.forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+              });
+            }, 4000);
+          })();
+        `}} />
         {children}
       </body>
     </html>

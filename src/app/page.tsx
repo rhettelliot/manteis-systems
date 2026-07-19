@@ -491,7 +491,7 @@ function Marquee() {
 // ─── Sovereign Node Anatomy — animated architecture diagram ──────────────────
 function SovereignNodeDiagram() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-120px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   // Node positions on a 900×520 canvas
   const NODES = [
@@ -780,7 +780,7 @@ function SovereignNodeDiagram() {
 // ─── AI OS Federation — the differentiator ────────────────────────────────────
 function FederationSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-120px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   // Diagram geometry on a 900×640 canvas. Three tiers, top to bottom:
   // STAFF → ORCHESTRATION (orchestrator + department OSes) → PRIVATE INFERENCE
@@ -1187,7 +1187,7 @@ function ThreePillars() {
   ];
 
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <section ref={ref} className="px-8 py-32 max-w-6xl mx-auto w-full">
@@ -1249,7 +1249,7 @@ function ThreePillars() {
 // ─── Founder ──────────────────────────────────────────────────────────────────
 function Founder() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const credentials = ['Mozilla', 'Apple', 'F5 Networks', 'REI', '98point6', 'UW', 'Aon'];
   const stats = [
@@ -1355,7 +1355,7 @@ function Founder() {
 // ─── Systems Deep Dive ────────────────────────────────────────────────────────
 function SystemsDeepDive() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const specs = [
     { key: 'HARDWARE', val: 'Compact Desktop · Pro Workstation · Custom Build' },
@@ -1467,7 +1467,7 @@ function SystemsDeepDive() {
 // ─── Case Study ───────────────────────────────────────────────────────────────
 function CaseStudy() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const metrics = [
     { value: '3 hrs', label: 'Per week recovered from Digital Drag' },
@@ -1589,7 +1589,7 @@ function CaseStudy() {
 // ─── Capabilities / Proof ─────────────────────────────────────────────────────
 function CapabilitiesProof() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const metrics = [
     { to: 42,    suffix: '+', decimals: 0, label: 'AGENT TOOLS DEPLOYED' },
@@ -1719,7 +1719,7 @@ function CapabilitiesProof() {
 // ─── What We Offer ────────────────────────────────────────────────────────────
 function WhatWeOffer() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const services = [
     {
@@ -1827,7 +1827,7 @@ function WhatWeOffer() {
 // ─── Manifesto ────────────────────────────────────────────────────────────────
 function Manifesto() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const blocks = [
     {
@@ -1928,7 +1928,7 @@ function Manifesto() {
 // ─── Final CTA ────────────────────────────────────────────────────────────────
 function FinalCTA() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <section ref={ref} id="contact" className="relative px-8 py-40 border-t border-white/[0.06] flex flex-col items-center text-center overflow-hidden">
