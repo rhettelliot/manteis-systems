@@ -108,51 +108,55 @@
 </div>
 
 <div style="margin:0 20px 20px;border:1px solid rgba(255,255,255,0.06);padding:16px;background:rgba(255,255,255,0.02)">
-  <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:#00D455;font-family:'JetBrains Mono',monospace;margin-bottom:12px;">// OLLAMA CLOUD USAGE — FLAT RATE $100/MO</div>
+  <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:#00D455;font-family:'JetBrains Mono',monospace;margin-bottom:12px;">// OLLAMA CLOUD USAGE — MAX PLAN</div>
   
   <!-- Session + Weekly summary -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-    <div style="border:1px solid rgba(255,255,255,0.06);padding:12px;text-align:center">
-      <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Session Usage (Today)</div>
-      <div style="font-size:28px;font-weight:700;color:#00D455" id="session-usage">1,094</div>
-      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px;font-family:'JetBrains Mono',monospace">API calls since midnight</div>
+    <div style="border:1px solid rgba(255,255,255,0.06);padding:14px;text-align:center">
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-bottom:8px">Session Usage</div>
+      <div style="font-size:28px;font-weight:700;color:#00D455">42.7%</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);margin:8px auto;max-width:160px"><div style="height:4px;background:#00D455;width:42.7%"></div></div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.5);font-family:'JetBrains Mono',monospace">353 requests</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px;font-family:'JetBrains Mono',monospace">Resets in 1 hour</div>
     </div>
-    <div style="border:1px solid rgba(255,255,255,0.06);padding:12px;text-align:center">
-      <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Weekly Usage (7 days)</div>
-      <div style="font-size:28px;font-weight:700;color:#0057FF" id="weekly-usage">1,094</div>
-      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px;font-family:'JetBrains Mono',monospace">Logs rotated — all from today</div>
+    <div style="border:1px solid rgba(255,255,255,0.06);padding:14px;text-align:center">
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-bottom:8px">Weekly Usage</div>
+      <div style="font-size:28px;font-weight:700;color:#0057FF">42.6%</div>
+      <div style="height:4px;background:rgba(255,255,255,0.1);margin:8px auto;max-width:160px"><div style="height:4px;background:#0057FF;width:42.6%"></div></div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.5);font-family:'JetBrains Mono',monospace">3,449 requests</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px;font-family:'JetBrains Mono',monospace">Resets in 2 days</div>
     </div>
   </div>
   
   <!-- Model breakdown -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
     <div style="border:1px solid rgba(255,255,255,0.06);padding:12px">
-      <div style="font-size:11px;font-weight:500;margin-bottom:4px">glm-5.2 <span style="font-size:9px;color:rgba(255,255,255,0.4)">text/cron</span></div>
+      <div style="font-size:11px;font-weight:500;margin-bottom:4px">glm-5.2 <span style="font-size:9px;color:rgba(255,255,255,0.4)">primary</span></div>
       <div style="height:4px;background:rgba(255,255,255,0.1);margin:6px 0"><div style="height:4px;background:#00D455;width:75%"></div></div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">1,273 refs</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">1,273 refs today</div>
     </div>
     <div style="border:1px solid rgba(255,255,255,0.06);padding:12px">
       <div style="font-size:11px;font-weight:500;margin-bottom:4px">kimi-k2.7-code <span style="font-size:9px;color:rgba(255,255,255,0.4)">coding</span></div>
       <div style="height:4px;background:rgba(255,255,255,0.1);margin:6px 0"><div style="height:4px;background:#0057FF;width:33%"></div></div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">421 refs</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">421 refs today</div>
     </div>
     <div style="border:1px solid rgba(255,255,255,0.06);padding:12px">
       <div style="font-size:11px;font-weight:500;margin-bottom:4px">deepseek-v4-pro <span style="font-size:9px;color:rgba(255,255,255,0.4)">reasoning</span></div>
       <div style="height:4px;background:rgba(255,255,255,0.1);margin:6px 0"><div style="height:4px;background:#D4A843;width:5%"></div></div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">~30 refs</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">~30 refs today</div>
     </div>
     <div style="border:1px solid rgba(255,255,255,0.06);padding:12px">
       <div style="font-size:11px;font-weight:500;margin-bottom:4px">Other <span style="font-size:9px;color:rgba(255,255,255,0.4)">fallback</span></div>
       <div style="height:4px;background:rgba(255,255,255,0.1);margin:6px 0"><div style="height:4px;background:rgba(255,255,255,0.3);width:1%"></div></div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">3 refs</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">3 refs today</div>
     </div>
   </div>
   <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
     <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">11 MODELS ACTIVE</div>
-    <div style="font-size:10px;color:#00D455;font-family:'JetBrains Mono',monospace">UNLIMITED — FLAT RATE</div>
-    <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">$100/MO</div>
+    <div style="font-size:10px;color:#FF4D00;font-family:'JetBrains Mono',monospace">RATE LIMITED — NOT UNLIMITED</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace">MAX PLAN</div>
   </div>
-  <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:8px;font-family:'JetBrains Mono',monospace">Usage tracked from Hermes gateway logs. Ollama doesn't expose a public usage API. Visit ollama.com/settings for official billing.</div>
+  <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:8px;font-family:'JetBrains Mono',monospace">Session + weekly data from ollama.com/settings. Update manually or via cron. Model breakdowns from Hermes gateway logs.</div>
 </div>
 
 <div class="board" id="board"></div>
