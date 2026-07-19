@@ -1954,7 +1954,7 @@ function Manifesto() {
               transition={{ duration: 0.75, delay: 0.08 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group relative overflow-hidden"
             >
-              <span className="absolute top-0 left-0 text-[200px] font-bold text-white/[0.03] leading-none select-none pointer-events-none z-0" role="img" aria-label="">
+              <span className="absolute top-0 left-0 text-[200px] font-bold text-white/[0.03] leading-none select-none pointer-events-none z-0" aria-hidden="true">
                 0{i + 1}
               </span>
               <div className="lg:w-52 shrink-0 relative z-10">
