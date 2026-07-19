@@ -149,7 +149,7 @@ export function TextReveal({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   const words = String(children).split(" ");
   return (
     <span ref={ref} className={className} style={{ display: "inline" }}>
@@ -187,7 +187,7 @@ export function SlideIn({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   return (
     <motion.div
       ref={ref}
@@ -212,7 +212,7 @@ export function ScaleIn({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   return (
     <motion.div
       ref={ref}
@@ -237,7 +237,7 @@ export function PopIn({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   return (
     <motion.div
       ref={ref}
@@ -266,7 +266,7 @@ export function Counter({
   delay?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   const started = useRef(false);
 
   useEffect(() => {
