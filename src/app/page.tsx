@@ -119,7 +119,7 @@ function SectionDivider({ number, label, inView }: { number?: string; label: str
       className="flex items-center gap-4 mb-12 md:mb-16"
     >
       <div className="h-px flex-1 bg-white/[0.08]" />
-      <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 shrink-0">
+      <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 shrink-0">
         // {number ? `${number} — ` : ''}{label}
       </span>
       <div className="h-px flex-1 bg-white/[0.08]" />
@@ -403,7 +403,7 @@ function Hero() {
             <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block w-full sm:w-auto text-center">
               <Button variant="primary" size="lg" className="w-full sm:w-auto">INITIATE SOVEREIGNTY AUDIT</Button>
             </a>
-            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/45">
+            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
               [47.6062° N, 122.3321° W] · PACIFIC_NODE_01
             </div>
           </motion.div>
@@ -1478,7 +1478,7 @@ function SystemsDeepDive() {
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
                   className={`flex flex-col sm:flex-row gap-2 sm:gap-6 p-4 font-mono text-[11px] hover:bg-white/[0.02] transition-colors ${i < specs.length - 1 ? 'border-b border-white/[0.06]' : ''}`}
                 >
-                  <span className="text-signal-blue/60 tracking-widest uppercase w-auto sm:w-28 shrink-0">{s.key}</span>
+                  <span className="text-signal-blue tracking-widest uppercase w-auto sm:w-28 shrink-0">{s.key}</span>
                   <span className="text-white/65">{s.val}</span>
                 </motion.div>
               ))}
@@ -1755,7 +1755,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 mb-4"
         >
           {'// OPERATING STACK'}
         </motion.div>
@@ -1766,7 +1766,7 @@ function CapabilitiesProof() {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.5 + i * 0.05 }}
-              className="bg-void-raised px-3 sm:px-4 py-5 text-center font-mono text-[10px] tracking-[0.18em] uppercase text-white/40 hover:text-signal-blue hover:bg-white/[0.02] transition-colors cursor-default"
+              className="bg-void-raised px-3 sm:px-4 py-5 text-center font-mono text-[10px] tracking-[0.18em] uppercase text-white/55 hover:text-signal-blue hover:bg-white/[0.02] transition-colors cursor-default"
             >
               {t}
             </motion.div>
@@ -1836,7 +1836,7 @@ function WhatWeOffer() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 mb-10 md:mb-16"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 mb-10 md:mb-16"
         >
           // CONSULTANCY SERVICES
         </motion.div>
@@ -1860,19 +1860,19 @@ function WhatWeOffer() {
                 <h3 className="font-display font-bold text-lg tracking-tight group-hover:text-white transition-colors">{s.title}</h3>
                 <p className="text-sm text-white/50 leading-relaxed">{s.desc}</p>
                 <div className="flex-1">
-                  <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/25 mb-3">
+                  <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/55 mb-3">
                     DELIVERABLES
                   </div>
                   <ul className="flex flex-col gap-2">
                     {s.deliverables.map((d) => (
-                      <li key={d} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.12em] uppercase text-white/45">
+                      <li key={d} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.12em] uppercase text-white/55">
                         <span className="w-1 h-1 shrink-0" style={{ background: s.accent }} aria-hidden />
                         {d}
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="font-mono text-[10px] text-white/25 tracking-wide pt-4 border-t border-white/[0.06]">
+                <div className="font-mono text-[10px] text-white/55 tracking-wide pt-4 border-t border-white/[0.06]">
                   {s.price}
                 </div>
               </motion.div>
@@ -1938,7 +1938,7 @@ function Manifesto() {
             <div className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-1">
               // THE SOVEREIGNTY MANIFESTO
             </div>
-            <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/20">
+            <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/55">
               1998 — CREATIVE TOOLS OVER CONVENIENCE
             </div>
           </div>
@@ -1957,7 +1957,7 @@ function Manifesto() {
                 <span className="block font-display font-bold text-[80px] md:text-[120px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none absolute -top-8 left-0 lg:static lg:leading-none" aria-hidden>
                   0{i + 1}
                 </span>
-                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/25 relative mt-[54px] md:mt-[88px] lg:mt-0">
+                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 relative mt-[54px] md:mt-[88px] lg:mt-0">
                   CH.0{i + 1} — {b.label}
                 </span>
               </div>
@@ -1977,7 +1977,7 @@ function Manifesto() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 pt-10 border-t border-white/[0.06] text-center font-mono text-[11px] tracking-[0.45em] uppercase text-white/20"
+          className="mt-16 pt-10 border-t border-white/[0.06] text-center font-mono text-[11px] tracking-[0.45em] uppercase text-white/55"
         >
           SUBVERT. CREATE. SOVEREIGNTY.
         </motion.div>
@@ -2044,7 +2044,7 @@ function FinalCTA() {
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.28 }}
-        className="relative font-mono text-[10px] tracking-widest uppercase text-white/25 mb-12 flex flex-wrap gap-6 justify-center"
+        className="relative font-mono text-[10px] tracking-widest uppercase text-white/55 mb-12 flex flex-wrap gap-6 justify-center"
       >
         <span>STANDARD: $2,500–$7,500 SETUP</span>
         <span className="text-white/10">·</span>
@@ -2095,7 +2095,7 @@ export default function Home() {
       <FinalCTA />
       <footer className="border-t border-white/[0.06] px-4 sm:px-8 py-8">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/20 text-center sm:text-left">
+          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 text-center sm:text-left">
             MANTEIS.SYSTEMS · SOVEREIGN INTELLIGENCE INFRASTRUCTURE
           </span>
           <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/15">
