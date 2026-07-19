@@ -292,31 +292,32 @@ function Hero() {
             </span>
           </motion.div>
 
-          {/* H1 — massive, centered, staggered reveal */}
+          {/* H1 — MANTEIS.SYSTEMS massive, centered */}
           <h1 className="font-display font-bold text-[clamp(48px,10vw,140px)] leading-[0.9] tracking-tight flex flex-col items-center overflow-hidden w-full">
             <motion.span
               initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">DEPHASING THE</GradientText>
+              <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">MANTEIS</GradientText>
+              <span className="text-signal-blue">.</span>
+              <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">SYSTEMS</GradientText>
             </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white"
-            >CORPORATE</motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white/15"
-            >MACHINE<span className="text-signal-blue">.</span></motion.span>
           </h1>
+
+          {/* Tagline — smaller below the wordmark */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display font-bold text-[clamp(18px,3vw,36px)] tracking-tight text-white/30"
+          >
+            DEPHASING THE CORPORATE MACHINE<span className="text-signal-blue">.</span>
+          </motion.div>
 
           {/* Subhead */}
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/25"
           >
             UNIFIED INTELLIGENCE INFRASTRUCTURE
