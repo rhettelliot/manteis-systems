@@ -119,7 +119,7 @@ function SectionDivider({ number, label, inView }: { number?: string; label: str
       className="flex items-center gap-4 mb-12 md:mb-16"
     >
       <div className="h-px flex-1 bg-white/[0.08]" />
-      <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 shrink-0">
+      <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 shrink-0">
         // {number ? `${number} — ` : ''}{label}
       </span>
       <div className="h-px flex-1 bg-white/[0.08]" />
@@ -328,7 +328,7 @@ function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center justify-center gap-4 flex-wrap"
           >
-            <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-signal-blue">
+            <span className="font-mono text-[8px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.35em] uppercase text-signal-blue text-center">
               // SOVEREIGN INTELLIGENCE INFRASTRUCTURE //
             </span>
             <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-white/55">
@@ -346,7 +346,7 @@ function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
             transition={{ opacity: { duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }, scale: { duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }, y: { duration: 7, repeat: Infinity, ease: 'easeInOut' } }}
-            className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 mb-2"
+            className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 mb-2"
           >
             <NextImage
               src="/manteis_systems_icon.png"
@@ -400,8 +400,8 @@ function Hero() {
             transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center gap-4 mt-2"
           >
-            <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block">
-              <Button variant="primary" size="lg">INITIATE SOVEREIGNTY AUDIT</Button>
+            <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block w-full sm:w-auto text-center">
+              <Button variant="primary" size="lg" className="w-full sm:w-auto">INITIATE SOVEREIGNTY AUDIT</Button>
             </a>
             <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/45">
               [47.6062° N, 122.3321° W] · PACIFIC_NODE_01
@@ -587,7 +587,7 @@ function SovereignNodeDiagram() {
       />
 
       <div className="relative max-w-6xl mx-auto">
-        <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4">
+        <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4">
           // ANATOMY · LIVE TOPOLOGY
         </span>
         <motion.h2
@@ -887,7 +887,7 @@ function FederationSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4"
         >
           {'// AI OS FEDERATION · THE PATTERN NO ONE ELSE RUNS'}
         </motion.div>
@@ -1248,7 +1248,7 @@ function ThreePillars() {
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55 mb-10 md:mb-16"
+        className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 mb-10 md:mb-16"
       >
         // THE ECOSYSTEM
       </motion.div>
@@ -1321,7 +1321,7 @@ function Founder() {
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55"
+              className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55"
             >
               // THE ARCHITECT
             </motion.div>
@@ -1437,7 +1437,7 @@ function SystemsDeepDive() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4"
         >
           01 — SYSTEMS
         </motion.div>
@@ -1541,7 +1541,7 @@ function CaseStudy() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4"
         >
           // ACTIVE DEPLOYMENT
         </motion.div>
@@ -1692,7 +1692,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4"
         >
           {'// PROOF OF OPERATION'}
         </motion.div>
@@ -1755,7 +1755,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-4"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 mb-4"
         >
           {'// OPERATING STACK'}
         </motion.div>
@@ -1836,7 +1836,7 @@ function WhatWeOffer() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-10 md:mb-16"
+          className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/25 mb-10 md:mb-16"
         >
           // CONSULTANCY SERVICES
         </motion.div>
@@ -1935,7 +1935,7 @@ function Manifesto() {
             <Terminal size={24} className="text-signal-blue" />
           </motion.div>
           <div>
-            <div className="font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-1">
+            <div className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-1">
               // THE SOVEREIGNTY MANIFESTO
             </div>
             <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/20">
@@ -1954,10 +1954,10 @@ function Manifesto() {
               className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group relative overflow-visible"
             >
               <div className="lg:w-52 shrink-0">
-                <span className="block font-display font-bold text-[120px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none absolute -top-8 left-0 lg:static lg:leading-none" aria-hidden>
+                <span className="block font-display font-bold text-[80px] md:text-[120px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none absolute -top-8 left-0 lg:static lg:leading-none" aria-hidden>
                   0{i + 1}
                 </span>
-                <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/25 relative lg:mt-0 mt-[88px]">
+                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/25 relative mt-[54px] md:mt-[88px] lg:mt-0">
                   CH.0{i + 1} — {b.label}
                 </span>
               </div>
@@ -2014,7 +2014,7 @@ function FinalCTA() {
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="relative font-mono text-[9px] tracking-[0.35em] uppercase text-signal-blue mb-6"
+        className="relative font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-6"
       >
         // FREE DISCOVERY CALL
       </motion.div>
@@ -2058,8 +2058,8 @@ function FinalCTA() {
         className="relative flex flex-col items-center gap-5"
       >
         <Magnetic strength={0.3} radius={160}>
-          <a href="mailto:rhett@manteissystems.com">
-            <Button variant="primary" size="lg">
+          <a href="mailto:rhett@manteissystems.com" className="w-full sm:w-auto block sm:inline-block">
+            <Button variant="primary" size="lg" className="w-full sm:w-auto">
               INITIATE SOVEREIGNTY AUDIT
             </Button>
           </a>
