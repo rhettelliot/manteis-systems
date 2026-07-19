@@ -290,7 +290,7 @@ function Hero() {
   const ringsY = useTransform(scrollYProgress, [0, 1], [0, -180]);
 
   return (
-    <div ref={containerRef} style={{ height: '180vh' }}>
+    <div ref={containerRef} style={{ height: '120vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-4 sm:px-8">
 
         {/* Aurora orbs + particles — deeper space, less screensaver */}
@@ -508,17 +508,17 @@ function VideoSection() {
   }, [scrollYProgress]);
 
   return (
-    <div ref={containerRef} style={{ height: '250vh' }}>
+    <div ref={containerRef} style={{ height: '130vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full"
-          style={{ opacity: 0, transition: 'opacity 1.2s ease' }}
+          style={{ opacity: 0, transition: 'opacity 0.6s ease' }}
         />
         {/* Top gradient blends from the marquee above */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent pointer-events-none" />
         {/* Bottom gradient blends into the next section */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none" />
       </div>
     </div>
   );
