@@ -60,6 +60,24 @@ function Nav() {
   );
 }
 
+// ─── Section divider ───────────────────────────────────────────────────────────
+function SectionDivider({ number, label, inView }: { number?: string; label: string; inView?: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+      className="flex items-center gap-4 mb-12 md:mb-16"
+    >
+      <div className="h-px flex-1 bg-white/[0.08]" />
+      <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 shrink-0">
+        // {number ? `${number} — ` : ''}{label}
+      </span>
+      <div className="h-px flex-1 bg-white/[0.08]" />
+    </motion.div>
+  );
+}
+
 // ─── Hero: animated orbs ──────────────────────────────────────────────────────
 function AnimatedOrbs() {
   return (
@@ -516,7 +534,7 @@ function SovereignNodeDiagram() {
   ];
 
   return (
-    <section ref={ref} className="relative px-8 py-32 border-t border-white/[0.06] overflow-hidden">
+    <section ref={ref} className="relative px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-black">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -541,7 +559,7 @@ function SovereignNodeDiagram() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(30px,4.5vw,56px)] leading-[0.95] tracking-tight mb-4 max-w-3xl"
+          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-3xl"
         >
           <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">INSIDE THE</GradientText>
           <br />
@@ -817,7 +835,7 @@ function FederationSection() {
   ];
 
   return (
-    <section id="federation" ref={ref} className="relative px-8 py-32 border-t border-white/[0.06] overflow-hidden">
+    <section ref={ref} id="federation" className="relative px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-void-raised">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -842,7 +860,7 @@ function FederationSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(30px,4.5vw,56px)] leading-[0.95] tracking-tight mb-4 max-w-4xl"
+          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-4xl"
         >
           ONE AI OS PER DEPARTMENT.
           <br />
@@ -1130,7 +1148,7 @@ function FederationSection() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.75, delay: 0.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-void-raised p-8 flex flex-col gap-4 border-t border-signal-blue/40 hover:bg-white/[0.02] transition-colors"
+                className="bg-void-raised p-8 flex flex-col gap-4 border-t border-signal-blue/40 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors group cursor-default"
               >
                 <div className="flex items-center gap-3">
                   <Icon size={16} className="text-signal-blue" aria-hidden />
@@ -1190,7 +1208,7 @@ function ThreePillars() {
   const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
-    <section ref={ref} className="px-8 py-32 max-w-6xl mx-auto w-full">
+    <section ref={ref} className="px-8 py-32 max-w-6xl mx-auto w-full bg-void-elevated">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1259,93 +1277,96 @@ function Founder() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-20">
-        {/* Left: copy */}
-        <div className="flex-1 flex flex-col gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25"
-          >
-            // THE ARCHITECT
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-bold text-[clamp(28px,4vw,52px)] leading-tight tracking-tight"
-          >
-            FROM MIDI STUDIO<br />
-            <span className="text-white/35">TO GLOBAL SYSTEMS.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/55 text-base leading-relaxed max-w-xl"
-          >
-            In 1998, Rhett Elliot Johnson faced a choice: repair a failing car,
-            or buy his first music sampler. He chose the sampler. That decision —
-            tools of creation over traps of convenience — became the foundational
-            DNA of Manteis Systems. 25+ years later, the same philosophy runs
-            enterprise AI infrastructure for businesses across the Pacific Northwest.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.28 }}
-            className="text-white/55 text-base leading-relaxed max-w-xl"
-          >
-            As Principal Systems Architect and fractional CTO, Rhett has designed
-            infrastructure for some of the most demanding technical environments
-            in the world — from Mozilla&apos;s open-web mission to F5 Networks&apos; global
-            edge security fabric to 98point6&apos;s HIPAA-compliant digital health platform.
-          </motion.p>
-
-          {/* Credential strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.36 }}
-            className="flex flex-wrap gap-x-5 gap-y-3 pt-4 border-t border-white/[0.08]"
-          >
-            {credentials.map((c, i) => (
-              <motion.span
-                key={c}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/25 hover:text-signal-blue transition-colors cursor-default"
-                initial={{ opacity: 0, x: -8 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.06 }}
-              >
-                {c}{i < credentials.length - 1 && <span className="ml-5 text-white/10">·</span>}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Right: stats with counter animations */}
-        <div className="flex flex-col gap-0 lg:min-w-[220px] border border-white/[0.08] h-fit">
-          {stats.map((s, i) => (
+    <section ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+      <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="03" label="ARCHITECT" />
+        <div className="flex flex-col lg:flex-row gap-20">
+          <div className="flex-1 flex flex-col gap-8">
             <motion.div
-              key={s.label}
-              initial={{ opacity: 0, x: 24 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.65, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="p-8 border-b border-white/[0.08] last:border-b-0"
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25"
             >
-              <div className="font-display font-bold text-4xl text-signal-blue tracking-tight">
-                {s.static
-                  ? <Counter to={s.to} suffix={s.suffix} duration={2200} delay={0.2 + i * 0.1} />
-                  : <Counter to={s.to} suffix={s.suffix} delay={0.2 + i * 0.1} />
-                }
-              </div>
-              <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/30 mt-1">
-                {s.label}
-              </div>
+              // THE ARCHITECT
             </motion.div>
-          ))}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight"
+            >
+              FROM MIDI STUDIO
+              <br />
+              <span className="text-white/35">TO GLOBAL SYSTEMS.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-white/55 text-base leading-relaxed max-w-xl"
+            >
+              In 1998, Rhett Elliot Johnson faced a choice: repair a failing car,
+              or buy his first music sampler. He chose the sampler. That decision —
+              tools of creation over traps of convenience — became the foundational
+              DNA of Manteis Systems. 25+ years later, the same philosophy runs
+              enterprise AI infrastructure for businesses across the Pacific Northwest.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.28 }}
+              className="text-white/55 text-base leading-relaxed max-w-xl"
+            >
+              As Principal Systems Architect and fractional CTO, Rhett has designed
+              infrastructure for some of the most demanding technical environments
+              in the world — from Mozilla&apos;s open-web mission to F5 Networks&apos; global
+              edge security fabric to 98point6&apos;s HIPAA-compliant digital health platform.
+            </motion.p>
+
+            {/* Credential strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.36 }}
+              className="flex flex-wrap gap-x-5 gap-y-3 pt-4 border-t border-white/[0.08]"
+            >
+              {credentials.map((c, i) => (
+                <motion.span
+                  key={c}
+                  className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/25 hover:text-signal-blue transition-colors cursor-default"
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.06 }}
+                >
+                  {c}{i < credentials.length - 1 && <span className="ml-5 text-white/10">·</span>}
+                </motion.span>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right: stats with counter animations */}
+          <div className="flex flex-col gap-0 lg:min-w-[220px] border border-white/[0.08] h-fit">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, x: 24 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.65, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="p-8 border-b border-white/[0.08] last:border-b-0"
+              >
+                <div className="font-display font-bold text-4xl text-signal-blue tracking-tight">
+                  {s.static
+                    ? <Counter to={s.to} suffix={s.suffix} duration={2200} delay={0.2 + i * 0.1} />
+                    : <Counter to={s.to} suffix={s.suffix} delay={0.2 + i * 0.1} />
+                  }
+                </div>
+                <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/30 mt-1">
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1374,8 +1395,9 @@ function SystemsDeepDive() {
   ];
 
   return (
-    <section id="systems" ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
+    <section id="systems" ref={ref} className="px-8 py-24 md:py-32 border-t border-white/[0.06] bg-void-raised">
       <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="04" label="SYSTEMS" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1388,7 +1410,7 @@ function SystemsDeepDive() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(32px,5vw,64px)] tracking-tight leading-tight mb-16"
+          className="font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-tight mb-16"
         >
           THE SOVEREIGN NODE
         </motion.h2>
@@ -1477,8 +1499,9 @@ function CaseStudy() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06] bg-void-raised">
+    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06] bg-void-elevated">
       <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="05" label="ACTIVE DEPLOYMENT" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1500,7 +1523,7 @@ function CaseStudy() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(26px,4vw,48px)] leading-tight tracking-tight mb-12 max-w-3xl"
+          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-12 max-w-3xl"
         >
           &ldquo;They don&apos;t need another website.<br />
           <span className="text-white/30">They need an Agent.&rdquo;</span>
@@ -1569,7 +1592,8 @@ function CaseStudy() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.55, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-6 bg-void-elevated"
+                whileHover={{ borderTopColor: '#0057FF' }}
+                className="p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group"
               >
                 <div className="font-display font-bold text-2xl text-signal-blue tracking-tight mb-1">
                   {m.value}
@@ -1626,8 +1650,9 @@ function CapabilitiesProof() {
   ];
 
   return (
-    <section id="proof" ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
+    <section id="proof" ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="06" label="PROOF" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1640,7 +1665,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(30px,4.5vw,56px)] tracking-tight leading-[0.95] mb-16"
+          className="font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-[0.95] mb-16"
         >
           SHOWN,
           <span className="text-white/30"> NOT TOLD.</span>
@@ -1654,8 +1679,8 @@ function CapabilitiesProof() {
           className="grid grid-cols-2 md:grid-cols-5 gap-px border border-white/[0.08] mb-12"
         >
           {metrics.map((m, i) => (
-            <div key={m.label} className="bg-void-raised p-6 flex flex-col gap-2">
-              <div className="font-mono font-bold text-2xl md:text-3xl text-signal-blue tracking-tight">
+            <div key={m.label} className="bg-void-raised p-6 md:p-8 flex flex-col gap-3 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors duration-300 border-t border-transparent">
+              <div className="font-display font-bold text-3xl md:text-5xl text-signal-blue tracking-tight">
                 <Counter to={m.to} suffix={m.suffix} decimals={m.decimals} delay={0.3 + i * 0.12} />
               </div>
               <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 leading-relaxed">
@@ -1673,7 +1698,8 @@ function CapabilitiesProof() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-void-raised p-8 flex flex-col gap-4 hover:bg-white/[0.02] transition-colors"
+              whileHover={{ borderTopColor: '#0057FF' }}
+              className="bg-void-raised p-8 flex flex-col gap-4 border-t border-transparent hover:bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 group cursor-default"
             >
               <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/30">
                 {c.tag} · ANONYMIZED
@@ -1768,8 +1794,9 @@ function WhatWeOffer() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
+    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06] bg-void-raised">
       <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="07" label="CONSULTANCY" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1787,10 +1814,8 @@ function WhatWeOffer() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.75, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4, transition: { duration: 0.22 } }}
-                className="bg-void-raised p-8 flex flex-col gap-5 group cursor-default"
-                style={{ borderTop: `1px solid ${s.accent}` }}
-              >
+                whileHover={{ y: -4, borderTopColor: s.accent, transition: { duration: 0.22 } }}
+                className="bg-void-raised p-8 flex flex-col gap-5 group cursor-default border-t border-transparent">
                 <div className="flex items-center gap-3">
                   <Icon size={16} style={{ color: s.accent }} />
                   <span className="font-mono text-[9px] tracking-[0.3em] uppercase" style={{ color: s.accent }}>
@@ -1858,8 +1883,9 @@ function Manifesto() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06]">
+    <section ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
+        <SectionDivider inView={inView} number="08" label="MANIFESTO" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1890,18 +1916,18 @@ function Manifesto() {
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.08 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group"
+              className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group relative overflow-visible"
             >
               <div className="lg:w-52 shrink-0">
-                <span className="block font-display font-bold text-[64px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none" aria-hidden>
+                <span className="block font-display font-bold text-[120px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none absolute -top-8 left-0 lg:static lg:leading-none" aria-hidden>
                   0{i + 1}
                 </span>
-                <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/25">
+                <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/25 relative lg:mt-0 mt-[88px]">
                   CH.0{i + 1} — {b.label}
                 </span>
               </div>
               <div className="flex-1">
-                <h3 className="font-display font-bold text-[clamp(22px,3vw,36px)] tracking-tight leading-tight mb-4 text-white group-hover:text-signal-blue transition-colors duration-500">
+                <h3 className="font-display font-bold text-[clamp(28px,4vw,56px)] tracking-tight leading-tight mb-4 text-white group-hover:text-signal-blue transition-colors duration-500">
                   {b.heading}
                 </h3>
                 <p className="text-white/55 text-base leading-relaxed max-w-2xl">
