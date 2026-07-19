@@ -242,40 +242,42 @@ function Hero() {
 
   return (
     <div ref={containerRef} style={{ height: '180vh' }}>
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-start px-8 pt-24 md:pt-28">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-8">
 
-        {/* Aurora orbs + particles */}
-        <AnimatedOrbs />
-        <FloatingParticles count={18} seed={1998} />
+        {/* Aurora orbs + particles — deeper space, less screensaver */}
+        <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
+          <AnimatedOrbs />
+        </div>
+        <FloatingParticles count={12} seed={1998} />
 
-        {/* Rings — parallax */}
+        {/* Rings — parallax, larger, barely visible structure in the void */}
         <motion.div
           style={{ y: ringsY }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-[1]"
         >
           <motion.div
-            className="w-[720px] h-[720px] border border-[rgba(0,87,255,0.09)]"
+            className="w-[1000px] h-[1000px] border border-[rgba(0,87,255,0.04)]"
             animate={{ rotate: 360 }}
             transition={{ duration: 240, repeat: Infinity, ease: 'linear' }}
           />
           <motion.div
-            className="absolute w-[520px] h-[520px] border border-[rgba(0,212,168,0.06)]"
+            className="absolute w-[750px] h-[750px] border border-[rgba(0,212,168,0.03)]"
             animate={{ rotate: -360 }}
             transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
           />
-          <div className="absolute w-[320px] h-[320px] border border-[rgba(255,110,199,0.05)]" />
+          <div className="absolute w-[500px] h-[500px] border border-[rgba(255,110,199,0.02)]" />
         </motion.div>
 
         <motion.div
           style={{ opacity: exitOp, y: exitY }}
-          className="relative z-10 max-w-5xl w-full flex flex-col items-start gap-5 md:gap-7"
+          className="relative z-10 w-full max-w-[90vw] flex flex-col items-center text-center gap-5 md:gap-7"
         >
           {/* Label + live clock */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-4 flex-wrap"
+            className="flex items-center justify-center gap-4 flex-wrap"
           >
             <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-signal-blue">
               // SOVEREIGN INTELLIGENCE INFRASTRUCTURE //
@@ -290,8 +292,8 @@ function Hero() {
             </span>
           </motion.div>
 
-          {/* H1 — staggers in on load */}
-          <h1 className="font-display font-bold text-[clamp(38px,7.5vw,96px)] leading-[0.9] tracking-tight flex flex-col overflow-hidden w-full">
+          {/* H1 — massive, centered, staggered reveal */}
+          <h1 className="font-display font-bold text-[clamp(48px,10vw,140px)] leading-[0.9] tracking-tight flex flex-col items-center overflow-hidden w-full">
             <motion.span
               initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -302,12 +304,12 @@ function Hero() {
             <motion.span
               initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white/30"
+              className="block text-white"
             >CORPORATE</motion.span>
             <motion.span
               initial={{ opacity: 0, y: 48 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white/30"
+              className="block text-white/15"
             >MACHINE<span className="text-signal-blue">.</span></motion.span>
           </h1>
 
@@ -315,54 +317,22 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[11px] tracking-[0.25em] uppercase text-white/35"
+            className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/25"
           >
             UNIFIED INTELLIGENCE INFRASTRUCTURE
           </motion.div>
 
-          {/* Body + Terminal — visible from the start */}
+          {/* CTA — single centered action */}
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col lg:flex-row gap-10 w-full"
+            className="flex flex-col items-center gap-4 mt-2"
           >
-            <div className="flex flex-col gap-6 max-w-lg">
-              <p className="text-white/60 text-base leading-relaxed">
-                Big Tech wants your intelligence on their servers, rented by the month,
-                extracted by the quarter. Manteis Systems builds private local AI
-                infrastructure that belongs to you — your data, your hardware, your future.
-              </p>
-              <p className="font-mono text-[11px] text-white/30 tracking-wide">
-                Pacific Northwest · Est. 1998 · No cloud. No compromise.
-              </p>
-            </div>
-            <TerminalLog />
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-4"
-          >
-            <div className="flex gap-4 flex-wrap items-center">
-              <Magnetic strength={0.25} radius={140}>
-                <a href="mailto:rhett@manteissystems.com">
-                  <Button variant="primary" size="lg">INITIATE SOVEREIGNTY AUDIT</Button>
-                </a>
-              </Magnetic>
-              <a href="#systems"
-                className="group flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-white/40 hover:text-white transition-colors self-center">
-                VIEW SERVICES
-                <motion.span
-                  className="inline-block"
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <ArrowRight size={12} />
-                </motion.span>
+            <Magnetic strength={0.25} radius={140}>
+              <a href="mailto:rhett@manteissystems.com">
+                <Button variant="primary" size="lg">INITIATE SOVEREIGNTY AUDIT</Button>
               </a>
-            </div>
+            </Magnetic>
             <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/15">
               [47.6062° N, 122.3321° W] · PACIFIC_NODE_01
             </div>
@@ -374,9 +344,9 @@ function Hero() {
           style={{ opacity: scrollHintOp }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
         >
-          <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/25">SCROLL</span>
+          <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/25">SCROLL TO ENTER</span>
           <motion.div
-            className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"
+            className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent origin-top"
             animate={{ scaleY: [1, 0.3, 1], opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
