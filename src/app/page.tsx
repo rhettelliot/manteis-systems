@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo } from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform, useInView } from 'motion/react';
 import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight, GitBranch, ShieldCheck, Layers } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -338,6 +339,23 @@ function Hero() {
               />
               <PacificClock /> PST
             </span>
+          </motion.div>
+
+          {/* Brand mark — Manteis Systems icon */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 mb-2"
+          >
+            <Image
+              src="/manteis_systems_icon.png"
+              alt="Manteis Systems icon"
+              fill
+              className="object-contain"
+              sizes="224px"
+              priority
+            />
           </motion.div>
 
           {/* H1 — MANTEIS.SYSTEMS massive, centered */}
