@@ -1263,9 +1263,10 @@ function ThreePillars() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: i * 0.14, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default"
+              className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default transition-all duration-500 hover:scale-[1.02] hover:bg-white/[0.03] relative overflow-hidden"
               style={{ borderTop: `1px solid ${p.accent}` }}
             >
+              <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-[#0057FF] transition-all duration-500 pointer-events-none" />
               <div className="flex items-center justify-between">
                 <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
                   {p.label}
@@ -1390,7 +1391,7 @@ function Founder() {
                 transition={{ duration: 0.65, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="p-6 sm:p-8 border-b border-r border-white/[0.08] last:border-b-0 lg:border-r-0 flex-1 min-w-[140px] lg:min-w-0"
               >
-                <div className="font-display font-bold text-3xl sm:text-4xl text-signal-blue tracking-tight">
+                <div className="font-display font-bold text-[clamp(28px,5vw,56px)] text-signal-blue tracking-tight">
                   {s.static
                     ? <Counter to={s.to} suffix={s.suffix} duration={2200} delay={0.2 + i * 0.1} />
                     : <Counter to={s.to} suffix={s.suffix} delay={0.2 + i * 0.1} />
@@ -1493,9 +1494,9 @@ function SystemsDeepDive() {
                 initial={{ opacity: 0, x: 24 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                className={`border p-5 sm:p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 ${t.featured ? 'border-signal-blue/40' : 'border-white/[0.08]'}`}
-                style={{ borderTopColor: t.accent, borderTopWidth: '1px' }}
+                whileHover={{ x: 4, scale: 1.05, transition: { duration: 0.2 } }}
+                className={`border p-5 sm:p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 hover:scale-105 ${t.featured ? 'border-signal-blue/40 border-t-2 border-[#0057FF]' : 'border-white/[0.08]'}`}
+                style={{ borderTopColor: t.accent, borderTopWidth: t.featured ? '2px' : '1px' }}
               >
                 <div className="flex items-start justify-between mb-1 gap-3">
                   <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 pt-1.5">
@@ -1951,18 +1952,21 @@ function Manifesto() {
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.08 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group relative overflow-visible"
+              className="py-10 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-16 group relative overflow-hidden"
             >
-              <div className="lg:w-52 shrink-0">
-                <span className="block font-display font-bold text-[80px] md:text-[120px] leading-none text-white/[0.06] group-hover:text-signal-blue/20 transition-colors duration-500 select-none absolute -top-8 left-0 lg:static lg:leading-none" aria-hidden>
-                  0{i + 1}
+              <span className="absolute top-0 left-0 text-[200px] font-bold text-white/[0.03] leading-none select-none pointer-events-none z-0" aria-hidden>
+                0{i + 1}
+              </span>
+              <div className="lg:w-52 shrink-0 relative z-10">
+                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 relative" aria-hidden>
+                  CH.0{i + 1}
                 </span>
-                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 relative mt-[54px] md:mt-[88px] lg:mt-0">
-                  CH.0{i + 1} — {b.label}
+                <span className="block font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 relative mt-1">
+                  {b.label}
                 </span>
               </div>
-              <div className="flex-1">
-                <h3 className="font-display font-bold text-[clamp(28px,4vw,56px)] tracking-tight leading-tight mb-4 text-white group-hover:text-signal-blue transition-colors duration-500">
+              <div className="flex-1 relative z-10">
+                <h3 className="font-display font-bold text-[clamp(28px,5vw,56px)] tracking-tight leading-tight mb-4 text-white group-hover:text-signal-blue transition-colors duration-500">
                   {b.heading}
                 </h3>
                 <p className="text-white/55 text-base leading-relaxed max-w-2xl">
@@ -2009,6 +2013,7 @@ function FinalCTA() {
         }}
         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
       />
+      <div className="absolute w-64 h-64 rounded-full bg-[#0057FF]/20 blur-3xl animate-pulse pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
