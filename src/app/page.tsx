@@ -70,7 +70,7 @@ function Nav() {
             Manteis.Systems
           </span>
         </a>
-        <ul className="hidden md:flex gap-10 list-none">
+        <ul className="hidden md:flex gap-6 md:gap-16 list-none">
           {['Federation', 'Systems', 'Proof', 'Sounds', 'Self', 'Contact'].map((item) => (
             <li key={item}>
               <a
@@ -574,7 +574,7 @@ function SovereignNodeDiagram() {
   ];
 
   return (
-    <section ref={ref} className="relative px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-black">
+    <section ref={ref} className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] overflow-hidden bg-black">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -604,7 +604,7 @@ function SovereignNodeDiagram() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-white/55 text-base leading-relaxed max-w-xl mb-14"
+          className="text-white/55 text-base leading-relaxed max-w-xl mb-10 md:mb-16"
         >
           Every query stays on your hardware. Your agent orchestrator routes
           intent. Your local models think. Your vector store remembers. Your
@@ -643,11 +643,9 @@ function SovereignNodeDiagram() {
             </div>
           </div>
 
-          {/* min-w + scroll keeps diagram labels legible on phones */}
-          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <svg
             viewBox="0 0 900 520"
-            className="w-full h-auto min-w-[560px]"
+            className="w-full h-auto"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="Sovereign Node architecture diagram"
@@ -817,7 +815,6 @@ function SovereignNodeDiagram() {
               );
             })}
           </svg>
-          </div>
 
           {/* Legend */}
           <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
@@ -873,7 +870,7 @@ function FederationSection() {
   ];
 
   return (
-    <section ref={ref} id="federation" className="relative px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-void-raised">
+    <section ref={ref} id="federation" className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] overflow-hidden bg-void-raised">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -908,7 +905,7 @@ function FederationSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-white/55 text-base leading-relaxed max-w-xl mb-14"
+          className="text-white/55 text-base leading-relaxed max-w-xl mb-10 md:mb-16"
         >
           Not one chatbot bolted onto the org. A federation: every department runs
           its own AI operating system, and an orchestrator OS coordinates them all —
@@ -937,11 +934,9 @@ function FederationSection() {
             </div>
           </div>
 
-          {/* min-w + scroll keeps diagram labels legible on phones */}
-          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <svg
             viewBox="0 0 900 640"
-            className="w-full h-auto min-w-[560px]"
+            className="w-full h-auto"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="AI OS Federation diagram: staff tier feeds a human approval gate, an orchestrator AI OS coordinates five departmental AI OSes over a git bus, all backed by a private inference tier"
@@ -1168,7 +1163,6 @@ function FederationSection() {
               </text>
             </motion.g>
           </svg>
-          </div>
 
           {/* Legend */}
           <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-x-6 gap-y-2 font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
@@ -1249,12 +1243,12 @@ function ThreePillars() {
   const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-32 max-w-6xl mx-auto w-full bg-void-elevated">
+    <section ref={ref} className="px-4 sm:px-8 py-20 md:py-32 max-w-6xl mx-auto w-full bg-void-elevated">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55 mb-16"
+        className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/55 mb-10 md:mb-16"
       >
         // THE ECOSYSTEM
       </motion.div>
@@ -1318,7 +1312,7 @@ function Founder() {
   ];
 
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+    <section ref={ref} className="px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="03" label="ARCHITECT" />
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
@@ -1451,7 +1445,7 @@ function SystemsDeepDive() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-tight mb-16"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-tight mb-10 md:mb-16"
         >
           THE SOVEREIGN NODE
         </motion.h2>
@@ -1540,7 +1534,7 @@ function CaseStudy() {
   ];
 
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-32 border-t border-white/[0.06] bg-void-elevated">
+    <section ref={ref} className="px-4 sm:px-8 py-20 md:py-32 border-t border-white/[0.06] bg-void-elevated">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="05" label="ACTIVE DEPLOYMENT" />
         <motion.div
@@ -1691,7 +1685,7 @@ function CapabilitiesProof() {
   ];
 
   return (
-    <section id="proof" ref={ref} className="px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+    <section id="proof" ref={ref} className="px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="06" label="PROOF" />
         <motion.div
@@ -1706,7 +1700,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-[0.95] mb-16"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-[0.95] mb-10 md:mb-16"
         >
           SHOWN,
           <span className="text-white/55"> NOT TOLD.</span>
@@ -1835,14 +1829,14 @@ function WhatWeOffer() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06] bg-void-raised">
+    <section ref={ref} className="px-8 py-20 md:py-32 border-t border-white/[0.06] bg-void-raised">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="07" label="CONSULTANCY" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-16"
+          className="font-mono text-[9px] tracking-[0.35em] uppercase text-white/25 mb-10 md:mb-16"
         >
           // CONSULTANCY SERVICES
         </motion.div>
@@ -1924,14 +1918,14 @@ function Manifesto() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+    <section ref={ref} className="px-8 py-24 md:py-40 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="08" label="MANIFESTO" />
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-6 mb-20"
+          className="flex items-center gap-6 mb-10 md:mb-20"
         >
           <motion.div
             className="w-16 h-16 border-2 border-signal-blue flex items-center justify-center shrink-0"
@@ -1998,7 +1992,7 @@ function FinalCTA() {
   const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
-    <section ref={ref} id="contact" className="relative px-8 py-40 border-t border-white/[0.06] flex flex-col items-center text-center overflow-hidden">
+    <section ref={ref} id="contact" className="relative px-8 py-24 md:py-40 border-t border-white/[0.06] flex flex-col items-center text-center overflow-hidden">
       {/* Aurora orbs + particles */}
       <AnimatedOrbs />
       <FloatingParticles />
