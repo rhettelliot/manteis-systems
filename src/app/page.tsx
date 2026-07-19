@@ -2026,7 +2026,7 @@ function FinalCTA() {
         className="relative font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-tight mb-8"
       >
         <GradientText>INITIATE</GradientText><br />
-        <span className="text-white/30">SOVEREIGNTY AUDIT.</span>
+        <span className="text-white/50">SOVEREIGNTY AUDIT.</span>
       </motion.h2>
 
       <motion.p
@@ -2064,7 +2064,7 @@ function FinalCTA() {
             </Button>
           </a>
         </Magnetic>
-        <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/15">
+        <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/50">
           NO COMMITMENT · RESPONSE WITHIN 24 HOURS · PACIFIC TIME
         </span>
       </motion.div>
@@ -2098,7 +2098,7 @@ export default function Home() {
           <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 text-center sm:text-left">
             MANTEIS.SYSTEMS · SOVEREIGN INTELLIGENCE INFRASTRUCTURE
           </span>
-          <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/15">
+          <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/50">
             © 2026 // ALL_RIGHTS_RESERVED
           </span>
         </div>
