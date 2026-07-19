@@ -63,10 +63,10 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <SkipLink />
-      <nav className="flex items-center justify-between px-8 h-16 bg-black/85 backdrop-blur-xl border-b border-white/[0.06]" aria-label="Primary">
-        <a href="#main-content" className="flex items-center gap-3 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none">
-          <div className="w-1.5 h-5 bg-signal-blue" aria-hidden />
-          <span className="font-mono text-xs font-bold tracking-[0.22em] uppercase text-white/80">
+      <nav className="flex items-center justify-between px-4 sm:px-8 h-16 bg-black/85 backdrop-blur-xl border-b border-white/[0.06]" aria-label="Primary">
+        <a href="#main-content" className="flex items-center gap-3 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none min-w-0">
+          <div className="w-1.5 h-5 bg-signal-blue shrink-0" aria-hidden />
+          <span className="font-mono text-xs font-bold tracking-[0.22em] uppercase text-white/80 truncate">
             Manteis.Systems
           </span>
         </a>
@@ -82,15 +82,15 @@ function Nav() {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-4">
-          <div className="font-mono text-[10px] text-white/55 uppercase tracking-widest hidden sm:block">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+          <div className="font-mono text-[10px] text-white/55 uppercase tracking-widest hidden sm:block max-w-[200px] truncate">
             // SUBVERT. CREATE. SOVEREIGNTY.
           </div>
           <button
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="w-8 h-8 flex items-center justify-center text-white/55 hover:text-white transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none"
+            className="w-8 h-8 flex items-center justify-center text-white/55 hover:text-white transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none shrink-0"
           >
             {theme === 'dark' ? (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
@@ -574,7 +574,7 @@ function SovereignNodeDiagram() {
   ];
 
   return (
-    <section ref={ref} className="relative px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-black">
+    <section ref={ref} className="relative px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-black">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -594,7 +594,7 @@ function SovereignNodeDiagram() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-3xl"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-3xl"
         >
           <GradientText from="#FFFFFF" via="#7AA9FF" to="#FFFFFF">INSIDE THE</GradientText>
           <br />
@@ -615,7 +615,7 @@ function SovereignNodeDiagram() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative border border-white/[0.08] bg-void-raised p-4 sm:p-8"
+          className="relative border border-white/[0.08] bg-void-raised p-3 sm:p-8"
         >
           {/* Header bar */}
           <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06]">
@@ -644,7 +644,7 @@ function SovereignNodeDiagram() {
           </div>
 
           {/* min-w + scroll keeps diagram labels legible on phones */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <svg
             viewBox="0 0 900 520"
             className="w-full h-auto min-w-[560px]"
@@ -873,7 +873,7 @@ function FederationSection() {
   ];
 
   return (
-    <section ref={ref} id="federation" className="relative px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-void-raised">
+    <section ref={ref} id="federation" className="relative px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] overflow-hidden bg-void-raised">
       {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -898,7 +898,7 @@ function FederationSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-4xl"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] leading-[0.95] tracking-tight mb-4 max-w-4xl"
         >
           ONE AI OS PER DEPARTMENT.
           <br />
@@ -919,7 +919,7 @@ function FederationSection() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative border border-white/[0.08] bg-void-raised p-4 sm:p-8"
+          className="relative border border-white/[0.08] bg-void-raised p-3 sm:p-8"
         >
           {/* Header bar */}
           <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06]">
@@ -938,7 +938,7 @@ function FederationSection() {
           </div>
 
           {/* min-w + scroll keeps diagram labels legible on phones */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <svg
             viewBox="0 0 900 640"
             className="w-full h-auto min-w-[560px]"
@@ -1180,7 +1180,7 @@ function FederationSection() {
         </motion.div>
 
         {/* Federation pillars */}
-        <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06] mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px border border-white/[0.06] mt-12">
           {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
@@ -1189,10 +1189,10 @@ function FederationSection() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.75, delay: 0.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-void-raised p-8 flex flex-col gap-4 border-t border-signal-blue/40 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors group cursor-default"
+                className="bg-void-raised p-6 sm:p-8 flex flex-col gap-4 border-t border-signal-blue/40 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors group cursor-default"
               >
                 <div className="flex items-center gap-3">
-                  <Icon size={16} className="text-signal-blue" aria-hidden />
+                  <Icon size={16} className="text-signal-blue shrink-0" aria-hidden />
                   <h3 className="font-mono text-[10px] font-bold tracking-[0.25em] uppercase text-white">
                     {p.title}
                   </h3>
@@ -1249,7 +1249,7 @@ function ThreePillars() {
   const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
-    <section ref={ref} className="px-8 py-32 max-w-6xl mx-auto w-full bg-void-elevated">
+    <section ref={ref} className="px-4 sm:px-8 py-32 max-w-6xl mx-auto w-full bg-void-elevated">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1258,7 +1258,7 @@ function ThreePillars() {
       >
         // THE ECOSYSTEM
       </motion.div>
-      <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-px border border-white/[0.06]">
         {pillars.map((p, i) => {
           const Icon = p.icon;
           return (
@@ -1269,7 +1269,7 @@ function ThreePillars() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: i * 0.14, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="bg-void-raised p-8 flex flex-col gap-5 group cursor-default"
+              className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default"
               style={{ borderTop: `1px solid ${p.accent}` }}
             >
               <div className="flex items-center justify-between">
@@ -1318,10 +1318,10 @@ function Founder() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+    <section ref={ref} className="px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="03" label="ARCHITECT" />
-        <div className="flex flex-col lg:flex-row gap-20">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           <div className="flex-1 flex flex-col gap-8">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -1335,7 +1335,7 @@ function Founder() {
               initial={{ opacity: 0, y: 15 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight"
+              className="font-display font-bold text-[clamp(32px,6vw,72px)] leading-[0.95] tracking-tight"
             >
               FROM MIDI STUDIO
               <br />
@@ -1387,16 +1387,16 @@ function Founder() {
           </div>
 
           {/* Right: stats with counter animations */}
-          <div className="flex flex-col gap-0 lg:min-w-[220px] border border-white/[0.08] h-fit">
+          <div className="flex flex-row flex-wrap lg:flex-col gap-0 lg:min-w-[220px] border border-white/[0.08] h-fit">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
                 initial={{ opacity: 0, x: 24 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.65, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 border-b border-white/[0.08] last:border-b-0"
+                className="p-6 sm:p-8 border-b border-r border-white/[0.08] last:border-b-0 lg:border-r-0 flex-1 min-w-[140px] lg:min-w-0"
               >
-                <div className="font-display font-bold text-4xl text-signal-blue tracking-tight">
+                <div className="font-display font-bold text-3xl sm:text-4xl text-signal-blue tracking-tight">
                   {s.static
                     ? <Counter to={s.to} suffix={s.suffix} duration={2200} delay={0.2 + i * 0.1} />
                     : <Counter to={s.to} suffix={s.suffix} delay={0.2 + i * 0.1} />
@@ -1436,7 +1436,7 @@ function SystemsDeepDive() {
   ];
 
   return (
-    <section id="systems" ref={ref} className="px-8 py-24 md:py-32 border-t border-white/[0.06] bg-void-raised">
+    <section id="systems" ref={ref} className="px-4 sm:px-8 py-24 md:py-32 border-t border-white/[0.06] bg-void-raised">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="04" label="SYSTEMS" />
         <motion.div
@@ -1451,12 +1451,12 @@ function SystemsDeepDive() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-tight mb-16"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-tight mb-16"
         >
           THE SOVEREIGN NODE
         </motion.h2>
 
-        <div className="flex flex-col lg:flex-row gap-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Left: spec table */}
           <div className="flex-1 flex flex-col gap-8">
             <motion.p
@@ -1482,9 +1482,9 @@ function SystemsDeepDive() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
-                  className={`flex gap-6 p-4 font-mono text-[11px] hover:bg-white/[0.02] transition-colors ${i < specs.length - 1 ? 'border-b border-white/[0.06]' : ''}`}
+                  className={`flex flex-col sm:flex-row gap-2 sm:gap-6 p-4 font-mono text-[11px] hover:bg-white/[0.02] transition-colors ${i < specs.length - 1 ? 'border-b border-white/[0.06]' : ''}`}
                 >
-                  <span className="text-signal-blue/60 tracking-widest uppercase w-28 shrink-0">{s.key}</span>
+                  <span className="text-signal-blue/60 tracking-widest uppercase w-auto sm:w-28 shrink-0">{s.key}</span>
                   <span className="text-white/65">{s.val}</span>
                 </motion.div>
               ))}
@@ -1500,14 +1500,14 @@ function SystemsDeepDive() {
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                className={`border p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 ${t.featured ? 'border-signal-blue/40' : 'border-white/[0.08]'}`}
+                className={`border p-5 sm:p-6 bg-void-raised cursor-default transition-colors duration-300 hover:bg-white/[0.02] hover:border-white/25 ${t.featured ? 'border-signal-blue/40' : 'border-white/[0.08]'}`}
                 style={{ borderTopColor: t.accent, borderTopWidth: '1px' }}
               >
                 <div className="flex items-start justify-between mb-1 gap-3">
                   <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55 pt-1.5">
                     {t.name}
                   </span>
-                  <span className="font-display font-bold text-2xl tracking-tight" style={{ color: t.accent }}>
+                  <span className="font-display font-bold text-xl sm:text-2xl tracking-tight" style={{ color: t.accent }}>
                     {t.price}
                   </span>
                 </div>
@@ -1540,7 +1540,7 @@ function CaseStudy() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-32 border-t border-white/[0.06] bg-void-elevated">
+    <section ref={ref} className="px-4 sm:px-8 py-32 border-t border-white/[0.06] bg-void-elevated">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="05" label="ACTIVE DEPLOYMENT" />
         <motion.div
@@ -1564,13 +1564,13 @@ function CaseStudy() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(36px,6vw,72px)] leading-[0.95] tracking-tight mb-12 max-w-3xl"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] leading-[0.95] tracking-tight mb-12 max-w-3xl"
         >
           &ldquo;They don&apos;t need another website.<br />
           <span className="text-white/55">They need an Agent.&rdquo;</span>
         </motion.blockquote>
 
-        <div className="flex flex-col lg:flex-row gap-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1634,9 +1634,9 @@ function CaseStudy() {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.55, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ borderTopColor: '#0057FF' }}
-                className="p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group"
+                className="p-4 sm:p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group"
               >
-                <div className="font-display font-bold text-2xl text-signal-blue tracking-tight mb-1">
+                <div className="font-display font-bold text-xl sm:text-2xl text-signal-blue tracking-tight mb-1">
                   {m.value}
                 </div>
                 <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/55 leading-relaxed">
@@ -1691,7 +1691,7 @@ function CapabilitiesProof() {
   ];
 
   return (
-    <section id="proof" ref={ref} className="px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
+    <section id="proof" ref={ref} className="px-4 sm:px-8 py-40 md:py-48 border-t border-white/[0.06] bg-black">
       <div className="max-w-6xl mx-auto">
         <SectionDivider inView={inView} number="06" label="PROOF" />
         <motion.div
@@ -1706,7 +1706,7 @@ function CapabilitiesProof() {
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-[clamp(36px,6vw,72px)] tracking-tight leading-[0.95] mb-16"
+          className="font-display font-bold text-[clamp(32px,6vw,72px)] tracking-tight leading-[0.95] mb-16"
         >
           SHOWN,
           <span className="text-white/55"> NOT TOLD.</span>
@@ -1720,7 +1720,7 @@ function CapabilitiesProof() {
           className="grid grid-cols-2 md:grid-cols-5 gap-px border border-white/[0.08] mb-12"
         >
           {metrics.map((m, i) => (
-            <div key={m.label} className="bg-void-raised p-6 md:p-8 flex flex-col gap-3 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors duration-300 border-t border-transparent">
+            <div key={m.label} className={`bg-void-raised p-5 sm:p-8 flex flex-col gap-3 hover:bg-white/[0.02] hover:border-t-signal-blue transition-colors duration-300 border-t border-transparent ${i === 4 ? 'col-span-2 md:col-span-1' : ''}`}>
               <div className="font-display font-bold text-3xl md:text-5xl text-signal-blue tracking-tight">
                 <Counter to={m.to} suffix={m.suffix} decimals={m.decimals} delay={0.3 + i * 0.12} />
               </div>
@@ -1732,7 +1732,7 @@ function CapabilitiesProof() {
         </motion.div>
 
         {/* Case cards */}
-        <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06] mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px border border-white/[0.06] mb-12">
           {cases.map((c, i) => (
             <motion.article
               key={c.tag}
@@ -1740,7 +1740,7 @@ function CapabilitiesProof() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ borderTopColor: '#0057FF' }}
-              className="bg-void-raised p-8 flex flex-col gap-4 border-t border-transparent hover:bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 group cursor-default"
+              className="bg-void-raised p-6 sm:p-8 flex flex-col gap-4 border-t border-transparent hover:bg-white/[0.02] transition-all duration-300 hover:-translate-y-1 group cursor-default"
             >
               <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/55">
                 {c.tag} · ANONYMIZED
@@ -1772,7 +1772,7 @@ function CapabilitiesProof() {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.5 + i * 0.05 }}
-              className="bg-void-raised px-4 py-5 text-center font-mono text-[10px] tracking-[0.18em] uppercase text-white/40 hover:text-signal-blue hover:bg-white/[0.02] transition-colors cursor-default"
+              className="bg-void-raised px-3 sm:px-4 py-5 text-center font-mono text-[10px] tracking-[0.18em] uppercase text-white/40 hover:text-signal-blue hover:bg-white/[0.02] transition-colors cursor-default"
             >
               {t}
             </motion.div>
@@ -2081,7 +2081,7 @@ function FinalCTA() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-black text-white font-body selection:bg-signal-blue/20 selection:text-signal-blue">
+    <main className="relative min-h-screen overflow-x-hidden bg-black text-white font-body selection:bg-signal-blue/20 selection:text-signal-blue">
       <NoiseGrain opacity={0.035} />
       <ScrollProgress />
       <CursorGlow />
@@ -2099,7 +2099,7 @@ export default function Home() {
       <WhatWeOffer />
       <Manifesto />
       <FinalCTA />
-      <footer className="border-t border-white/[0.06] px-8 py-8">
+      <footer className="border-t border-white/[0.06] px-4 sm:px-8 py-8">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/20 text-center sm:text-left">
             MANTEIS.SYSTEMS · SOVEREIGN INTELLIGENCE INFRASTRUCTURE
