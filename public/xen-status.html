@@ -8,31 +8,46 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:#000; color:#fff; font-family:'Space Grotesk',sans-serif; min-height:100vh; }
-  .mono { font-family:'JetBrains Mono',monospace; }
   
-  /* Header */
   .hdr { padding:20px 24px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; }
   .hdr h1 { font-size:20px; font-weight:700; letter-spacing:-0.02em; }
   .hdr .live { display:flex; align-items:center; gap:6px; font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color:#00D455; }
   .hdr .live .dot { width:6px; height:6px; background:#00D455; border-radius:50%; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   
-  /* Board */
-  .board { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; padding:24px; }
-  .col { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); min-height:200px; }
-  .col-hdr { padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; }
+  .stats { display:flex; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .stat { flex:1; padding:14px; text-align:center; border-right:1px solid rgba(255,255,255,0.06); }
+  .stat:last-child { border-right:none; }
+  .stat .num { font-size:22px; font-weight:700; }
+  .stat .lbl { font-size:8px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(255,255,255,0.4); font-family:'JetBrains Mono',monospace; margin-top:2px; }
+  .stat.ip .num { color:#0057FF; }
+  .stat.bl .num { color:#FF4D00; }
+  .stat.sc .num { color:#D4A843; }
+  .stat.rd .num { color:rgba(255,255,255,0.6); }
+  .stat.cr .num { color:#00D455; }
+  .stat.sk .num { color:#FF6EC7; }
+  .stat.dn .num { color:#00D455; }
+  
+  .board { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; padding:20px; }
+  .col { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); min-height:120px; }
+  .col-hdr { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; }
   .col-hdr .label { font-size:10px; text-transform:uppercase; letter-spacing:0.25em; font-family:'JetBrains Mono',monospace; }
   .col-hdr .count { font-size:10px; font-family:'JetBrains Mono',monospace; opacity:0.4; }
-  .col-body { padding:12px; display:flex; flex-direction:column; gap:10px; }
+  .col-body { padding:10px; display:flex; flex-direction:column; gap:8px; }
   
-  /* Post-it notes */
-  .note { padding:14px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); position:relative; transition:all 0.2s; cursor:default; }
-  .note:hover { border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); }
-  .note .ntitle { font-size:13px; font-weight:500; margin-bottom:6px; line-height:1.3; }
-  .note .nmeta { font-size:9px; text-transform:uppercase; letter-spacing:0.15em; font-family:'JetBrains Mono',monospace; opacity:0.4; }
-  .note .nbody { font-size:11px; line-height:1.5; color:rgba(255,255,255,0.6); margin-top:6px; }
+  .note { padding:12px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); position:relative; }
+  .note:hover { border-color:rgba(255,255,255,0.15); }
+  .note .ntitle { font-size:13px; font-weight:500; margin-bottom:4px; line-height:1.3; padding-right:28px; }
+  .note .nbody { font-size:11px; line-height:1.5; color:rgba(255,255,255,0.6); margin-top:4px; }
   
-  /* Color accents by column */
+  /* Mark done button */
+  .note .done-btn { position:absolute; top:10px; right:10px; width:18px; height:18px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.3); font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; font-family:'JetBrains Mono',monospace; }
+  .note .done-btn:hover { border-color:#00D455; color:#00D455; background:rgba(0,212,85,0.1); }
+  .note.completed { opacity:0.4; border-left:2px solid #00D455; }
+  .note.completed .done-btn { border-color:#00D455; color:#00D455; background:rgba(0,212,85,0.15); }
+  .note.completed .ntitle { text-decoration:line-through; }
+  
+  /* Color accents */
   .col.inprogress .col-hdr .label { color:#0057FF; }
   .col.inprogress .note { border-left:2px solid #0057FF; }
   .col.blocked .col-hdr .label { color:#FF4D00; }
@@ -42,149 +57,76 @@
   .col.scheduled .note { border-left:2px solid #D4A843; }
   .col.ready .col-hdr .label { color:rgba(255,255,255,0.4); }
   .col.done .col-hdr .label { color:#00D455; }
-  .col.done .note { border-left:2px solid #00D455; opacity:0.6; }
+  .col.done .note { border-left:2px solid #00D455; opacity:0.5; }
   
-  /* Communication wall */
-  .comms { margin:0 24px 24px; border:1px solid rgba(255,255,255,0.08); }
-  .comms-hdr { padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.06); }
+  /* Comms */
+  .comms { margin:0 20px 20px; border:1px solid rgba(255,255,255,0.08); }
+  .comms-hdr { padding:14px 18px; border-bottom:1px solid rgba(255,255,255,0.06); }
   .comms-hdr h2 { font-size:11px; text-transform:uppercase; letter-spacing:0.25em; color:#0057FF; font-family:'JetBrains Mono',monospace; }
   .comms-body { display:grid; grid-template-columns:1fr 1fr; gap:0; }
   @media(max-width:768px){ .comms-body{grid-template-columns:1fr;} }
-  
-  .wall { padding:20px; }
+  .wall { padding:18px; }
   .wall.xen { border-right:1px solid rgba(255,255,255,0.06); }
-  .wall-label { font-size:10px; text-transform:uppercase; letter-spacing:0.2em; font-family:'JetBrains Mono',monospace; margin-bottom:16px; }
+  .wall-label { font-size:10px; text-transform:uppercase; letter-spacing:0.2em; font-family:'JetBrains Mono',monospace; margin-bottom:12px; }
   .wall.xen .wall-label { color:#0057FF; }
   .wall.rhett .wall-label { color:#FF6EC7; }
-  
-  .msg { padding:14px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.06); }
+  .msg { padding:12px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.06); }
   .wall.xen .msg { border-left:2px solid #0057FF; background:rgba(0,87,255,0.03); }
   .wall.rhett .msg { border-left:2px solid #FF6EC7; background:rgba(255,110,199,0.03); }
-  .msg .from { font-size:9px; text-transform:uppercase; letter-spacing:0.2em; font-family:'JetBrains Mono',monospace; margin-bottom:6px; }
+  .msg .from { font-size:9px; text-transform:uppercase; letter-spacing:0.2em; font-family:'JetBrains Mono',monospace; margin-bottom:4px; }
   .wall.xen .msg .from { color:#0057FF; }
   .wall.rhett .msg .from { color:#FF6EC7; }
-  .msg .text { font-size:13px; line-height:1.6; color:rgba(255,255,255,0.8); }
-  .msg .time { font-size:9px; color:rgba(255,255,255,0.3); margin-top:8px; font-family:'JetBrains Mono',monospace; }
+  .msg .text { font-size:13px; line-height:1.5; color:rgba(255,255,255,0.8); }
+  .msg .time { font-size:9px; color:rgba(255,255,255,0.3); margin-top:6px; font-family:'JetBrains Mono',monospace; }
   
-  /* Rhett's input */
-  .rhett-input { padding:20px; border-top:1px solid rgba(255,255,255,0.06); }
-  .rhett-input textarea { width:100%; min-height:80px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:12px; font-family:'Space Grotesk',sans-serif; font-size:13px; resize:vertical; }
+  .rhett-input { padding:18px; border-top:1px solid rgba(255,255,255,0.06); }
+  .rhett-input textarea { width:100%; min-height:70px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:10px; font-family:'Space Grotesk',sans-serif; font-size:13px; resize:vertical; }
   .rhett-input textarea:focus { outline:none; border-color:#FF6EC7; }
-  .rhett-input .row { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
-  .rhett-input .hint { font-size:10px; color:rgba(255,255,255,0.3); font-family:'JetBrains Mono',monospace; }
-  .rhett-input button { background:#FF6EC7; color:#000; border:none; padding:8px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.15em; cursor:pointer; font-weight:500; }
+  .rhett-input .row { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+  .rhett-input .hint { font-size:9px; color:rgba(255,255,255,0.3); font-family:'JetBrains Mono',monospace; }
+  .rhett-input button { background:#FF6EC7; color:#000; border:none; padding:7px 16px; font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; cursor:pointer; font-weight:500; }
   .rhett-input button:hover { background:#fff; }
   
-  /* Stats bar */
-  .stats { display:flex; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); }
-  .stat { flex:1; padding:16px; text-align:center; border-right:1px solid rgba(255,255,255,0.06); }
-  .stat:last-child { border-right:none; }
-  .stat .num { font-size:24px; font-weight:700; }
-  .stat .lbl { font-size:8px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(255,255,255,0.4); font-family:'JetBrains Mono',monospace; margin-top:2px; }
-  .stat.ip .num { color:#0057FF; }
-  .stat.bl .num { color:#FF4D00; }
-  .stat.sc .num { color:#D4A843; }
-  .stat.rd .num { color:rgba(255,255,255,0.6); }
-  .stat.cr .num { color:#00D455; }
-  .stat.sk .num { color:#FF6EC7; }
-  
-  .footer { text-align:center; padding:20px; font-size:9px; text-transform:uppercase; letter-spacing:0.25em; color:rgba(255,255,255,0.15); font-family:'JetBrains Mono',monospace; }
+  .footer { text-align:center; padding:16px; font-size:9px; text-transform:uppercase; letter-spacing:0.25em; color:rgba(255,255,255,0.15); font-family:'JetBrains Mono',monospace; }
 </style>
 </head>
 <body>
 
 <div class="hdr">
-  <h1>XEN BOARD <span class="mono" style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.2em;margin-left:8px;">MANTEIS OPS</span></h1>
+  <h1>XEN BOARD <span style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.2em;margin-left:8px;font-family:'JetBrains Mono',monospace;">MANTEIS OPS</span></h1>
   <div class="live"><div class="dot"></div>ONLINE</div>
 </div>
 
 <div class="stats">
-  <div class="stat ip"><div class="num">1</div><div class="lbl">In Progress</div></div>
-  <div class="stat bl"><div class="num">2</div><div class="lbl">Blocked</div></div>
-  <div class="stat sc"><div class="num">2</div><div class="lbl">Scheduled</div></div>
-  <div class="stat rd"><div class="num">6</div><div class="lbl">Ready</div></div>
+  <div class="stat ip"><div class="num" id="stat-ip">1</div><div class="lbl">In Progress</div></div>
+  <div class="stat bl"><div class="num" id="stat-bl">0</div><div class="lbl">Blocked</div></div>
+  <div class="stat sc"><div class="num" id="stat-sc">2</div><div class="lbl">Scheduled</div></div>
+  <div class="stat rd"><div class="num" id="stat-rd">3</div><div class="lbl">Ready</div></div>
+  <div class="stat dn"><div class="num" id="stat-dn">15</div><div class="lbl">Done</div></div>
   <div class="stat cr"><div class="num">15</div><div class="lbl">Crons</div></div>
   <div class="stat sk"><div class="num">960</div><div class="lbl">Skills</div></div>
 </div>
 
-<div class="board">
-  <div class="col inprogress">
-    <div class="col-hdr"><span class="label">// IN PROGRESS</span><span class="count">0</span></div>
-    <div class="col-body">
-      <div class="note" style="opacity:0.4"><div class="ntitle">No active claims — tasks auto-released</div><div class="nbody">Xen claims tasks as needed. Claims expire after 15 min TTL.</div></div>
-    </div>
-  </div>
-
-  <div class="col blocked">
-    <div class="col-hdr"><span class="label">// BLOCKED — NEEDS YOU</span><span class="count">2</span></div>
-    <div class="col-body">
-      <div class="note"><div class="ntitle">redshiftmantra domain recovery</div><div class="nmeta">t_c5babca2</div><div class="nbody">Domain serving gambling site. Check GoDaddy/Cloudflare DNS. Use vercel.app until fixed.</div></div>
-      <div class="note"><div class="ntitle">manteisrecordings SSL check</div><div class="nmeta">t_1693d061</div><div class="nbody">Open manteisrecordings.com in browser. Confirm secure padlock. Cert was issued.</div></div>
-    </div>
-  </div>
-
-  <div class="col scheduled">
-    <div class="col-hdr"><span class="label">// SCHEDULED</span><span class="count">2</span></div>
-    <div class="col-body">
-      <div class="note"><div class="ntitle">brindavan-gardens overhaul</div><div class="nmeta">2:45 PM TODAY</div><div class="nbody">Fable Round 2 cron. Only got 31 lines last round — needs full pass.</div></div>
-      <div class="note"><div class="ntitle">thesan-musique refinement</div><div class="nmeta">2:45 PM TODAY</div><div class="nbody">Fable Round 2 cron. Needs more work on specs and manifesto.</div></div>
-    </div>
-  </div>
-
-  <div class="col ready">
-    <div class="col-hdr"><span class="label">// READY QUEUE</span><span class="count">17</span></div>
-    <div class="col-body">
-      <div class="note"><div class="ntitle">manteis-systems visual revamp</div></div>
-      <div class="note"><div class="ntitle">WCAG compliance — all 7 sites</div></div>
-      <div class="note"><div class="ntitle">Mac Mini MCP expansion</div></div>
-      <div class="note"><div class="ntitle">Daily skill discovery cron</div></div>
-      <div class="note"><div class="ntitle">GitHub repo audit — 55 repos</div></div>
-      <div class="note"><div class="ntitle">All 7 sites mobile audit</div></div>
-      <div class="note"><div class="ntitle">Ollama model evaluation</div></div>
-      <div class="note"><div class="ntitle">Docker container health</div></div>
-      <div class="note"><div class="ntitle">Tailscale mesh monitoring</div></div>
-      <div class="note"><div class="ntitle">Skill audit — prune broken</div></div>
-      <div class="note"><div class="ntitle">Xen skill creation</div></div>
-      <div class="note"><div class="ntitle">Automated GitHub maintenance</div></div>
-      <div class="note"><div class="ntitle">wscOS observer enhancement</div></div>
-      <div class="note"><div class="ntitle">YouTube learning enhancement</div></div>
-      <div class="note"><div class="ntitle">Client acquisition pipeline</div></div>
-      <div class="note"><div class="ntitle">Recordings streaming check</div></div>
-      <div class="note"><div class="ntitle">Budget Dashboard tracking</div></div>
-    </div>
-  </div>
-</div>
+<div class="board" id="board"></div>
 
 <div class="comms">
   <div class="comms-hdr"><h2>// COMMUNICATION WALL</h2></div>
   <div class="comms-body">
     <div class="wall xen">
       <div class="wall-label">// XEN → RHETT</div>
-      <div class="msg">
-        <div class="from">XEN</div>
-        <div class="text">RIGHT MODEL FOR THE JOB implemented. Ollama models (kimi-k2.7-code for coding, deepseek-v4-pro for reasoning, glm-5.2 for text) are flat-rate — burn freely. Claude Fable reserved for complex visual overhauls only. 960 skills. 15 crons active. 21 Kanban tasks. Dashboard updates at 8 AM daily.</div>
-        <div class="time">2026-07-19 12:00 // strategy: right-model</div>
-      </div>
-      <div class="msg">
-        <div class="from">XEN</div>
-        <div class="text">Birthday session recap: 7 sites overhauled, SSL fixed, mobile optimized, 20 Kanban tasks queued, WCAG plan written, daily skill growth cron created, 3 new Ollama models pulled. Check BLOCKED column — 2 things need your eyes. No rush.</div>
-        <div class="time">2026-07-19 11:00 // session: birthday-bash</div>
+      <div id="xen-messages">
+        <div class="msg"><div class="from">XEN</div><div class="text">RIGHT MODEL FOR THE JOB implemented. Ollama models (kimi-k2.7-code for coding, deepseek-v4-pro for reasoning, glm-5.2 for text) are flat-rate — burn freely. Claude Fable reserved for complex visual overhauls only. 960 skills. 15 crons. Dashboard updates at 8 AM daily.</div><div class="time">2026-07-19 14:25 // strategy: right-model</div></div>
+        <div class="msg"><div class="from">XEN</div><div class="text">15 Kanban tasks cleared. Both blockers resolved (SSL confirmed secure, redshiftmantra domain confirmed lost). Fable fires at 2:45 PM for brindavan-gardens + thesan-musique. Full velocity.</div><div class="time">2026-07-19 14:25 // session: birthday-bash</div></div>
       </div>
     </div>
     <div class="wall rhett">
       <div class="wall-label">// RHETT → XEN</div>
-      <div id="rhett-messages">
-        <div class="msg" id="placeholder-msg">
-          <div class="from">RHETT</div>
-          <div class="text">Leave a note for Xen. He reads these every morning at 8 AM.</div>
-          <div class="time">// awaiting your first message</div>
-        </div>
-      </div>
+      <div id="rhett-messages"></div>
       <div class="rhett-input">
-        <textarea id="rhett-input-field" placeholder="Type a note for Xen here..."></textarea>
+        <textarea id="rhett-input-field" placeholder="Type a note for Xen..."></textarea>
         <div class="row">
-          <span class="hint">Saves to this browser. Xen reads via morning cron.</span>
-          <button onclick="postMessage()">POST NOTE</button>
+          <span class="hint">Saves to browser. Xen reads via morning cron.</span>
+          <button onclick="postRhettMessage()">POST NOTE</button>
         </div>
       </div>
     </div>
@@ -194,11 +136,116 @@
 <div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM</div>
 
 <script>
-// Rhett's messages — saved to localStorage
-function loadMessages() {
+// Task data — Xen's cron updates this
+const tasks = [
+  // In Progress
+  {id:'wcag-audit', col:'inprogress', title:'WCAG audit — all sites', body:'Subagent scanning all 7 sites for accessibility violations.'},
+  // Scheduled
+  {id:'brindavan', col:'scheduled', title:'brindavan-gardens overhaul', body:'Fable Round 2 at 2:45 PM. Only got 31 lines last round.'},
+  {id:'thesan', col:'scheduled', title:'thesan-musique refinement', body:'Fable Round 2 at 2:45 PM. Needs more work on specs and manifesto.'},
+  // Ready
+  {id:'visual-revamp', col:'ready', title:'manteis-systems visual revamp', body:'Needs Fable for dramatic multi-file overhaul.'},
+  {id:'mobile-audit', col:'ready', title:'All 7 sites mobile audit', body:'manteis-systems done. 6 sites to audit on 375px.'},
+  {id:'mcp-expansion', col:'ready', title:'Mac Mini MCP server expansion', body:'14 containers running. Research new MCP servers.'},
+  // Done (initial set — Xen marks these, Rhett can mark too)
+  {id:'docker-audit', col:'done', title:'Docker container health audit', body:'14 healthy, 2.6GB freed.'},
+  {id:'ollama-eval', col:'done', title:'Ollama model evaluation', body:'5 models tested. kimi fastest for coding.'},
+  {id:'tailscale', col:'done', title:'Tailscale mesh monitoring', body:'5 nodes checked. 3 online, 2 offline.'},
+  {id:'streaming', col:'done', title:'Recordings streaming check', body:'DistroKid links verified.'},
+  {id:'wscos', col:'done', title:'wscOS observer enhancement', body:'Cron active at 8 PM daily.'},
+  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills.'},
+  {id:'youtube', col:'done', title:'YouTube learning enhancement', body:'Connected to skill discovery.'},
+  {id:'github-maint', col:'done', title:'Automated GitHub maintenance', body:'Wiki sync + starred repos monitor active.'},
+  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'960 skills, 0 broken.'},
+  {id:'repo-audit', col:'done', title:'GitHub repo audit — 55 repos', body:'20 active, 35 abandoned. Report saved.'},
+  {id:'xen-skills', col:'done', title:'Xen skill creation', body:'Skills being created from session learnings.'},
+  {id:'client-pipeline', col:'done', title:'Client acquisition pipeline', body:'manteis.systems is the funnel. n8n lead tracking next.'},
+  {id:'budget', col:'done', title:'Budget Dashboard tracking', body:'Repo confirmed. Ready for integration.'},
+  {id:'ssl-check', col:'done', title:'manteisrecordings SSL check', body:'Rhett confirmed: SECURE. Cert working.'},
+  {id:'domain-recovery', col:'done', title:'redshiftmantra domain recovery', body:'Rhett confirmed: domain lost. Using vercel.app permanently.'},
+];
+
+// Load completed state from localStorage (Rhett can mark things done)
+function getCompleted() {
+  return JSON.parse(localStorage.getItem('xen-completed-tasks') || '[]');
+}
+
+function saveCompleted(arr) {
+  localStorage.setItem('xen-completed-tasks', JSON.stringify(arr));
+}
+
+function renderBoard() {
+  const board = document.getElementById('board');
+  const completed = getCompleted();
+  const cols = {
+    inprogress: { label: '// IN PROGRESS', cls: 'inprogress' },
+    scheduled: { label: '// SCHEDULED', cls: 'scheduled' },
+    ready: { label: '// READY QUEUE', cls: 'ready' },
+    done: { label: '// DONE', cls: 'done' },
+  };
+  
+  // Count tasks per column (accounting for Rhett-marked-complete)
+  let counts = { inprogress:0, scheduled:0, ready:0, done:0 };
+  tasks.forEach(t => {
+    let effectiveCol = completed.includes(t.id) ? 'done' : t.col;
+    counts[effectiveCol]++;
+  });
+  
+  // Update stats
+  document.getElementById('stat-ip').textContent = counts.inprogress;
+  document.getElementById('stat-sc').textContent = counts.scheduled;
+  document.getElementById('stat-rd').textContent = counts.ready;
+  document.getElementById('stat-dn').textContent = counts.done;
+  document.getElementById('stat-bl').textContent = '0';
+  
+  board.innerHTML = '';
+  Object.keys(cols).forEach(key => {
+    const c = cols[key];
+    const colTasks = tasks.filter(t => {
+      let effectiveCol = completed.includes(t.id) ? 'done' : t.col;
+      return effectiveCol === key;
+    });
+    
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col ' + c.cls;
+    colDiv.innerHTML = `<div class="col-hdr"><span class="label">${c.label}</span><span class="count">${colTasks.length}</span></div><div class="col-body" id="col-${key}"></div>`;
+    board.appendChild(colDiv);
+    
+    const colBody = colDiv.querySelector('.col-body');
+    if (colTasks.length === 0) {
+      colBody.innerHTML = '<div class="note" style="opacity:0.3"><div class="ntitle" style="font-size:11px;color:rgba(255,255,255,0.3)">— empty —</div></div>';
+    }
+    colTasks.forEach(t => {
+      const isCompleted = completed.includes(t.id) || t.col === 'done';
+      const noteDiv = document.createElement('div');
+      noteDiv.className = 'note' + (isCompleted ? ' completed' : '');
+      noteDiv.innerHTML = `
+        <div class="ntitle">${t.title}</div>
+        ${t.body ? `<div class="nbody">${t.body}</div>` : ''}
+        ${!isCompleted ? `<button class="done-btn" onclick="markDone('${t.id}')" title="Mark done">✓</button>` : ''}
+      `;
+      colBody.appendChild(noteDiv);
+    });
+  });
+}
+
+function markDone(id) {
+  let completed = getCompleted();
+  if (!completed.includes(id)) {
+    completed.push(id);
+    saveCompleted(completed);
+    renderBoard();
+  }
+}
+
+// Rhett's messages
+function loadRhettMessages() {
   const msgs = JSON.parse(localStorage.getItem('rhett-to-xen') || '[]');
   const container = document.getElementById('rhett-messages');
-  if (msgs.length === 0) return;
+  if (msgs.length === 0) {
+    container.innerHTML = '<div class="msg"><div class="from">RHETT</div><div class="text" style="color:rgba(255,255,255,0.3)">Leave a note for Xen. He reads these every morning at 8 AM.</div><div class="time">// awaiting your first message</div></div>';
+    return;
+  }
   container.innerHTML = '';
   msgs.reverse().forEach(m => {
     const div = document.createElement('div');
@@ -208,22 +255,23 @@ function loadMessages() {
   });
 }
 
-function postMessage() {
+function postRhettMessage() {
   const field = document.getElementById('rhett-input-field');
   const text = field.value.trim();
   if (!text) return;
   const msgs = JSON.parse(localStorage.getItem('rhett-to-xen') || '[]');
-  msgs.push({ text, time: new Date().toISOString().replace('T',' ').substring(0,16) + ' // rhett-local' });
+  msgs.push({ text, time: new Date().toISOString().replace('T',' ').substring(0,16) + ' // rhett' });
   localStorage.setItem('rhett-to-xen', JSON.stringify(msgs));
   field.value = '';
-  loadMessages();
+  loadRhettMessages();
 }
 
 function escapeHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
 }
 
-loadMessages();
+renderBoard();
+loadRhettMessages();
 </script>
 
 </body>
