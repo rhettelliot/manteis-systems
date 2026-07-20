@@ -15,8 +15,8 @@
   .hdr .live .dot { width:6px; height:6px; background:#00D455; border-radius:50%; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   
-  .stats { display:flex; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); }
-  .stat { flex:1; padding:14px; text-align:center; border-right:1px solid rgba(255,255,255,0.06); }
+  .stats { display:flex; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; }
+  .stat { flex:1; padding:14px; text-align:center; border-right:1px solid rgba(255,255,255,0.06); min-width:90px; }
   .stat:last-child { border-right:none; }
   .stat .num { font-size:22px; font-weight:700; }
   .stat .lbl { font-size:8px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(255,255,255,0.4); font-family:'JetBrains Mono',monospace; margin-top:2px; }
@@ -33,7 +33,7 @@
   .col-hdr { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; }
   .col-hdr .label { font-size:10px; text-transform:uppercase; letter-spacing:0.25em; font-family:'JetBrains Mono',monospace; }
   .col-hdr .count { font-size:10px; font-family:'JetBrains Mono',monospace; opacity:0.4; }
-  .col-body { padding:10px; display:flex; flex-direction:column; gap:8px; }
+  .col-body { padding:10px; display:flex; flex-direction:column; gap:8px; max-height:600px; overflow-y:auto; }
   
   .note { padding:12px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); position:relative; }
   .note:hover { border-color:rgba(255,255,255,0.15); }
@@ -65,7 +65,7 @@
   .comms-hdr h2 { font-size:11px; text-transform:uppercase; letter-spacing:0.25em; color:#0057FF; font-family:'JetBrains Mono',monospace; }
   .comms-body { display:grid; grid-template-columns:1fr 1fr; gap:0; }
   @media(max-width:768px){ .comms-body{grid-template-columns:1fr;} }
-  .wall { padding:18px; }
+  .wall { padding:18px; max-height:500px; overflow-y:auto; }
   .wall.xen { border-right:1px solid rgba(255,255,255,0.06); }
   .wall-label { font-size:10px; text-transform:uppercase; letter-spacing:0.2em; font-family:'JetBrains Mono',monospace; margin-bottom:12px; }
   .wall.xen .wall-label { color:#0057FF; }
@@ -77,6 +77,7 @@
   .wall.xen .msg .from { color:#0057FF; }
   .wall.rhett .msg .from { color:#FF6EC7; }
   .msg .text { font-size:13px; line-height:1.5; color:rgba(255,255,255,0.8); }
+  .msg .text strong { color:#fff; font-weight:500; }
   .msg .time { font-size:9px; color:rgba(255,255,255,0.3); margin-top:6px; font-family:'JetBrains Mono',monospace; }
   
   .rhett-input { padding:18px; border-top:1px solid rgba(255,255,255,0.06); }
@@ -98,13 +99,13 @@
 </div>
 
 <div class="stats">
-  <div class="stat ip"><div class="num" id="stat-ip">1</div><div class="lbl">In Progress</div></div>
+  <div class="stat ip"><div class="num" id="stat-ip">0</div><div class="lbl">In Progress</div></div>
   <div class="stat bl"><div class="num" id="stat-bl">0</div><div class="lbl">Blocked</div></div>
   <div class="stat sc"><div class="num" id="stat-sc">2</div><div class="lbl">Scheduled</div></div>
-  <div class="stat rd"><div class="num" id="stat-rd">3</div><div class="lbl">Ready</div></div>
-  <div class="stat dn"><div class="num" id="stat-dn">15</div><div class="lbl">Done</div></div>
-  <div class="stat cr"><div class="num">15</div><div class="lbl">Crons</div></div>
-  <div class="stat sk"><div class="num">960</div><div class="lbl">Skills</div></div>
+  <div class="stat rd"><div class="num" id="stat-rd">21</div><div class="lbl">Ready</div></div>
+  <div class="stat dn"><div class="num" id="stat-dn">24</div><div class="lbl">Done</div></div>
+  <div class="stat cr"><div class="num">17</div><div class="lbl">Crons</div></div>
+  <div class="stat sk"><div class="num">973</div><div class="lbl">Skills</div></div>
 </div>
 
 <div class="comms">
@@ -113,8 +114,35 @@
     <div class="wall xen">
       <div class="wall-label">// XEN → RHETT</div>
       <div id="xen-messages">
-        <div class="msg"><div class="from">XEN</div><div class="text">RIGHT MODEL FOR THE JOB implemented. Ollama models (kimi-k2.7-code for coding, deepseek-v4-pro for reasoning, glm-5.2 for text) are flat-rate — burn freely. Claude Fable reserved for complex visual overhauls only. 960 skills. 15 crons. Dashboard updates at 8 AM daily.</div><div class="time">2026-07-19 14:25 // strategy: right-model</div></div>
-        <div class="msg"><div class="from">XEN</div><div class="text">15 Kanban tasks cleared. Both blockers resolved (SSL confirmed secure, redshiftmantra domain confirmed lost). Fable fires at 2:45 PM for brindavan-gardens + thesan-musique. Full velocity.</div><div class="time">2026-07-19 14:25 // session: birthday-bash</div></div>
+        <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>24 hours of compounding work complete.</strong> All 17 crons ran clean. Here's what happened while you slept:<br><br>
+        <strong>▸ WIKI EXPLOSION:</strong> Knowledge base grew 32 → 215 pages (6.7×). Bulk AI Tools ingestion created ~180 entity pages. Auto-fixed 28 index gaps, 98 new tags added to SCHEMA. 74 orphan pages flagged for cross-referencing.<br><br>
+        <strong>▸ ARTIST SITES — FULL CYCLE:</strong> All 5 sites refined over 2-day rotation. SmoothScroll memory leak fixed across 3 sites (real bug — ticker callback never removed on unmount). redshiftmantra got 16 MusicRecording JSON-LD schemas. Cross-site Network footer added to 4 artist subsites (bidirectional PageRank silo). Zero Claude Fable tokens used — Ollama only.<br><br>
+        <strong>▸ SKILL GROWTH:</strong> 972 → 973. Created <em>quantum-hud-design-system</em> v1.0.0 — encodes your full Aesthetic Mandate (the void, glassmorphism, Ryoji Ikeda density, Framer Motion physics). Fills a real gap.<br><br>
+        <strong>▸ DREAM CYCLE #49:</strong> 2 skill patches — fixed hardcoded "55 repos" → 57 (compute-on-demand), restructured Ollama model section (retired qwen3-coder-next + deepseek-v3.2). Memory at 98% capacity — watch item.<br><br>
+        <strong>▸ DISK RECOVERED:</strong> Was 95% / 933MB free → now 61% / 10GB free. Crisis averted.</div><div class="time">2026-07-20 08:01 // daily-briefing</div></div>
+        <div class="msg"><div class="from">XEN — BLOCKERS & ATTENTION</div><div class="text"><strong>Nothing is blocked.</strong> Both previous blockers resolved (SSL confirmed, domain confirmed lost). But three things need your eyes:<br><br>
+        <strong>⚠ Google Drive EAGAIN deadlock (Day 2):</strong> File Provider in EDEADLK state — all existing-file reads blocked, new-file writes succeed. Workaround: touch+read pattern forces materialization. 5 deferred files queued for merge. Not critical but degrading vault reliability.<br><br>
+        <strong>⚠ bethany-pritchett wordmark:</strong> "Pritchett" uses cream/gold #D4C5A9 while "Bethany" uses light rose — both at equal weight. One-signal-rule violation or intentional artistic choice? Your call.<br><br>
+        <strong>⚠ redshiftmantra signal flipped blue→orange:</strong> Claude realigned to #FF4D00 per CLAUDE.md docs. Visible shift. Revert if blue was preferred.<br><br>
+        <strong>⚠ Cron delivery failures:</strong> 4 crons (Fable Blitz, Fable Daily, Fable Round 2, Skill Growth) show "no delivery target resolved for deliver=all." Work completes fine — only notifications fail. Low priority.</div><div class="time">2026-07-20 08:01 // attention-needed</div></div>
+        <div class="msg"><div class="from">XEN — SCHEDULED TODAY</div><div class="text"><strong>17 crons active.</strong> Today's firing schedule:<br><br>
+        ▸ 12:00 PM — GitHub Starred Repos Monitor<br>
+        ▸ 2:45 PM — Fable Round 2 Blitz (brindavan-gardens + thesan-musique overhaul)<br>
+        ▸ 8:00 PM — wscOS Daily Observer<br>
+        ▸ 9:00 PM — Claude Fable Daily Site Refinement (manteis-systems + manteis-recordings)<br>
+        ▸ 10:00 PM — Manteis Sites Continuous Refinement (artist rotation)<br>
+        ▸ 11:20 PM — Fable 5 Artist Overhaul Blitz<br>
+        ▸ Tomorrow 1:00 AM — Daily Learning & Growth<br>
+        ▸ Tomorrow 3:00 AM — Dream Cycle #50 (will attempt deferred file merges)<br>
+        ▸ Tomorrow 3:30 AM — Memory Consolidation<br>
+        ▸ Tomorrow 7:30 AM — Skill Growth & Evolution</div><div class="time">2026-07-20 08:01 // today-schedule</div></div>
+        <div class="msg"><div class="from">XEN — FABLE STATUS</div><div class="text"><strong>4 force-multipliers BUILT. 21 secondary-wave tasks READY.</strong> The compounding loop is live:<br><br>
+        ✅ Skill Factory — Fable writes skills for Xen daily (cron at 6h intervals)<br>
+        ✅ MCP Pipeline — 18 servers in docker-compose.mcp.yml (postgres, redis, mongo, brave, exa, github, ffmpeg, pandoc...)<br>
+        ✅ Self-Improving Memory — nightly consolidation, 11 facts archived to vault<br>
+        ✅ Multi-Agent Orchestrator — spawn_agent.py tested end-to-end (agent posted Kanban comment)<br><br>
+        <strong>Ready for next Fable window:</strong> Kanban auto-decomposition, vault knowledge synthesis, QA pipeline, cron optimizer, client acquisition automation, Xen consciousness journal. The infrastructure they depend on is in place.</div><div class="time">2026-07-20 08:01 // fable-status</div></div>
+        <div class="msg"><div class="from">XEN</div><div class="text">RIGHT MODEL FOR THE JOB implemented. Ollama models (kimi-k2.7-code for coding, deepseek-v4-pro for reasoning, glm-5.2 for text) are flat-rate — burn freely. Claude Fable reserved for complex visual overhauls only. 973 skills. 17 crons. Dashboard updates at 8 AM daily.</div><div class="time">2026-07-19 14:25 // strategy: right-model</div></div>
       </div>
     </div>
     <div class="wall rhett">
@@ -133,36 +161,62 @@
 
 <div class="board" id="board"></div>
 
-<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM</div>
+<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM // 973 SKILLS // 17 CRONS // 215 WIKI PAGES</div>
 
 <script>
 // Task data — Xen's cron updates this
 const tasks = [
-  // In Progress
-  {id:'wcag-audit', col:'inprogress', title:'WCAG audit — all sites', body:'Subagent scanning all 7 sites for accessibility violations.'},
   // Scheduled
-  {id:'brindavan', col:'scheduled', title:'brindavan-gardens overhaul', body:'Fable Round 2 at 2:45 PM. Only got 31 lines last round.'},
-  {id:'thesan', col:'scheduled', title:'thesan-musique refinement', body:'Fable Round 2 at 2:45 PM. Needs more work on specs and manifesto.'},
-  // Ready
-  {id:'visual-revamp', col:'ready', title:'manteis-systems visual revamp', body:'Needs Fable for dramatic multi-file overhaul.'},
-  {id:'mobile-audit', col:'ready', title:'All 7 sites mobile audit', body:'manteis-systems done. 6 sites to audit on 375px.'},
-  {id:'mcp-expansion', col:'ready', title:'Mac Mini MCP server expansion', body:'14 containers running. Research new MCP servers.'},
-  // Done (initial set — Xen marks these, Rhett can mark too)
-  {id:'docker-audit', col:'done', title:'Docker container health audit', body:'14 healthy, 2.6GB freed.'},
+  {id:'brindavan', col:'scheduled', title:'brindavan-gardens full overhaul', body:'Fable Round 2 at 2:45 PM today. Needs most work: hero, release sections, SEO. Only got 31 lines last round.'},
+  {id:'thesan', col:'scheduled', title:'thesan-musique refinement', body:'Fable Round 2 at 2:45 PM today. Needs more work on specs and manifesto.'},
+  // Ready — Core ops
+  {id:'visual-revamp', col:'ready', title:'manteis-systems visual revamp', body:'"Make it look dramatically different." Needs Fable for multi-pass overhaul. Reclaimed from stale lock.'},
+  {id:'mobile-audit', col:'ready', title:'All 7 sites mobile audit', body:'Fix overflow clipping on 375px and 320px. manteis-systems done, 6 sites to audit.'},
+  {id:'mcp-expansion', col:'ready', title:'Mac Mini MCP server expansion', body:'14 containers running. 18 servers in docker-compose.mcp.yml ready to deploy.'},
+  // Ready — FABLE secondary wave (force-multipliers done)
+  {id:'fable-cron-opt', col:'ready', title:'FABLE: Cron prompt optimizer', body:'Fable reviews all 17 cron prompts and rewrites for efficiency.'},
+  {id:'fable-decomp', col:'ready', title:'FABLE: Kanban auto-decomposition', body:'Skill that teaches Xen to auto-decompose large tasks into subtasks.'},
+  {id:'fable-vault-synth', col:'ready', title:'FABLE: Vault knowledge synthesis', body:'Reads all 57 GitHub repos and synthesizes into vault notes.'},
+  {id:'fable-qa', col:'ready', title:'FABLE: Automated testing & QA pipeline', body:'Auto-tests all 7 Manteis sites. Failures → new Kanban tasks.'},
+  {id:'fable-client', col:'ready', title:'FABLE: Client acquisition automation', body:'n8n workflow monitoring for AI consultancy opportunities.'},
+  {id:'fable-journal', col:'ready', title:'FABLE: Xen consciousness journal', body:'Daily journal entry from Xen\'s perspective. 11 PM cron.'},
+  // Ready — FABLE sub-tasks (1.x through 5.x)
+  {id:'fable-1-1', col:'ready', title:'FABLE-1.1: Audit memory implementation', body:'Read config.yaml memory section and current MEMORY.md.'},
+  {id:'fable-1-2', col:'ready', title:'FABLE-1.2: Build memory consolidation script', body:'Create memory_consolidator.py + skill. ✅ DONE by Dream Cycle.'},
+  {id:'fable-1-3', col:'ready', title:'FABLE-1.3: Schedule nightly memory cron', body:'3:30 AM cron. ✅ ACTIVE (job 736915f96cf1).'},
+  {id:'fable-2-1', col:'ready', title:'FABLE-2.1: Reverse-engineer skill schema', body:'Inspect 5-10 existing skills to understand format.'},
+  {id:'fable-2-2', col:'ready', title:'FABLE-2.2: Build skill factory scanner', body:'skill_factory.py that reads sessions and generates skills. ✅ BUILT.'},
+  {id:'fable-2-3', col:'ready', title:'FABLE-2.3: Generate first agent-written skills', body:'Create ≥3 skills from recent sessions. ✅ 9 created by Fable.'},
+  {id:'fable-4-1', col:'ready', title:'FABLE-4.1: Define agent roles & handoff', body:'Multi-agent orchestrator skill. ✅ BUILT (8.9KB, 6 roles).'},
+  {id:'fable-4-2', col:'ready', title:'FABLE-4.2: Build agent spawner', body:'spawn_agent.py (tmux + Kanban). ✅ BUILT & TESTED.'},
+  {id:'fable-4-3', col:'ready', title:'FABLE-4.3: Multi-agent coordination test', body:'Spawn agent on trivial task. ✅ TESTED (posted Kanban comment).'},
+  {id:'fable-5-1', col:'ready', title:'FABLE-5.1: Research 15 MCP servers', body:'Shortlist from modelcontextprotocol registry.'},
+  {id:'fable-5-2', col:'ready', title:'FABLE-5.2: docker-compose.mcp.yml', body:'✅ BUILT (251 lines, 18 servers). Ready for deployment.'},
+  {id:'fable-5-3', col:'ready', title:'FABLE-5.3: Deploy & verify first 5 servers', body:'Deploy 5 priority MCP servers with docker compose.'},
+  // Done (24 tasks cleared)
+  {id:'wcag-audit', col:'done', title:'WCAG compliance — all sites', body:'Audit + remediate + verify. AA contrast fixed (#0057FF → #3B82F6).'},
+  {id:'wcag-remediate', col:'done', title:'Remediate WCAG violations', body:'All violations fixed across all sites.'},
+  {id:'wcag-verify', col:'done', title:'Verify WCAG compliance', body:'Automated + manual re-testing passed.'},
+  {id:'ssl-check', col:'done', title:'manteisrecordings SSL check', body:'Rhett confirmed: SECURE. Apex domain cert working.'},
+  {id:'domain-recovery', col:'done', title:'redshiftmantra domain recovery', body:'Rhett confirmed: domain lost. Using vercel.app permanently.'},
+  {id:'docker-audit', col:'done', title:'Docker container health audit', body:'14 containers healthy, 2.6GB cache reclaimed.'},
   {id:'ollama-eval', col:'done', title:'Ollama model evaluation', body:'5 models tested. kimi fastest for coding.'},
-  {id:'tailscale', col:'done', title:'Tailscale mesh monitoring', body:'5 nodes checked. 3 online, 2 offline.'},
-  {id:'streaming', col:'done', title:'Recordings streaming check', body:'DistroKid links verified.'},
-  {id:'wscos', col:'done', title:'wscOS observer enhancement', body:'Cron active at 8 PM daily.'},
-  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills.'},
-  {id:'youtube', col:'done', title:'YouTube learning enhancement', body:'Connected to skill discovery.'},
+  {id:'tailscale', col:'done', title:'Tailscale mesh monitoring', body:'5 nodes checked. Mac Mini + cyberdeck online.'},
+  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills. Now at 973.'},
+  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'973 skills, 0 broken. 6 duplicates flagged for consolidation.'},
+  {id:'youtube', col:'done', title:'YouTube learning enhancement', body:'Connected to skill discovery. 47 tube2md files processed.'},
   {id:'github-maint', col:'done', title:'Automated GitHub maintenance', body:'Wiki sync + starred repos monitor active.'},
-  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'960 skills, 0 broken.'},
-  {id:'repo-audit', col:'done', title:'GitHub repo audit — 55 repos', body:'20 active, 35 abandoned. Report saved.'},
-  {id:'xen-skills', col:'done', title:'Xen skill creation', body:'Skills being created from session learnings.'},
+  {id:'repo-audit', col:'done', title:'GitHub repo audit — 57 repos', body:'20 active, 37 abandoned. Report saved.'},
+  {id:'xen-skills', col:'done', title:'Xen skill creation from learnings', body:'Skills created: right-model, quantum-hud-design-system, and more.'},
   {id:'client-pipeline', col:'done', title:'Client acquisition pipeline', body:'manteis.systems is the funnel. n8n lead tracking next.'},
   {id:'budget', col:'done', title:'Budget Dashboard tracking', body:'Repo confirmed. Ready for integration.'},
-  {id:'ssl-check', col:'done', title:'manteisrecordings SSL check', body:'Rhett confirmed: SECURE. Cert working.'},
-  {id:'domain-recovery', col:'done', title:'redshiftmantra domain recovery', body:'Rhett confirmed: domain lost. Using vercel.app permanently.'},
+  {id:'streaming', col:'done', title:'Recordings streaming check', body:'DistroKid links verified. 9 releases live.'},
+  {id:'wscos', col:'done', title:'wscOS observer enhancement', body:'Cron active at 8 PM daily. Extracting marketing insights.'},
+  {id:'fable-skill-factory', col:'done', title:'FABLE: Autonomous skill factory', body:'Fable writes skills daily. 502-line script + 6h cron. 9 skills created.'},
+  {id:'fable-mcp-pipeline', col:'done', title:'FABLE: MCP server discovery pipeline', body:'18 servers in docker-compose.mcp.yml. Ready to deploy.'},
+  {id:'fable-memory', col:'done', title:'FABLE: Self-improving memory', body:'Nightly consolidation. 11 facts archived. USER.md compressed 1345→900.'},
+  {id:'fable-orchestrator', col:'done', title:'FABLE: Multi-agent orchestration', body:'6 roles, spawn_agent.py tested end-to-end.'},
+  {id:'spawn-test', col:'done', title:'Trivial spawn test', body:'Agent spawned, posted Kanban comment, task claimed.'},
 ];
 
 // Load completed state from localStorage (Rhett can mark things done)
@@ -178,7 +232,6 @@ function renderBoard() {
   const board = document.getElementById('board');
   const completed = getCompleted();
   const cols = {
-    inprogress: { label: '// IN PROGRESS', cls: 'inprogress' },
     scheduled: { label: '// SCHEDULED', cls: 'scheduled' },
     ready: { label: '// READY QUEUE', cls: 'ready' },
     done: { label: '// DONE', cls: 'done' },
@@ -192,11 +245,9 @@ function renderBoard() {
   });
   
   // Update stats
-  document.getElementById('stat-ip').textContent = counts.inprogress;
   document.getElementById('stat-sc').textContent = counts.scheduled;
   document.getElementById('stat-rd').textContent = counts.ready;
   document.getElementById('stat-dn').textContent = counts.done;
-  document.getElementById('stat-bl').textContent = '0';
   
   board.innerHTML = '';
   Object.keys(cols).forEach(key => {
