@@ -1266,7 +1266,38 @@ function ThreePillars() {
               className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default transition-all duration-500 hover:scale-[1.02] hover:bg-white/[0.03] relative overflow-hidden"
               style={{ borderTop: `1px solid ${p.accent}` }}
             >
-              <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-[#3B82F6] transition-all duration-500 pointer-events-none" />
+              {/* ambient radial glow behind card */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, ${p.accent}18 0%, transparent 60%)`,
+                }}
+                aria-hidden
+              />
+
+              {/* left signal indicator */}
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: `linear-gradient(180deg, ${p.accent} 0%, ${p.accent}80 50%, transparent 100%)`,
+                  boxShadow: `0 0 12px ${p.accent}80, 0 0 24px ${p.accent}40`,
+                }}
+                aria-hidden
+              />
+
+              {/* animated top accent glow line */}
+              <motion.div
+                className="absolute top-0 left-0 h-[2px] pointer-events-none"
+                initial={{ width: '0%' }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  background: `linear-gradient(90deg, transparent 0%, ${p.accent} 50%, transparent 100%)`,
+                  boxShadow: `0 0 12px ${p.accent}, 0 0 28px ${p.accent}80`,
+                }}
+                aria-hidden
+              />
+
               <div className="flex items-center justify-between">
                 <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
                   {p.label}
@@ -1274,15 +1305,26 @@ function ThreePillars() {
                 <motion.div
                   animate={{ rotate: [0, 10, -6, 0] }}
                   transition={{ duration: 6, repeat: Infinity, delay: i * 1.5, ease: 'easeInOut' }}
+                  className="relative p-2 -mr-2 rounded-full transition-all duration-500 group-hover:bg-current/10"
+                  style={{ color: p.accent }}
                 >
+                  {/* icon halo */}
+                  <div
+                    className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle, ${p.accent}25 0%, transparent 70%)`,
+                      boxShadow: `0 0 20px ${p.accent}30`,
+                    }}
+                    aria-hidden
+                  />
                   <Icon size={18} style={{ color: p.accent }} />
                 </motion.div>
               </div>
               <div>
-                <h3 className="font-display font-bold text-xl tracking-tight text-white mb-1 group-hover:opacity-90 transition-opacity">
+                <h3 className="font-display font-bold text-[1.35rem] sm:text-[1.5rem] tracking-[-0.02em] text-white mb-1 group-hover:opacity-100 transition-opacity">
                   {p.title}
                 </h3>
-                <p className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass}`}>
+                <p className={`font-mono text-[10px] tracking-[0.18em] uppercase ${p.accentClass}`}>
                   {p.tagline}
                 </p>
               </div>
