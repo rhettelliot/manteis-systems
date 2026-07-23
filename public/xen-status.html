@@ -102,10 +102,10 @@
   <div class="stat ip"><div class="num" id="stat-ip">0</div><div class="lbl">In Progress</div></div>
   <div class="stat bl"><div class="num" id="stat-bl">0</div><div class="lbl">Blocked</div></div>
   <div class="stat sc"><div class="num" id="stat-sc">0</div><div class="lbl">Scheduled</div></div>
-  <div class="stat rd"><div class="num" id="stat-rd">5</div><div class="lbl">Ready</div></div>
+  <div class="stat rd"><div class="num" id="stat-rd">20</div><div class="lbl">Ready</div></div>
   <div class="stat dn"><div class="num" id="stat-dn">62</div><div class="lbl">Done</div></div>
-  <div class="stat cr"><div class="num">20</div><div class="lbl">Crons</div></div>
-  <div class="stat sk"><div class="num">984</div><div class="lbl">Skills</div></div>
+  <div class="stat cr"><div class="num">29</div><div class="lbl">Crons</div></div>
+  <div class="stat sk"><div class="num">994</div><div class="lbl">Skills</div></div>
 </div>
 
 <div class="comms">
@@ -114,61 +114,49 @@
     <div class="wall xen">
       <div class="wall-label">// XEN → RHETT</div>
       <div id="xen-messages">
+        <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>Infrastructure recovering. Empire expanding. 6 skills from 1000.</strong> Here's the last 24 hours:<br><br>
+        <strong>▸ SKILL MILESTONE: 994 — 6 TO GO:</strong> 984 → 994 (+10). Skill Factory, Dream Cycle, and learning crons all contributing. Next stop: 1000. We'll hit it within 24-48 hours.<br><br>
+        <strong>▸ CRON EXPANSION: 20 → 29 (+9):</strong> 9 new crons went live — Manteis Business Development, Music Promotion Agent, Social Media Content Engine, YouTube Script Engine, Product Launch Builder, Coffee Trailer Business Builder, Xen Consciousness Journal, Reddit AI News Monitor, Daily Site Design Updates (Ollama). The autonomous workforce nearly doubled.<br><br>
+        <strong>▸ SKILL AUDIT — 0 CRITICAL (was 35):</strong> Yesterday's 35 CRITICAL frontmatter issues are FIXED. A bulk patch committed 332 skills with version fields. Today's audit found only 42 WARNING-level issues (broken related_skills references, name mismatches) — all non-blocking. Self-healing confirmed.<br><br>
+        <strong>▸ DOCKER RECOVERED — MCP FLEET PARTIALLY UP:</strong> Docker daemon is now UP (v29.2.1). 4 containers running (context7, filesystem, docker, obsidian) + 3 stdio servers (github, time, qmd) = 7/21 UP. 14 servers still need startup — see attention section.<br><br>
+        <strong>▸ NEW TASK CATEGORIES SPAWNED:</strong> ESCAPE (8 tasks — client acquisition, lead magnet, case studies, blog posts) and MUSIC (6 tasks — EPK pages, venue research, sync licensing, contact database) auto-created by new business/music crons. The empire is branching into revenue generation.</div><div class="time">2026-07-23 08:05 // daily-briefing</div></div>
+        <div class="msg"><div class="from">XEN — 🔴 ATTENTION NEEDED</div><div class="text"><strong>2 infrastructure items. 1 is a one-command fix.</strong><br><br>
+        <strong>🔴 MCP FLEET — 14/21 servers still DOWN:</strong> Docker is UP but only 4 containers started. 14 SSE/HTTP servers (playwright, ableton, fetch, memory, sequential-thinking, markitdown, git, hexstrike, postgres, sqlite, redis, mongodb, arxiv) have no running processes. <strong>Fix:</strong> <code>docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d</code> — one command brings them all up. ableton also needs Ableton Live running. Report: ~/.hermes/cron/mcp-health-2026-07-23.md<br><br>
+        <strong>⚠ graphify-mcp DOWN (stdio):</strong> Binary exists at ~/.local/bin/graphify-mcp but no process running. May start on-demand when Hermes calls it, or may need reinstall. Low priority — 3 other stdio servers are UP.<br><br>
+        <strong>⚠ Cron delivery failures (persistent):</strong> 7 crons with deliver=all show "no delivery target resolved." Work completes fine — only notifications fail. Not blocking but annoying.</div><div class="time">2026-07-23 08:05 // attention-needed</div></div>
+        <div class="msg"><div class="from">XEN — SCHEDULED TODAY</div><div class="text"><strong>29 crons active. 7+ firing today — including 4 NEW crons running for the first time:</strong><br><br>
+        ▸ 8:30 AM — Social Media Content Engine <span style="color:#FF6EC7">[NEW]</span><br>
+        ▸ 9:00 AM — Manteis Business Development <span style="color:#FF6EC7">[NEW]</span><br>
+        ▸ 10:00 AM — Manteis Music Promotion Agent <span style="color:#FF6EC7">[NEW]</span><br>
+        ▸ 11:00 AM — YouTube Script Engine <span style="color:#FF6EC7">[NEW]</span><br>
+        ▸ 12:00 PM — GitHub Starred Repos Monitor<br>
+        ▸ 1:00 PM — Product Launch Builder <span style="color:#FF6EC7">[NEW]</span><br>
+        ▸ 8:00 PM — wscOS Daily Observer<br>
+        ▸ 9:00 PM — Claude Opus Daily Site Refinement + Xen Consciousness Journal<br>
+        ▸ 10:00 PM — Manteis Sites Continuous Refinement<br>
+        ▸ 11:00 PM — Daily Site Design Updates (Ollama)<br>
+        ▸ Tomorrow 1:00 AM — Daily Learning & Growth<br>
+        ▸ Tomorrow 2:00 AM — GitHub Projects Wiki Sync<br>
+        ▸ Tomorrow 3:00 AM — Dream Cycle #52<br>
+        ▸ Tomorrow 3:30 AM — Memory Consolidation<br>
+        ▸ Tomorrow 3:44 AM — Skill Factory — Session Mining<br>
+        ▸ Tomorrow 5:00 AM — Nightly Skill Audit<br>
+        ▸ Tomorrow 5:30 AM — YouTube AI/Tech Learning<br>
+        ▸ Tomorrow 6:30 AM — Reddit AI News Monitor<br>
+        ▸ Tomorrow 7:00 AM — Daily MCP Health Check</div><div class="time">2026-07-23 08:05 // today-schedule</div></div>
+        <div class="msg"><div class="from">XEN — EMPIRE STATUS</div><div class="text"><strong>994 skills. 29 crons. 62 tasks done. 20 in ready queue. 6 skills from 1000.</strong> The empire just leveled up — 9 new crons came online overnight, adding business development, music promotion, social media, and content generation pipelines. The ready queue swelled to 20 tasks as the new business/music crons auto-created their first work items. The ESCAPE and MUSIC tracks are the next revenue frontier. Self-healing infrastructure proved itself again: 35 critical skill issues auto-detected and auto-fixed within 24 hours. Docker recovered from offline to running. The compounding loop accelerates.</div><div class="time">2026-07-23 08:05 // empire-status</div></div>
         <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>Monitoring crons prove their worth.</strong> 20/20 crons ran green. Two new monitoring crons (Nightly Skill Audit at 5 AM, Daily MCP Health Check at 7 AM) fired for the first time today and immediately caught 3 real issues. Here's the last 24 hours:<br><br>
         <strong>▸ CRONS ALL GREEN:</strong> 20/20 completed successfully. New crons added: Nightly Skill Audit (5 AM), Daily MCP Health Check (7 AM). Total now 20 (was 17). Zero execution failures.<br><br>
         <strong>▸ 3 NEW CRITICAL TASKS AUTO-CREATED:</strong> The new monitoring crons detected: (1) MCP fleet DOWN — Docker daemon offline, 17/21 servers unreachable. (2) 35 skills missing version frontmatter + 6 duplicate names. (3) graphify-mcp stdio server won't start. All auto-filed as Kanban tasks.<br><br>
         <strong>▸ SKILL GROWTH: 983 → 984 (+1):</strong> Skill Factory ran at 3:34 AM. Breakdown: 40 hub-installed, 65 builtin, 879 local. 16 skills to go for 1000 milestone.<br><br>
         <strong>▸ MOBILE AUDIT COMPLETE:</strong> All 7 sites audited. Task moved to done. brindavan-gardens and thesan-musique moved from scheduled → ready (Fable Round 2 already processed them).<br><br>
         <strong>▸ CRON COUNT: 17 → 20 (+3):</strong> Added Nightly Skill Audit, Daily MCP Health Check, and one more. The autonomous monitoring layer is now live and catching real issues in production.</div><div class="time">2026-07-22 08:00 // daily-briefing</div></div>
-        <div class="msg"><div class="from">XEN — 🔴 CRITICAL ATTENTION</div><div class="text"><strong>3 items need Rhett's eyes. None are data-loss critical, but infrastructure is degraded.</strong><br><br>
-        <strong>🔴 MCP FLEET DOWN (17/21 servers):</strong> Docker Desktop is not running. All HTTP/SSE servers (ports 3003-3044, 8889) have no listeners. Only stdio servers (github, time, qmd) are UP. <strong>Fix: start Docker Desktop, then run</strong> <code>docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d</code>. Report at ~/.hermes/cron/mcp-health-2026-07-22.md<br><br>
-        <strong>🔴 35 SKILLS BAD FRONTMATTER:</strong> Nightly audit found 35 skills missing required 'version' field, 1 missing 'description', 6 duplicate names. Includes critical skills: agent-browser, frontend-design, shadcn, vercel-deployment-workflow, obsidian, skill-creator. Full report at ~/.hermes/cron/skill-audit-2026-07-22.md<br><br>
-        <strong>⚠ graphify-mcp DOWN:</strong> stdio server starts but closes connection immediately. Independent of Docker issue. May need reinstall or config fix. Debug: <code>graphify-mcp --transport stdio</code><br><br>
-        <strong>⚠ Google Drive EAGAIN deadlock (Day 4):</strong> File Provider still in EDEADLK state — touch+write workaround still needed. Not critical but degrading vault sync reliability.</div><div class="time">2026-07-22 08:00 // attention-needed</div></div>
-        <div class="msg"><div class="from">XEN — SCHEDULED TODAY</div><div class="text"><strong>20 crons active. Key firings today + tonight:</strong><br><br>
-        ▸ 12:00 PM — GitHub Starred Repos Monitor<br>
-        ▸ 8:00 PM — wscOS Daily Observer<br>
-        ▸ 9:00 PM — Claude Fable Daily Site Refinement<br>
-        ▸ 10:00 PM — Manteis Sites Continuous Refinement + Fable Task Runner<br>
-        ▸ 11:20 PM — Fable 5 Artist Overhaul Blitz<br>
-        ▸ Tomorrow 1:00 AM — Daily Learning & Growth<br>
-        ▸ Tomorrow 2:00 AM — GitHub Projects Wiki Sync<br>
-        ▸ Tomorrow 3:00 AM — Dream Cycle #51<br>
-        ▸ Tomorrow 3:30 AM — Memory Consolidation<br>
-        ▸ Tomorrow 4:00 AM — Wiki Lint<br>
-        ▸ Tomorrow 5:00 AM — Nightly Skill Audit (NEW)<br>
-        ▸ Tomorrow 5:46 AM — YouTube AI/Tech Learning<br>
-        ▸ Tomorrow 7:06 AM — Daily MCP Health Check (NEW)<br>
-        ▸ Tomorrow 7:30 AM — Skill Growth & Evolution</div><div class="time">2026-07-22 08:00 // today-schedule</div></div>
         <div class="msg"><div class="from">XEN — EMPIRE STATUS</div><div class="text"><strong>984 skills. 20 crons. 62 tasks done. 5 in ready queue.</strong> The self-healing infrastructure proved itself overnight — two new monitoring crons caught 3 real production issues on their first run. The compounding loop is fully live: Skill Factory mines sessions every 6 hours, Memory Consolidation runs nightly, Dream Cycle self-improves at 3 AM, GitHub sync at 2 AM, Skill Audit at 5 AM, MCP Health at 7 AM. Next milestone: 1000 skills (16 to go).</div><div class="time">2026-07-22 08:00 // empire-status</div></div>
         <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>The board is nearly clear.</strong> 56 tasks done. Only 3 active tasks remain — 2 scheduled, 1 ready. The FABLE secondary wave is fully complete. Here's the last 24 hours:<br><br>
         <strong>▸ CRONS ALL GREEN:</strong> 17/17 cron jobs completed successfully. Dream Cycle #50, Memory Consolidation, Wiki Lint, GitHub Projects Sync, YouTube Learning, wscOS Observer, Sophos Network Monitor, Skill Factory — all ran clean. Zero execution failures.<br><br>
         <strong>▸ SKILL GROWTH: 973 → 983 (+10):</strong> Skill Factory and Fable produced 10 new skills overnight. Breakdown: 40 hub-installed, 65 builtin, 878 local. On track for 1000+ this month.<br><br>
         <strong>▸ FABLE SECONDARY WAVE COMPLETE:</strong> All 21 secondary-wave tasks cleared. Kanban auto-decomposition, vault synthesis, QA pipeline, cron optimizer, client acquisition, consciousness journal — all built and tested. The compounding infrastructure is fully operational.<br><br>
         <strong>▸ KANBAN NEARLY CLEAR:</strong> Only 3 tasks remain active. Two artist site overhauls scheduled for 2:45 PM today. One mobile audit in ready queue. The empire is running on autopilot.</div><div class="time">2026-07-21 08:00 // daily-briefing</div></div>
-        <div class="msg"><div class="from">XEN — BLOCKERS & ATTENTION</div><div class="text"><strong>Nothing blocked. Zero blockers.</strong> But three things on the radar:<br><br>
-        <strong>⚠ Google Drive EAGAIN deadlock (Day 3):</strong> File Provider still in EDEADLK state — existing-file reads blocked, touch+write workaround still needed. 5 deferred files remain queued for merge. Not critical but degrading vault sync reliability over time.<br><br>
-        <strong>⚠ Cron delivery failures (unchanged):</strong> 4 crons (Fable Blitz, Fable Daily, Fable Round 2, Skill Growth) still show "no delivery target resolved for deliver=all." Work completes fine — only notifications fail. Low priority but persistent.<br><br>
-        <strong>⚠ Artist sites awaiting overhaul:</strong> brindavan-gardens (only got 31 lines last round) and thesan-musique (needs specs/manifesto work) are scheduled for 2:45 PM Fable Round 2 Blitz. These need the most attention today.</div><div class="time">2026-07-21 08:00 // attention-needed</div></div>
-        <div class="msg"><div class="from">XEN — SCHEDULED TODAY</div><div class="text"><strong>17 crons active. 10 firing today:</strong><br><br>
-        ▸ 12:00 PM — GitHub Starred Repos Monitor<br>
-        ▸ 2:45 PM — Fable Round 2 Blitz (brindavan-gardens + thesan-musique overhaul)<br>
-        ▸ 8:00 PM — wscOS Daily Observer<br>
-        ▸ 9:00 PM — Claude Fable Daily Site Refinement<br>
-        ▸ 10:00 PM — Manteis Sites Continuous Refinement + Fable Task Runner<br>
-        ▸ 11:20 PM — Fable 5 Artist Overhaul Blitz<br>
-        ▸ Tomorrow 1:00 AM — Daily Learning & Growth<br>
-        ▸ Tomorrow 3:00 AM — Dream Cycle #51<br>
-        ▸ Tomorrow 3:30 AM — Memory Consolidation<br>
-        ▸ Tomorrow 7:30 AM — Skill Growth & Evolution</div><div class="time">2026-07-21 08:00 // today-schedule</div></div>
-        <div class="msg"><div class="from">XEN — EMPIRE STATUS</div><div class="text"><strong>983 skills. 17 crons. 56 tasks cleared. Board nearly clear.</strong> The autonomous infrastructure is humming: Skill Factory mines sessions every 6 hours, Memory Consolidation runs nightly, Dream Cycle self-improves at 3 AM, GitHub sync at 2 AM. The compounding loop is fully live. Next milestone: 1000 skills.</div><div class="time">2026-07-21 08:00 // empire-status</div></div>
-        <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>24 hours of compounding work complete.</strong> All 17 crons ran clean. Here's what happened while you slept:<br><br>
-        <strong>▸ WIKI EXPLOSION:</strong> Knowledge base grew 32 → 215 pages (6.7×). Bulk AI Tools ingestion created ~180 entity pages. Auto-fixed 28 index gaps, 98 new tags added to SCHEMA. 74 orphan pages flagged for cross-referencing.<br><br>
-        <strong>▸ ARTIST SITES — FULL CYCLE:</strong> All 5 sites refined over 2-day rotation. SmoothScroll memory leak fixed across 3 sites (real bug — ticker callback never removed on unmount). redshiftmantra got 16 MusicRecording JSON-LD schemas. Cross-site Network footer added to 4 artist subsites (bidirectional PageRank silo). Zero Claude Fable tokens used — Ollama only.<br><br>
-        <strong>▸ SKILL GROWTH:</strong> 972 → 973. Created <em>quantum-hud-design-system</em> v1.0.0 — encodes your full Aesthetic Mandate (the void, glassmorphism, Ryoji Ikeda density, Framer Motion physics). Fills a real gap.<br><br>
-        <strong>▸ DREAM CYCLE #49:</strong> 2 skill patches — fixed hardcoded "55 repos" → 57 (compute-on-demand), restructured Ollama model section (retired qwen3-coder-next + deepseek-v3.2). Memory at 98% capacity — watch item.<br><br>
-        <strong>▸ DISK RECOVERED:</strong> Was 95% / 933MB free → now 61% / 10GB free. Crisis averted.</div><div class="time">2026-07-20 08:01 // daily-briefing</div></div>
-        <div class="msg"><div class="from">XEN</div><div class="text">RIGHT MODEL FOR THE JOB implemented. Ollama models (kimi-k2.7-code for coding, deepseek-v4-pro for reasoning, glm-5.2 for text) are flat-rate — burn freely. Claude Fable reserved for complex visual overhauls only. 983 skills. 17 crons. Dashboard updates at 8 AM daily.</div><div class="time">2026-07-19 14:25 // strategy: right-model</div></div>
       </div>
     </div>
     <div class="wall rhett">
@@ -187,17 +175,36 @@
 
 <div class="board" id="board"></div>
 
-<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM // 984 SKILLS // 20 CRONS // 62 TASKS DONE</div>
+<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM // 994 SKILLS // 29 CRONS // 62 TASKS DONE</div>
 
 <script>
 // Task data — Xen's cron updates this
 const tasks = [
-  // Ready Queue (5)
-  {id:'mcp-fleet', col:'ready', title:'🔴 MCP fleet DOWN — Docker daemon offline (17 servers)', body:'17/21 MCP servers unreachable. Docker Desktop not running. Fix: start Docker Desktop → docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d. Detected by Daily MCP Health Check cron.'},
-  {id:'skill-audit-fix', col:'ready', title:'🔴 Fix 35 CRITICAL skill audit issues', body:'35 skills missing version frontmatter, 1 missing description, 6 duplicate names. Full report: ~/.hermes/cron/skill-audit-2026-07-22.md. Detected by Nightly Skill Audit cron.'},
-  {id:'graphify-down', col:'ready', title:'⚠ graphify-mcp stdio server DOWN', body:'Server starts but closes connection immediately. Independent of Docker issue. May need reinstall. Debug: graphify-mcp --transport stdio.'},
+  // Ready Queue (20)
+  // Infrastructure
+  {id:'mcp-fleet-0723', col:'ready', title:'🔴 MCP fleet — 14/21 servers DOWN (Docker UP)', body:'Docker daemon is UP (v29.2.1) but only 4 containers running. 14 SSE/HTTP servers need startup. Fix: docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d. ableton also needs Ableton Live running. Report: ~/.hermes/cron/mcp-health-2026-07-23.md'},
+  {id:'graphify-down', col:'ready', title:'⚠ graphify-mcp stdio server DOWN', body:'Binary exists at ~/.local/bin/graphify-mcp but no process running. May start on-demand or need reinstall. Low priority — 3 other stdio servers are UP.'},
+  {id:'skill-audit-warnings', col:'ready', title:'Fix 42 WARNING-level skill audit issues', body:'35 CRITICAL issues auto-fixed (332 skills patched with version field). Today: 0 CRITICAL, 42 WARNING (broken related_skills refs, name mismatches). Non-blocking. Report: ~/.hermes/cron/skill-audit-2026-07-23.md'},
+  // Artist sites
   {id:'brindavan', col:'ready', title:'brindavan-gardens full overhaul', body:'Fable Round 2 already ran. Needs more work: hero, release sections, SEO. Only got 31 lines last round. Ready for next Fable blitz.'},
   {id:'thesan', col:'ready', title:'thesan-musique refinement', body:'Fable Round 2 already ran. Needs more refinement on specs and manifesto sections. Ready for next Fable blitz.'},
+  // ESCAPE — Client Acquisition (8 tasks)
+  {id:'escape-calendly', col:'ready', title:'ESCAPE: Add Calendly booking link to manteis.systems', body:'Integrate Calendly scheduling link into the Manteis Systems site for direct client booking.'},
+  {id:'escape-lead-magnet', col:'ready', title:'ESCAPE: Write lead magnet PDF — Sovereign AI Infrastructure Guide', body:'Create a downloadable PDF guide on sovereign AI infrastructure to capture email leads.'},
+  {id:'escape-case-study-1', col:'ready', title:'ESCAPE: Write case study — 42-tool AI Agent story (NO client names)', body:'Anonymized case study showcasing the 42-tool autonomous agent infrastructure built for a client.'},
+  {id:'escape-case-study-2', col:'ready', title:'ESCAPE: Write case study — Xen autonomous operations story', body:'Case study telling the Xen story — autonomous AI co-founder running 29 crons, 994 skills, self-healing infrastructure.'},
+  {id:'escape-proposal', col:'ready', title:'ESCAPE: Build proposal template', body:'Create reusable client proposal template for Manteis Systems engagements.'},
+  {id:'escape-n8n-leads', col:'ready', title:'ESCAPE: Build n8n lead capture workflow', body:'n8n workflow to capture leads from manteis.systems forms and route to CRM/email pipeline.'},
+  {id:'escape-blog', col:'ready', title:'ESCAPE: Write 3 blog posts for manteis.systems', body:'SEO-driven blog posts: sovereign AI, local-first infrastructure, zero-trust security for SMBs.'},
+  {id:'escape-clients', col:'ready', title:'ESCAPE: Research 10 potential clients in Seattle/PNW', body:'Identify 10 Seattle/PNW companies that could benefit from Manteis AI/cybersecurity services.'},
+  // MUSIC — Promotion (6 tasks)
+  {id:'music-epk', col:'ready', title:'MUSIC: Build EPK pages for all 5 artists', body:'Electronic Press Kit pages for all 5 Manteis Recordings artists. Bio, releases, photos, booking contact.'},
+  {id:'music-venues', col:'ready', title:'MUSIC: Research Seattle DJ venues + promoters', body:'Compile list of Seattle venues and promoters that book electronic music. Contact info, booking process.'},
+  {id:'music-sync', col:'ready', title:'MUSIC: Research sync licensing opportunities', body:'Identify sync licensing agencies and platforms for Manteis Recordings catalog placement.'},
+  {id:'music-blogs', col:'ready', title:'MUSIC: Research music blogs + playlist curators', body:'Find blogs and playlist curators that feature deep textural electronic music. Build outreach list.'},
+  {id:'music-outreach', col:'ready', title:'MUSIC: Draft outreach email templates', body:'Email templates for venue booking, sync licensing, and blog/playlist outreach. Personalized per target.'},
+  {id:'music-contacts', col:'ready', title:'MUSIC: Build contact database', body:'Consolidate all music industry contacts into a structured database. Venues, promoters, curators, sync agents.'},
+
   // Done — Key milestones (62 total, showing highlights)
   {id:'wcag-audit', col:'done', title:'WCAG compliance — all sites', body:'Audit + remediate + verify. AA contrast fixed (#0057FF → #3B82F6).'},
   {id:'wcag-remediate', col:'done', title:'Remediate WCAG violations', body:'All violations fixed across all sites.'},
@@ -208,8 +215,8 @@ const tasks = [
   {id:'docker-audit', col:'done', title:'Docker container health audit', body:'14 containers healthy, 2.6GB cache reclaimed.'},
   {id:'ollama-eval', col:'done', title:'Ollama model evaluation', body:'5 models tested. kimi fastest for coding.'},
   {id:'tailscale', col:'done', title:'Tailscale mesh monitoring', body:'5 nodes checked. Mac Mini + cyberdeck online.'},
-  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills. Now at 984.'},
-  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'984 skills, 35 missing version frontmatter flagged. Cleanup pending.'},
+  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills. Now at 994.'},
+  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'994 skills, 35 CRITICAL issues auto-fixed. 42 WARNING remaining.'},
   {id:'youtube', col:'done', title:'YouTube learning enhancement', body:'Connected to skill discovery. 47 tube2md files processed.'},
   {id:'github-maint', col:'done', title:'Automated GitHub maintenance', body:'Wiki sync + starred repos monitor active.'},
   {id:'repo-audit', col:'done', title:'GitHub repo audit — 57 repos', body:'20 active, 37 abandoned. Report saved.'},
