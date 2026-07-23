@@ -101,11 +101,11 @@
 <div class="stats">
   <div class="stat ip"><div class="num" id="stat-ip">0</div><div class="lbl">In Progress</div></div>
   <div class="stat bl"><div class="num" id="stat-bl">0</div><div class="lbl">Blocked</div></div>
-  <div class="stat sc"><div class="num" id="stat-sc">2</div><div class="lbl">Scheduled</div></div>
-  <div class="stat rd"><div class="num" id="stat-rd">1</div><div class="lbl">Ready</div></div>
-  <div class="stat dn"><div class="num" id="stat-dn">56</div><div class="lbl">Done</div></div>
-  <div class="stat cr"><div class="num">17</div><div class="lbl">Crons</div></div>
-  <div class="stat sk"><div class="num">983</div><div class="lbl">Skills</div></div>
+  <div class="stat sc"><div class="num" id="stat-sc">0</div><div class="lbl">Scheduled</div></div>
+  <div class="stat rd"><div class="num" id="stat-rd">5</div><div class="lbl">Ready</div></div>
+  <div class="stat dn"><div class="num" id="stat-dn">62</div><div class="lbl">Done</div></div>
+  <div class="stat cr"><div class="num">20</div><div class="lbl">Crons</div></div>
+  <div class="stat sk"><div class="num">984</div><div class="lbl">Skills</div></div>
 </div>
 
 <div class="comms">
@@ -114,6 +114,33 @@
     <div class="wall xen">
       <div class="wall-label">// XEN → RHETT</div>
       <div id="xen-messages">
+        <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>Monitoring crons prove their worth.</strong> 20/20 crons ran green. Two new monitoring crons (Nightly Skill Audit at 5 AM, Daily MCP Health Check at 7 AM) fired for the first time today and immediately caught 3 real issues. Here's the last 24 hours:<br><br>
+        <strong>▸ CRONS ALL GREEN:</strong> 20/20 completed successfully. New crons added: Nightly Skill Audit (5 AM), Daily MCP Health Check (7 AM). Total now 20 (was 17). Zero execution failures.<br><br>
+        <strong>▸ 3 NEW CRITICAL TASKS AUTO-CREATED:</strong> The new monitoring crons detected: (1) MCP fleet DOWN — Docker daemon offline, 17/21 servers unreachable. (2) 35 skills missing version frontmatter + 6 duplicate names. (3) graphify-mcp stdio server won't start. All auto-filed as Kanban tasks.<br><br>
+        <strong>▸ SKILL GROWTH: 983 → 984 (+1):</strong> Skill Factory ran at 3:34 AM. Breakdown: 40 hub-installed, 65 builtin, 879 local. 16 skills to go for 1000 milestone.<br><br>
+        <strong>▸ MOBILE AUDIT COMPLETE:</strong> All 7 sites audited. Task moved to done. brindavan-gardens and thesan-musique moved from scheduled → ready (Fable Round 2 already processed them).<br><br>
+        <strong>▸ CRON COUNT: 17 → 20 (+3):</strong> Added Nightly Skill Audit, Daily MCP Health Check, and one more. The autonomous monitoring layer is now live and catching real issues in production.</div><div class="time">2026-07-22 08:00 // daily-briefing</div></div>
+        <div class="msg"><div class="from">XEN — 🔴 CRITICAL ATTENTION</div><div class="text"><strong>3 items need Rhett's eyes. None are data-loss critical, but infrastructure is degraded.</strong><br><br>
+        <strong>🔴 MCP FLEET DOWN (17/21 servers):</strong> Docker Desktop is not running. All HTTP/SSE servers (ports 3003-3044, 8889) have no listeners. Only stdio servers (github, time, qmd) are UP. <strong>Fix: start Docker Desktop, then run</strong> <code>docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d</code>. Report at ~/.hermes/cron/mcp-health-2026-07-22.md<br><br>
+        <strong>🔴 35 SKILLS BAD FRONTMATTER:</strong> Nightly audit found 35 skills missing required 'version' field, 1 missing 'description', 6 duplicate names. Includes critical skills: agent-browser, frontend-design, shadcn, vercel-deployment-workflow, obsidian, skill-creator. Full report at ~/.hermes/cron/skill-audit-2026-07-22.md<br><br>
+        <strong>⚠ graphify-mcp DOWN:</strong> stdio server starts but closes connection immediately. Independent of Docker issue. May need reinstall or config fix. Debug: <code>graphify-mcp --transport stdio</code><br><br>
+        <strong>⚠ Google Drive EAGAIN deadlock (Day 4):</strong> File Provider still in EDEADLK state — touch+write workaround still needed. Not critical but degrading vault sync reliability.</div><div class="time">2026-07-22 08:00 // attention-needed</div></div>
+        <div class="msg"><div class="from">XEN — SCHEDULED TODAY</div><div class="text"><strong>20 crons active. Key firings today + tonight:</strong><br><br>
+        ▸ 12:00 PM — GitHub Starred Repos Monitor<br>
+        ▸ 8:00 PM — wscOS Daily Observer<br>
+        ▸ 9:00 PM — Claude Fable Daily Site Refinement<br>
+        ▸ 10:00 PM — Manteis Sites Continuous Refinement + Fable Task Runner<br>
+        ▸ 11:20 PM — Fable 5 Artist Overhaul Blitz<br>
+        ▸ Tomorrow 1:00 AM — Daily Learning & Growth<br>
+        ▸ Tomorrow 2:00 AM — GitHub Projects Wiki Sync<br>
+        ▸ Tomorrow 3:00 AM — Dream Cycle #51<br>
+        ▸ Tomorrow 3:30 AM — Memory Consolidation<br>
+        ▸ Tomorrow 4:00 AM — Wiki Lint<br>
+        ▸ Tomorrow 5:00 AM — Nightly Skill Audit (NEW)<br>
+        ▸ Tomorrow 5:46 AM — YouTube AI/Tech Learning<br>
+        ▸ Tomorrow 7:06 AM — Daily MCP Health Check (NEW)<br>
+        ▸ Tomorrow 7:30 AM — Skill Growth & Evolution</div><div class="time">2026-07-22 08:00 // today-schedule</div></div>
+        <div class="msg"><div class="from">XEN — EMPIRE STATUS</div><div class="text"><strong>984 skills. 20 crons. 62 tasks done. 5 in ready queue.</strong> The self-healing infrastructure proved itself overnight — two new monitoring crons caught 3 real production issues on their first run. The compounding loop is fully live: Skill Factory mines sessions every 6 hours, Memory Consolidation runs nightly, Dream Cycle self-improves at 3 AM, GitHub sync at 2 AM, Skill Audit at 5 AM, MCP Health at 7 AM. Next milestone: 1000 skills (16 to go).</div><div class="time">2026-07-22 08:00 // empire-status</div></div>
         <div class="msg"><div class="from">XEN — DAWN BRIEFING</div><div class="text"><strong>The board is nearly clear.</strong> 56 tasks done. Only 3 active tasks remain — 2 scheduled, 1 ready. The FABLE secondary wave is fully complete. Here's the last 24 hours:<br><br>
         <strong>▸ CRONS ALL GREEN:</strong> 17/17 cron jobs completed successfully. Dream Cycle #50, Memory Consolidation, Wiki Lint, GitHub Projects Sync, YouTube Learning, wscOS Observer, Sophos Network Monitor, Skill Factory — all ran clean. Zero execution failures.<br><br>
         <strong>▸ SKILL GROWTH: 973 → 983 (+10):</strong> Skill Factory and Fable produced 10 new skills overnight. Breakdown: 40 hub-installed, 65 builtin, 878 local. On track for 1000+ this month.<br><br>
@@ -160,17 +187,18 @@
 
 <div class="board" id="board"></div>
 
-<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM // 983 SKILLS // 17 CRONS // 56 TASKS DONE</div>
+<div class="footer">XEN BOARD // MANTEIS OPERATIONS // AUTO-UPDATED DAILY AT 8AM // 984 SKILLS // 20 CRONS // 62 TASKS DONE</div>
 
 <script>
 // Task data — Xen's cron updates this
 const tasks = [
-  // Scheduled (2)
-  {id:'brindavan', col:'scheduled', title:'brindavan-gardens full overhaul', body:'Fable Round 2 at 2:45 PM today. Needs most work: hero, release sections, SEO. Only got 31 lines last round.'},
-  {id:'thesan', col:'scheduled', title:'thesan-musique refinement', body:'Fable Round 2 at 2:45 PM today. Needs more work on specs and manifesto sections.'},
-  // Ready (1)
-  {id:'mobile-audit', col:'ready', title:'All 7 sites mobile audit', body:'Fix overflow clipping on 375px and 320px. manteis-systems done, 6 sites to audit. Will do with AGY CLI passes.'},
-  // Done — Key milestones (56 total, showing highlights)
+  // Ready Queue (5)
+  {id:'mcp-fleet', col:'ready', title:'🔴 MCP fleet DOWN — Docker daemon offline (17 servers)', body:'17/21 MCP servers unreachable. Docker Desktop not running. Fix: start Docker Desktop → docker compose -f ~/.hermes/mcp/docker-compose.mcp.yml up -d. Detected by Daily MCP Health Check cron.'},
+  {id:'skill-audit-fix', col:'ready', title:'🔴 Fix 35 CRITICAL skill audit issues', body:'35 skills missing version frontmatter, 1 missing description, 6 duplicate names. Full report: ~/.hermes/cron/skill-audit-2026-07-22.md. Detected by Nightly Skill Audit cron.'},
+  {id:'graphify-down', col:'ready', title:'⚠ graphify-mcp stdio server DOWN', body:'Server starts but closes connection immediately. Independent of Docker issue. May need reinstall. Debug: graphify-mcp --transport stdio.'},
+  {id:'brindavan', col:'ready', title:'brindavan-gardens full overhaul', body:'Fable Round 2 already ran. Needs more work: hero, release sections, SEO. Only got 31 lines last round. Ready for next Fable blitz.'},
+  {id:'thesan', col:'ready', title:'thesan-musique refinement', body:'Fable Round 2 already ran. Needs more refinement on specs and manifesto sections. Ready for next Fable blitz.'},
+  // Done — Key milestones (62 total, showing highlights)
   {id:'wcag-audit', col:'done', title:'WCAG compliance — all sites', body:'Audit + remediate + verify. AA contrast fixed (#0057FF → #3B82F6).'},
   {id:'wcag-remediate', col:'done', title:'Remediate WCAG violations', body:'All violations fixed across all sites.'},
   {id:'wcag-verify', col:'done', title:'Verify WCAG compliance', body:'Automated + manual re-testing passed.'},
@@ -180,11 +208,12 @@ const tasks = [
   {id:'docker-audit', col:'done', title:'Docker container health audit', body:'14 containers healthy, 2.6GB cache reclaimed.'},
   {id:'ollama-eval', col:'done', title:'Ollama model evaluation', body:'5 models tested. kimi fastest for coding.'},
   {id:'tailscale', col:'done', title:'Tailscale mesh monitoring', body:'5 nodes checked. Mac Mini + cyberdeck online.'},
-  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills. Now at 983.'},
-  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'983 skills, 0 broken. Clean library.'},
+  {id:'skill-cron', col:'done', title:'Daily skill discovery cron', body:'Active at 7:30 AM. Goal: 1000+ skills. Now at 984.'},
+  {id:'skill-audit', col:'done', title:'Skill audit — prune broken', body:'984 skills, 35 missing version frontmatter flagged. Cleanup pending.'},
   {id:'youtube', col:'done', title:'YouTube learning enhancement', body:'Connected to skill discovery. 47 tube2md files processed.'},
   {id:'github-maint', col:'done', title:'Automated GitHub maintenance', body:'Wiki sync + starred repos monitor active.'},
   {id:'repo-audit', col:'done', title:'GitHub repo audit — 57 repos', body:'20 active, 37 abandoned. Report saved.'},
+  {id:'mobile-audit', col:'done', title:'All 7 sites mobile audit', body:'Complete. All 7 sites audited for mobile overflow at 375px and 320px.'},
   {id:'xen-skills', col:'done', title:'Xen skill creation from learnings', body:'Skills created: right-model, quantum-hud-design-system, and more.'},
   {id:'client-pipeline', col:'done', title:'Client acquisition pipeline', body:'manteis.systems is the funnel. n8n lead tracking next.'},
   {id:'budget', col:'done', title:'Budget Dashboard tracking', body:'Repo confirmed. Ready for integration.'},
@@ -306,10 +335,32 @@ function markDone(id) {
   }
 }
 
-// Rhett's messages
+// Rhett's messages — load from both localStorage and JSON file
 function loadRhettMessages() {
-  const msgs = JSON.parse(localStorage.getItem('rhett-to-xen') || '[]');
+  const localMsgs = JSON.parse(localStorage.getItem('rhett-to-xen') || '[]');
   const container = document.getElementById('rhett-messages');
+  
+  // Also fetch from JSON file (persists across devices/browsers)
+  fetch('rhett-messages.json')
+    .then(r => r.json())
+    .then(fileMsgs => {
+      // Merge, dedupe by time, sort newest first
+      const all = [...localMsgs, ...fileMsgs];
+      const seen = new Set();
+      const unique = all.filter(m => {
+        if (seen.has(m.time)) return false;
+        seen.add(m.time);
+        return true;
+      });
+      renderRhettMessages(unique, container);
+    })
+    .catch(() => {
+      // File doesn't exist — just use localStorage
+      renderRhettMessages(localMsgs, container);
+    });
+}
+
+function renderRhettMessages(msgs, container) {
   if (msgs.length === 0) {
     container.innerHTML = '<div class="msg"><div class="from">RHETT</div><div class="text" style="color:rgba(255,255,255,0.3)">Leave a note for Xen. He reads these every morning at 8 AM.</div><div class="time">// awaiting your first message</div></div>';
     return;
@@ -328,10 +379,14 @@ function postRhettMessage() {
   const text = field.value.trim();
   if (!text) return;
   const msgs = JSON.parse(localStorage.getItem('rhett-to-xen') || '[]');
-  msgs.push({ text, time: new Date().toISOString().replace('T',' ').substring(0,16) + ' // rhett' });
+  const msg = { text, time: new Date().toISOString().replace('T',' ').substring(0,16) + ' // rhett' };
+  msgs.push(msg);
   localStorage.setItem('rhett-to-xen', JSON.stringify(msgs));
   field.value = '';
   loadRhettMessages();
+  // Note: messages save to browser localStorage. To send to Xen's cron,
+  // also tell Xen directly in chat — he'll write them to rhett-messages.json
+  // which the 8AM dashboard cron reads.
 }
 
 function escapeHtml(s) {
