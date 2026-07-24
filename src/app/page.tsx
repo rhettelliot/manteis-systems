@@ -2151,30 +2151,60 @@ function WhatWeOffer() {
         >
           // CONSULTANCY SERVICES
         </motion.div>
-        <div className="grid lg:grid-cols-3 gap-px border border-white/[0.06]">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-px border border-white/[0.06]">
           {services.map((s, i) => {
             const Icon = s.icon;
+            const isPrimary = i === 0;
             return (
               <motion.div
                 key={s.title}
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.75, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4, borderTopColor: s.accent, transition: { duration: 0.22 } }}
-                className="bg-void-raised p-8 flex flex-col gap-5 group cursor-default border-t border-transparent">
-                <div className="flex items-center gap-3">
+                whileHover={{ y: -4, transition: { duration: 0.22 } }}
+                whileTap={{ scale: 0.98 }}
+                className={`bg-void-raised p-8 flex flex-col gap-5 group cursor-default relative overflow-hidden ${
+                  isPrimary ? 'lg:row-span-2' : ''
+                }`}
+                style={{ '--spotlight': s.accent } as React.CSSProperties}>
+                <span
+                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${s.accent}15, transparent 40%)`,
+                  }}
+                />
+                <span
+                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: `radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${s.accent}40, transparent 40%)`,
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    padding: '1px',
+                  }}
+                />
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  onMouseMove={(e) => {
+                    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+                    const target = e.currentTarget as HTMLDivElement;
+                    target.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    target.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                  }}
+                />
+                <div className="flex items-center gap-3 relative z-10">
                   <Icon size={16} style={{ color: s.accent }} />
                   <span className="font-mono text-[9px] tracking-[0.3em] uppercase" style={{ color: s.accent }}>
                     {s.label}
                   </span>
                 </div>
-                <h3 className="font-display font-bold text-lg tracking-tight group-hover:text-white transition-colors">{s.title}</h3>
-                <p className="text-sm text-white/50 leading-relaxed">{s.desc}</p>
-                <div className="flex-1">
+                <h3 className="font-display font-bold text-lg tracking-tight group-hover:text-white transition-colors relative z-10">{s.title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed relative z-10">{s.desc}</p>
+                <div className="flex-1 relative z-10">
                   <div className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/55 mb-3">
                     DELIVERABLES
                   </div>
-                  <ul className="flex flex-col gap-2">
+                  <ul className={`flex flex-col gap-2 ${isPrimary ? 'lg:grid lg:grid-cols-2 lg:gap-x-6' : ''}`}>
                     {s.deliverables.map((d) => (
                       <li key={d} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.12em] uppercase text-white/55">
                         <span className="w-1 h-1 shrink-0" style={{ background: s.accent }} aria-hidden />
@@ -2183,7 +2213,7 @@ function WhatWeOffer() {
                     ))}
                   </ul>
                 </div>
-                <div className="font-mono text-[10px] text-white/55 tracking-wide pt-4 border-t border-white/[0.06]">
+                <div className="font-mono text-[10px] text-white/55 tracking-wide pt-4 border-t border-white/[0.06] relative z-10">
                   {s.price}
                 </div>
               </motion.div>
