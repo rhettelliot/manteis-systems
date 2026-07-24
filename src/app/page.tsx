@@ -1225,17 +1225,28 @@ function ThreePillars() {
       accentClass: 'text-signal-pink',
       icon: Music,
       detail: 'Betta Beats Radio · manteisrecordings.com',
+      links: [
+        { label: 'Manteis Recordings — Label Hub', url: 'https://manteisrecordings.com' },
+        { label: 'Red Shift Mantra — Synthwave', url: 'https://redshiftmantra.vercel.app' },
+        { label: 'NEXUS-808 — Drum Machine', url: 'https://nexus-808.vercel.app' },
+        { label: 'Ambient-O-Matic — Soundscape Gen', url: 'https://ambient-o-matic.vercel.app' },
+      ],
     },
     {
       id: 'self',
       label: '03 — SELF',
       title: 'SOVEREIGNTY WITHIN',
       tagline: 'Sovereignty begins in the body.',
-      desc: 'Breathwork protocols and relationship sovereignty manuals that de-colonize attention before the infrastructure work begins. Technology should support biology — not replace it.',
+      desc: 'Breathwork protocols, hermetic philosophy, and relationship sovereignty manuals that de-colonize attention before the infrastructure work begins. Technology should support biology — not replace it.',
       accent: '#00D4A8',
       accentClass: 'text-signal-teal',
       icon: Heart,
       detail: 'Breathwork Sessions · Sewa Singh Manuals',
+      links: [
+        { label: 'Breathwork — 70-Day Protocol', url: 'https://breathwork-three.vercel.app' },
+        { label: 'Kybalion Tactical — Reality Rendering', url: 'https://kybalion-dusky.vercel.app' },
+        { label: 'Sewa — Kundalini Teachings', url: 'https://sewa-pink.vercel.app' },
+      ],
     },
   ];
 
@@ -1331,6 +1342,23 @@ function ThreePillars() {
               <p className="text-sm text-white/55 leading-relaxed flex-1">
                 {p.desc}
               </p>
+              {p.links && (
+                <div className="flex flex-col gap-2 pt-2">
+                  {p.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[10px] tracking-widest uppercase text-signal-teal/70 hover:text-signal-teal transition-colors duration-200 flex items-center gap-2 group/link"
+                    >
+                      <span className="w-1.5 h-1.5 bg-signal-teal/40 group-hover/link:bg-signal-teal transition-colors" />
+                      {link.label}
+                      <span className="opacity-0 group-hover/link:opacity-100 transition-opacity">↗</span>
+                    </a>
+                  ))}
+                </div>
+              )}
               <div className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass} pt-4 border-t border-white/[0.06]`}>
                 {p.detail}
               </div>
