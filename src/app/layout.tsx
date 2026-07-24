@@ -110,10 +110,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-void-base text-white antialiased" suppressHydrationWarning>
+      <body className="bg-void-base text-cream antialiased" suppressHydrationWarning>
         {/* Anti-FUOC theme init — must run before React hydrates. */}
         <script
           dangerouslySetInnerHTML={{

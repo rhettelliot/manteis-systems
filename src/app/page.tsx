@@ -116,13 +116,16 @@ function SectionDivider({ number, label, inView }: { number?: string; label: str
       initial={{ opacity: 0, y: 10 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="flex items-center gap-4 mb-12 md:mb-16"
+      className="flex items-center gap-4 mb-12 md:mb-16 relative"
     >
-      <div className="h-px flex-1 bg-white/[0.08]" />
-      <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 shrink-0">
+      <div className="h-px flex-1 bg-cream/[0.08]" />
+      {number && (
+        <span className="section-number leading-none" aria-hidden>{number}</span>
+      )}
+      <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-cream/55 shrink-0">
         // {number ? `${number} — ` : ''}{label}
       </span>
-      <div className="h-px flex-1 bg-white/[0.08]" />
+      <div className="h-px flex-1 bg-cream/[0.08]" />
     </motion.div>
   );
 }
@@ -184,7 +187,7 @@ function FloatingParticles({ count = 24, seed = 1998 }: { count?: number; seed?:
       duration: rand() * 14 + 10,
       delay: rand() * 16,
       drift: (rand() - 0.5) * 120,
-      color: i % 3 === 0 ? 'rgba(59,130,246,0.6)' : i % 3 === 1 ? 'rgba(255,110,199,0.5)' : 'rgba(0,212,168,0.5)',
+      color: i % 3 === 0 ? 'rgba(0,87,255,0.6)' : i % 3 === 1 ? 'rgba(255,110,199,0.5)' : 'rgba(0,212,168,0.5)',
     }));
   }, [count, seed]);
   return (
@@ -213,6 +216,95 @@ function FloatingParticles({ count = 24, seed = 1998 }: { count?: number; seed?:
             times: [0, 0.08, 0.85, 1],
           }}
         />
+      ))}
+    </div>
+  );
+}
+
+// ─── Hero: topographic SVG overlay ─────────────────────────────────────────────
+function TopographicOverlay({ progress }: { progress: ReturnType<typeof useScroll>['scrollYProgress'] }) {
+  // Contour lines animate vertical offset and dash offset on scroll
+  const yShift = useTransform(progress, [0, 1], [0, -120]);
+  const dashPhase = useTransform(progress, [0, 1], [0, -200]);
+
+  // Deterministic contour paths
+  const CONTOURS = useMemo(() => {
+    const rand = seededRandom(2026);
+    return Array.from({ length: 18 }, (_, i) => {
+      const yBase = 60 + i * 40;
+      const amplitude = 18 + rand() * 30;
+      const freq = 0.004 + rand() * 0.006;
+      const phase = rand() * Math.PI * 2;
+      let d = `M 0 ${yBase}`;
+      for (let x = 0; x <= 1200; x += 40) {
+        const y = yBase + Math.sin(x * freq + phase) * amplitude + Math.sin(x * freq * 2.3 + phase) * (amplitude * 0.35);
+        d += ` L ${x} ${y.toFixed(1)}`;
+      }
+      return { d, opacity: 0.06 + (i % 3) * 0.03, width: 0.5 + (i % 4) * 0.25, dash: 120 + (i % 5) * 60 };
+    });
+  }, []);
+
+  return (
+    <div className="topo-lines">
+      <motion.svg
+        style={{ y: yShift }}
+        className="absolute w-[1200px] h-[900px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+        viewBox="0 0 1200 900"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden
+      >
+        <defs>
+          <linearGradient id="topo-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FDFCDC" stopOpacity="0" />
+            <stop offset="20%" stopColor="#FDFCDC" stopOpacity="0.08" />
+            <stop offset="50%" stopColor="#0057FF" stopOpacity="0.12" />
+            <stop offset="80%" stopColor="#FDFCDC" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="#FDFCDC" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <g stroke="url(#topo-fade)" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {CONTOURS.map((c, i) => (
+            <motion.path
+              key={i}
+              d={c.d}
+              strokeWidth={c.width}
+              strokeDasharray={`${c.dash} ${c.dash * 0.6}`}
+              style={{ strokeDashoffset: dashPhase }}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: c.opacity }}
+              transition={{ duration: 2.4, delay: i * 0.12, ease: 'easeInOut' }}
+            />
+          ))}
+        </g>
+        {/*  Data markers */}
+        {Array.from({ length: 12 }, (_, i) => {
+          const rand = seededRandom(47 + i);
+          const x = 80 + rand() * 1040;
+          const y = 80 + rand() * 740;
+          return (
+            <g key={`m-${i}`}>
+              <circle cx={x} cy={y} r="1.5" fill="#0057FF" opacity="0.5" />
+              <text x={x + 6} y={y + 3} fill="#FDFCDC" opacity="0.25" fontFamily="var(--font-mono), monospace" fontSize="7" letterSpacing="1">
+                {`${(47.5 + rand() * 0.3).toFixed(4)}N ${(122.0 + rand() * 0.5).toFixed(4)}W`}
+              </text>
+            </g>
+          );
+        })}
+      </motion.svg>
+    </div>
+  );
+}
+
+// ─── Hero: terminal log ──────────────────────────────────────────────────────
+function MetadataStrip({ items }: { items: string[] }) {
+  return (
+    <div className="meta-strip flex flex-wrap items-center gap-x-6 gap-y-2 py-3 border-y border-cream/[0.06] bg-void-raised/50">
+      {items.map((item, i) => (
+        <span key={i} className="inline-flex items-center gap-2">
+          <span className="w-1 h-1 bg-signal-blue/60" />
+          {item}
+        </span>
       ))}
     </div>
   );
@@ -299,22 +391,12 @@ function Hero() {
         </div>
         <FloatingParticles count={12} seed={1998} />
 
-        {/* Rings — parallax, larger, barely visible structure in the void */}
+        {/* Topographic SVG overlay — contour lines animating on scroll */}
         <motion.div
           style={{ y: ringsY }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-[1]"
         >
-          <motion.div
-            className="w-[1000px] h-[1000px] border border-[rgba(59,130,246,0.04)]"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 240, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.div
-            className="absolute w-[750px] h-[750px] border border-[rgba(0,212,168,0.03)]"
-            animate={{ rotate: -360 }}
-            transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
-          />
-          <div className="absolute w-[500px] h-[500px] border border-[rgba(255,110,199,0.02)]" />
+          <TopographicOverlay progress={scrollYProgress} />
         </motion.div>
 
         <motion.div
@@ -331,13 +413,13 @@ function Hero() {
             <span className="font-mono text-[8px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.35em] uppercase text-signal-blue text-center">
               // SOVEREIGN INTELLIGENCE INFRASTRUCTURE //
             </span>
-            <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-white/55">
+            <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-cream/55">
               <motion.span
-                className="inline-block w-1.5 h-1.5 bg-signal-teal rounded-full"
+                className="inline-block w-1.5 h-1.5 bg-signal-teal"
                 animate={{ opacity: [1, 0.25, 1] }}
                 transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <PacificClock /> PST
+              <PacificClock /> PST · 47.6062N 122.3321W
             </span>
           </motion.div>
 
@@ -403,8 +485,8 @@ function Hero() {
             <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block w-full sm:w-auto text-center">
               <Button variant="primary" size="lg" className="w-full sm:w-auto">INITIATE SOVEREIGNTY AUDIT</Button>
             </a>
-            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
-              [47.6062° N, 122.3321° W] · PACIFIC_NODE_01
+            <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-cream/55">
+              [47.6062° N, 122.3321° W] · PACIFIC_NODE_01 · <PacificClock /> PST
             </div>
           </motion.div>
         </motion.div>
@@ -574,19 +656,11 @@ function SovereignNodeDiagram() {
   ];
 
   return (
-    <section ref={ref} className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] overflow-hidden bg-black">
-      {/* Subtle grid background */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
-        }}
-      />
+    <section ref={ref} className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-cream/[0.06] overflow-hidden bg-black">
+      <div className="absolute top-4 right-4 sm:right-8 section-number z-0" aria-hidden>03</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'SOVEREIGN_NODE_01', 'TOPOLOGY: LIVE', '<PacificClock /> PST']} />
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-6xl mx-auto pt-8">
         <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-signal-blue mb-4">
           // ANATOMY · LIVE TOPOLOGY
         </span>
@@ -870,19 +944,11 @@ function FederationSection() {
   ];
 
   return (
-    <section ref={ref} id="federation" className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] overflow-hidden bg-void-raised">
-      {/* Subtle grid background */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
-        }}
-      />
+    <section ref={ref} id="federation" className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-cream/[0.06] overflow-hidden bg-void-raised">
+      <div className="absolute top-4 left-4 sm:left-8 section-number z-0" aria-hidden>04</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'AI_OS_FEDERATION', 'GIT-AS-BUS', 'HUMAN-GATED', '<PacificClock /> PST']} />
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-6xl mx-auto pt-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1252,46 +1318,124 @@ function ThreePillars() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
+  const gridRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-20 md:py-32 max-w-6xl mx-auto w-full bg-void-elevated">
+    <section ref={ref} className="relative px-4 sm:px-8 py-20 md:py-32 max-w-6xl mx-auto w-full bg-void-elevated">
+      {/*  Massive section number anchor */}
+      <div className="absolute top-8 left-4 sm:left-8 section-number z-0" aria-hidden>02</div>
+
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-white/55 mb-10 md:mb-16"
+        className="relative z-10 font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.35em] uppercase text-cream/55 mb-10 md:mb-16"
       >
-        // THE ECOSYSTEM
+        // THE ECOSYSTEM · 47.6062N 122.3321W · <PacificClock /> PST
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.16,
-              delayChildren: 0.12,
+      <div ref={gridRef} className="relative">
+        {/*  Visible grid skeleton + glowing connecting lines */}
+        <PillarGridSkeleton />
+
+        <motion.div
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.16,
+                delayChildren: 0.12,
+              },
             },
-          },
-        }}
-        className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-2 gap-px border border-white/[0.06]"
-      >
-        {pillars.map((p) => {
-          const Icon = p.icon;
-          const isWide = p.id === 'systems-pillar';
-          return (
-            <PillarTile
-              key={p.id}
-              pillar={p}
-              Icon={Icon}
-              isWide={isWide}
-            />
-          );
-        })}
-      </motion.div>
+          }}
+          className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-2 gap-px border border-cream/[0.06]"
+        >
+          {pillars.map((p) => {
+            const Icon = p.icon;
+            const isWide = p.id === 'systems-pillar';
+            return (
+              <PillarTile
+                key={p.id}
+                pillar={p}
+                Icon={Icon}
+                isWide={isWide}
+              />
+            );
+          })}
+        </motion.div>
+      </div>
     </section>
+  );
+}
+
+function PillarGridSkeleton() {
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden>
+      {/*  Structural grid lines */}
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="grid-line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#FDFCDC" stopOpacity="0" />
+            <stop offset="50%" stopColor="#FDFCDC" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#FDFCDC" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <rect x="33.333%" y="0" width="1" height="100%" fill="url(#grid-line)" />
+        <rect x="66.666%" y="0" width="1" height="100%" fill="url(#grid-line)" />
+        <rect x="0" y="50%" width="100%" height="1" fill="url(#grid-line)" />
+      </svg>
+
+      {/*  Glowing connecting lines between SYSTEMS → SOUNDS → SELF */}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="conn-glow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#0057FF" />
+            <stop offset="50%" stopColor="#FF6EC7" />
+            <stop offset="100%" stopColor="#00D4A8" />
+          </linearGradient>
+          <filter id="glow-blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.5" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+        {/*  SYSTEMS center to SOUNDS center */}
+        <motion.path
+          d="M 33 25 C 45 25, 45 75, 66 75"
+          fill="none"
+          stroke="url(#conn-glow)"
+          strokeWidth="0.25"
+          filter="url(#glow-blur)"
+          strokeDasharray="4 3"
+          animate={{ strokeDashoffset: [-14, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+        />
+        {/*  SOUNDS center to SELF center */}
+        <motion.path
+          d="M 66 75 C 78 75, 78 50, 85 50"
+          fill="none"
+          stroke="url(#conn-glow)"
+          strokeWidth="0.25"
+          filter="url(#glow-blur)"
+          strokeDasharray="4 3"
+          animate={{ strokeDashoffset: [-14, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'linear', delay: 0.5 }}
+        />
+        {/*  SYSTEMS center to SELF center (upper diagonal) */}
+        <motion.path
+          d="M 33 25 C 55 25, 70 40, 85 50"
+          fill="none"
+          stroke="#0057FF"
+          strokeOpacity="0.25"
+          strokeWidth="0.15"
+          strokeDasharray="2 4"
+          animate={{ strokeDashoffset: [-6, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -1350,17 +1494,25 @@ function PillarTile({
       style={{ borderTop: `1px solid ${p.accent}` }}
     >
       {/* Silkscreen hardware label */}
-      <div className="absolute top-3 left-4 sm:left-6 pointer-events-none" aria-hidden>
+      <div className="absolute top-3 left-4 sm:left-6 pointer-events-none z-10" aria-hidden>
         <div className="flex items-center gap-2">
-          <span className="w-1 h-1 bg-white/30" />
-          <span className="font-mono text-[8px] tracking-[0.25em] uppercase text-white/35">
+          <span className="w-1 h-1 bg-cream/30" />
+          <span className="font-mono text-[8px] tracking-[0.25em] uppercase text-cream/35">
             {isWide ? 'PRIMARY BUS' : 'AUX CHANNEL'}
           </span>
         </div>
-        <div className="h-px w-12 bg-white/[0.08] mt-1.5" />
+        <div className="h-px w-12 bg-cream/[0.08] mt-1.5" />
       </div>
 
-      {/* Spotlight border effect */}
+      {/*  Visible grid skeleton: internal grid lines */}
+      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cream/[0.08] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cream/[0.08] to-transparent" />
+        {!isWide && <div className="absolute top-0 bottom-0 left-0 w-px bg-gradient-to-b from-transparent via-cream/[0.08] to-transparent" />}
+        <div className="absolute top-0 bottom-0 right-0 w-px bg-gradient-to-b from-transparent via-cream/[0.08] to-transparent" />
+      </div>
+
+      {/*  Spotlight border effect */}
       <motion.div
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
@@ -1391,19 +1543,19 @@ function PillarTile({
         aria-hidden
       />
 
-      <div className="flex items-center justify-between mt-5">
+      <div className="flex items-center justify-between mt-5 relative z-10">
         <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
           {p.label}
         </span>
         <motion.div
           animate={{ rotate: [0, 10, -6, 0] }}
           transition={{ duration: 6, repeat: Infinity, delay: 0, ease: 'easeInOut' }}
-          className="relative p-2 -mr-2 rounded-full transition-all duration-500 group-hover:bg-current/10"
+          className="relative p-2 -mr-2 transition-all duration-500 group-hover:bg-current/10"
           style={{ color: p.accent }}
         >
-          {/* icon halo */}
+          {/*  icon halo */}
           <div
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
               background: `radial-gradient(circle, ${p.accent}25 0%, transparent 70%)`,
               boxShadow: `0 0 20px ${p.accent}30`,
@@ -1413,19 +1565,19 @@ function PillarTile({
           <Icon size={18} style={{ color: p.accent }} />
         </motion.div>
       </div>
-      <div>
-        <h3 className="font-display font-bold text-[1.35rem] sm:text-[1.5rem] tracking-[-0.02em] text-white mb-1 group-hover:opacity-100 transition-opacity">
+      <div className="relative z-10">
+        <h3 className="font-display font-bold text-[1.35rem] sm:text-[1.5rem] tracking-[-0.02em] text-cream mb-1 group-hover:opacity-100 transition-opacity">
           {p.title}
         </h3>
         <p className={`font-mono text-[10px] tracking-[0.18em] uppercase ${p.accentClass}`}>
           {p.tagline}
         </p>
       </div>
-      <p className="text-sm text-white/55 leading-relaxed flex-1">
+      <p className="text-sm text-cream/55 leading-relaxed flex-1 relative z-10">
         {p.desc}
       </p>
       {p.links && (
-        <div className="flex flex-col gap-2 pt-2">
+        <div className="flex flex-col gap-2 pt-2 relative z-10">
           {p.links.map((link) => (
             <a
               key={link.url}
@@ -1441,7 +1593,7 @@ function PillarTile({
           ))}
         </div>
       )}
-      <div className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass} pt-4 border-t border-white/[0.06]`}>
+      <div className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass} pt-4 border-t border-cream/[0.06] relative z-10`}>
         {p.detail}
       </div>
     </motion.div>
@@ -1461,9 +1613,11 @@ function Founder() {
   ];
 
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] bg-black">
-      <div className="max-w-6xl mx-auto">
-        <SectionDivider inView={inView} number="03" label="ARCHITECT" />
+    <section ref={ref} className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-cream/[0.06] bg-black">
+      <div className="absolute top-4 right-4 sm:right-8 section-number z-0" aria-hidden>05</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'PRINCIPAL_ARCHITECT', 'CLEARANCE: SOVEREIGN', '<PacificClock /> PST']} />
+
+      <div className="max-w-6xl mx-auto pt-8">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           <div className="flex-1 flex flex-col gap-8">
             <motion.div
@@ -1579,9 +1733,11 @@ function SystemsDeepDive() {
   ];
 
   return (
-    <section id="systems" ref={ref} className="px-4 sm:px-8 py-24 md:py-32 border-t border-white/[0.06] bg-void-raised">
-      <div className="max-w-6xl mx-auto">
-        <SectionDivider inView={inView} number="04" label="SYSTEMS" />
+    <section id="systems" ref={ref} className="relative px-4 sm:px-8 py-24 md:py-32 border-t border-cream/[0.06] bg-void-raised">
+      <div className="absolute top-4 left-4 sm:left-8 section-number z-0" aria-hidden>06</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'SYSTEMS_DIVISION', 'SOVEREIGN_NODE_SPECS', '<PacificClock /> PST']} />
+
+      <div className="max-w-6xl mx-auto pt-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1683,9 +1839,11 @@ function CaseStudy() {
   ];
 
   return (
-    <section ref={ref} className="px-4 sm:px-8 py-20 md:py-32 border-t border-white/[0.06] bg-void-elevated">
-      <div className="max-w-6xl mx-auto">
-        <SectionDivider inView={inView} number="05" label="ACTIVE DEPLOYMENT" />
+    <section ref={ref} className="relative px-4 sm:px-8 py-20 md:py-32 border-t border-cream/[0.06] bg-void-elevated scanlines">
+      <div className="absolute top-4 right-4 sm:right-8 section-number z-10" aria-hidden>07</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'CASE_FILE: PNW-2026', 'STATUS: ACTIVE', '<PacificClock /> PST']} />
+
+      <div className="max-w-6xl mx-auto pt-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1834,9 +1992,11 @@ function CapabilitiesProof() {
   ];
 
   return (
-    <section id="proof" ref={ref} className="px-4 sm:px-8 py-24 md:py-40 border-t border-white/[0.06] bg-black">
-      <div className="max-w-6xl mx-auto">
-        <SectionDivider inView={inView} number="06" label="PROOF" />
+    <section id="proof" ref={ref} className="relative px-4 sm:px-8 py-24 md:py-40 border-t border-cream/[0.06] bg-black">
+      <div className="absolute top-4 left-4 sm:left-8 section-number z-0" aria-hidden>08</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'PROOF_OF_OPERATION', 'CLASSIFICATION: SHOWN', '<PacificClock /> PST']} />
+
+      <div className="max-w-6xl mx-auto pt-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1978,9 +2138,11 @@ function WhatWeOffer() {
   ];
 
   return (
-    <section ref={ref} className="px-8 py-20 md:py-32 border-t border-white/[0.06] bg-void-raised">
-      <div className="max-w-6xl mx-auto">
-        <SectionDivider inView={inView} number="07" label="CONSULTANCY" />
+    <section ref={ref} className="relative px-8 py-20 md:py-32 border-t border-cream/[0.06] bg-void-raised">
+      <div className="absolute top-4 right-4 sm:right-8 section-number z-0" aria-hidden>09</div>
+      <MetadataStrip items={['47.6062N 122.3321W', 'CONSULTANCY_SERVICES', 'RATE_CARD: ACTIVE', '<PacificClock /> PST']} />
+
+      <div className="max-w-6xl mx-auto pt-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

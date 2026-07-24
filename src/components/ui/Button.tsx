@@ -19,10 +19,10 @@ export default function Button({
     "font-display font-semibold tracking-wide transition-all duration-200 border-none cursor-pointer";
 
   const variants = {
-    primary: "bg-[#1E40AF] text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]",
-    secondary: "bg-white/[0.06] text-white hover:bg-white/[0.10]",
+    primary: "bg-[#0057FF] text-cream hover:shadow-[0_0_30px_rgba(0,87,255,0.4)]",
+    secondary: "bg-cream/[0.06] text-cream hover:bg-cream/[0.10]",
     ghost:
-      "bg-transparent text-signal-blue border border-signal-blue/40 hover:bg-signal-blue hover:text-white",
+      "bg-transparent text-signal-blue border border-signal-blue/40 hover:bg-signal-blue hover:text-cream",
   };
 
   const sizes = {
