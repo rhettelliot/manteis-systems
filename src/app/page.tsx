@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import NextImage from 'next/image';
-import { motion, useScroll, useTransform, useInView } from 'motion/react';
+import { motion, useScroll, useTransform, useInView, useMotionValue, useMotionTemplate } from 'motion/react';
 import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight, GitBranch, ShieldCheck, Layers } from 'lucide-react';
 import Button from '../components/ui/Button';
 import {
@@ -1250,7 +1250,7 @@ function ThreePillars() {
   ];
 
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px' });
+  const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <section ref={ref} className="px-4 sm:px-8 py-20 md:py-32 max-w-6xl mx-auto w-full bg-void-elevated">
@@ -1262,110 +1262,189 @@ function ThreePillars() {
       >
         // THE ECOSYSTEM
       </motion.div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-px border border-white/[0.06]">
-        {pillars.map((p, i) => {
+
+      <motion.div
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.16,
+              delayChildren: 0.12,
+            },
+          },
+        }}
+        className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-2 gap-px border border-white/[0.06]"
+      >
+        {pillars.map((p) => {
           const Icon = p.icon;
+          const isWide = p.id === 'systems-pillar';
           return (
-            <motion.div
+            <PillarTile
               key={p.id}
-              id={p.id}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.75, delay: i * 0.14, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default transition-all duration-500 hover:scale-[1.02] hover:bg-white/[0.03] relative overflow-hidden"
-              style={{ borderTop: `1px solid ${p.accent}` }}
-            >
-              {/* ambient radial glow behind card */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background: `radial-gradient(circle at 50% 0%, ${p.accent}18 0%, transparent 60%)`,
-                }}
-                aria-hidden
-              />
-
-              {/* left signal indicator */}
-              <div
-                className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{
-                  background: `linear-gradient(180deg, ${p.accent} 0%, ${p.accent}80 50%, transparent 100%)`,
-                  boxShadow: `0 0 12px ${p.accent}80, 0 0 24px ${p.accent}40`,
-                }}
-                aria-hidden
-              />
-
-              {/* animated top accent glow line */}
-              <motion.div
-                className="absolute top-0 left-0 h-[2px] pointer-events-none"
-                initial={{ width: '0%' }}
-                whileHover={{ width: '100%' }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  background: `linear-gradient(90deg, transparent 0%, ${p.accent} 50%, transparent 100%)`,
-                  boxShadow: `0 0 12px ${p.accent}, 0 0 28px ${p.accent}80`,
-                }}
-                aria-hidden
-              />
-
-              <div className="flex items-center justify-between">
-                <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
-                  {p.label}
-                </span>
-                <motion.div
-                  animate={{ rotate: [0, 10, -6, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, delay: i * 1.5, ease: 'easeInOut' }}
-                  className="relative p-2 -mr-2 rounded-full transition-all duration-500 group-hover:bg-current/10"
-                  style={{ color: p.accent }}
-                >
-                  {/* icon halo */}
-                  <div
-                    className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle, ${p.accent}25 0%, transparent 70%)`,
-                      boxShadow: `0 0 20px ${p.accent}30`,
-                    }}
-                    aria-hidden
-                  />
-                  <Icon size={18} style={{ color: p.accent }} />
-                </motion.div>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-[1.35rem] sm:text-[1.5rem] tracking-[-0.02em] text-white mb-1 group-hover:opacity-100 transition-opacity">
-                  {p.title}
-                </h3>
-                <p className={`font-mono text-[10px] tracking-[0.18em] uppercase ${p.accentClass}`}>
-                  {p.tagline}
-                </p>
-              </div>
-              <p className="text-sm text-white/55 leading-relaxed flex-1">
-                {p.desc}
-              </p>
-              {p.links && (
-                <div className="flex flex-col gap-2 pt-2">
-                  {p.links.map((link) => (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-[10px] tracking-widest uppercase text-signal-teal/70 hover:text-signal-teal transition-colors duration-200 flex items-center gap-2 group/link"
-                    >
-                      <span className="w-1.5 h-1.5 bg-signal-teal/40 group-hover/link:bg-signal-teal transition-colors" />
-                      {link.label}
-                      <span className="opacity-0 group-hover/link:opacity-100 transition-opacity">↗</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-              <div className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass} pt-4 border-t border-white/[0.06]`}>
-                {p.detail}
-              </div>
-            </motion.div>
+              pillar={p}
+              Icon={Icon}
+              isWide={isWide}
+            />
           );
         })}
-      </div>
+      </motion.div>
     </section>
+  );
+}
+
+type Pillar = {
+  id: string;
+  label: string;
+  title: string;
+  tagline: string;
+  desc: string;
+  accent: string;
+  accentClass: string;
+  icon: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean; style?: React.CSSProperties }>;
+  detail: string;
+  links?: { label: string; url: string }[];
+};
+
+function PillarTile({
+  pillar: p,
+  Icon,
+  isWide,
+}: {
+  pillar: Pillar;
+  Icon: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean; style?: React.CSSProperties }>;
+  isWide: boolean;
+}) {
+  const tileRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const borderX = useMotionTemplate`${x}px`;
+  const borderY = useMotionTemplate`${y}px`;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = tileRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    x.set(e.clientX - rect.left);
+    y.set(e.clientY - rect.top);
+  };
+
+  return (
+    <motion.div
+      ref={tileRef}
+      id={p.id}
+      variants={{
+        hidden: { opacity: 0, y: 28, scale: 0.98 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        },
+      }}
+      whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 100, damping: 20 } }}
+      whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 300, damping: 18 } }}
+      onMouseMove={handleMouseMove}
+      className={`bg-void-raised p-6 sm:p-8 flex flex-col gap-5 group cursor-default relative overflow-hidden lg:row-span-1 ${isWide ? 'lg:col-span-1 lg:row-span-2' : ''}`}
+      style={{ borderTop: `1px solid ${p.accent}` }}
+    >
+      {/* Silkscreen hardware label */}
+      <div className="absolute top-3 left-4 sm:left-6 pointer-events-none" aria-hidden>
+        <div className="flex items-center gap-2">
+          <span className="w-1 h-1 bg-white/30" />
+          <span className="font-mono text-[8px] tracking-[0.25em] uppercase text-white/35">
+            {isWide ? 'PRIMARY BUS' : 'AUX CHANNEL'}
+          </span>
+        </div>
+        <div className="h-px w-12 bg-white/[0.08] mt-1.5" />
+      </div>
+
+      {/* Spotlight border effect */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(400px circle at ${borderX} ${borderY}, ${p.accent}22 0%, transparent 40%)`,
+          maskImage: `linear-gradient(#000 0 0), linear-gradient(#000 0 0)`,
+          maskComposite: 'xor',
+          WebkitMaskComposite: 'xor',
+        }}
+        aria-hidden
+      />
+
+      {/* ambient radial glow behind card */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at 50% 0%, ${p.accent}18 0%, transparent 60%)`,
+        }}
+        aria-hidden
+      />
+
+      {/* left signal indicator */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: `linear-gradient(180deg, ${p.accent} 0%, ${p.accent}80 50%, transparent 100%)`,
+          boxShadow: `0 0 12px ${p.accent}80, 0 0 24px ${p.accent}40`,
+        }}
+        aria-hidden
+      />
+
+      <div className="flex items-center justify-between mt-5">
+        <span className={`font-mono text-[9px] tracking-[0.3em] uppercase ${p.accentClass}`}>
+          {p.label}
+        </span>
+        <motion.div
+          animate={{ rotate: [0, 10, -6, 0] }}
+          transition={{ duration: 6, repeat: Infinity, delay: 0, ease: 'easeInOut' }}
+          className="relative p-2 -mr-2 rounded-full transition-all duration-500 group-hover:bg-current/10"
+          style={{ color: p.accent }}
+        >
+          {/* icon halo */}
+          <div
+            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle, ${p.accent}25 0%, transparent 70%)`,
+              boxShadow: `0 0 20px ${p.accent}30`,
+            }}
+            aria-hidden
+          />
+          <Icon size={18} style={{ color: p.accent }} />
+        </motion.div>
+      </div>
+      <div>
+        <h3 className="font-display font-bold text-[1.35rem] sm:text-[1.5rem] tracking-[-0.02em] text-white mb-1 group-hover:opacity-100 transition-opacity">
+          {p.title}
+        </h3>
+        <p className={`font-mono text-[10px] tracking-[0.18em] uppercase ${p.accentClass}`}>
+          {p.tagline}
+        </p>
+      </div>
+      <p className="text-sm text-white/55 leading-relaxed flex-1">
+        {p.desc}
+      </p>
+      {p.links && (
+        <div className="flex flex-col gap-2 pt-2">
+          {p.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[10px] tracking-widest uppercase text-signal-teal/70 hover:text-signal-teal transition-colors duration-200 flex items-center gap-2 group/link"
+            >
+              <span className="w-1.5 h-1.5 bg-signal-teal/40 group-hover/link:bg-signal-teal transition-colors" />
+              {link.label}
+              <span className="opacity-0 group-hover/link:opacity-100 transition-opacity">↗</span>
+            </a>
+          ))}
+        </div>
+      )}
+      <div className={`font-mono text-[10px] tracking-widest uppercase ${p.accentClass} pt-4 border-t border-white/[0.06]`}>
+        {p.detail}
+      </div>
+    </motion.div>
   );
 }
 
