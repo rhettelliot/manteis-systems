@@ -15,20 +15,22 @@ export default function Button({
   onClick,
   className = "",
 }: ButtonProps) {
-  const baseStyles = "font-display font-semibold tracking-wide transition-all duration-200 border-none cursor-pointer";
-  
+  const baseStyles =
+    "font-display font-semibold tracking-wide transition-all duration-200 border-none cursor-pointer";
+
   const variants = {
     primary: "bg-[#1E40AF] text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]",
-    secondary: "bg-layer-2 text-white hover:bg-layer-3",
-    ghost: "bg-transparent text-signal border border-signal hover:bg-signal hover:text-white",
+    secondary: "bg-white/[0.06] text-white hover:bg-white/[0.10]",
+    ghost:
+      "bg-transparent text-signal-blue border border-signal-blue/40 hover:bg-signal-blue hover:text-white",
   };
-  
+
   const sizes = {
-    sm: "px-sm py-xs text-mono-xs",
-    md: "px-md py-sm text-label",
-    lg: "px-lg py-md text-body-sm",
+    sm: "px-4 py-1.5 text-xs",
+    md: "px-6 py-2.5 text-sm",
+    lg: "px-8 py-3.5 text-base",
   };
-  
+
   return (
     <button
       onClick={onClick}
