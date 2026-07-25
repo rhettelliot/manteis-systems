@@ -287,6 +287,17 @@ export function Counter({
     return () => cancelAnimationFrame(raf);
   }, [inView, to, suffix, decimals, duration, delay]);
 
+  // Safety: if IntersectionObserver never fires (static export, SSR), render final value after 2s
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!started.current && ref.current) {
+        started.current = true;
+        ref.current.textContent = to.toFixed(decimals) + suffix;
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [to, suffix, decimals]);
+
   return <span ref={ref}>0{suffix}</span>;
 }
 
