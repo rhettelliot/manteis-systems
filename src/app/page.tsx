@@ -5,10 +5,18 @@ import NextImage from 'next/image';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useMotionTemplate } from 'motion/react';
 import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight, GitBranch, ShieldCheck, Layers } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { MagneticButton } from '../components/ui/MagneticButton';
 import {
   ScrollProgress, CursorGlow, Counter,
   Magnetic, GradientText, NoiseGrain, PacificClock, seededRandom,
 } from '../components/ui/animations';
+import { MagneticCursorTrail } from '../components/ui/MagneticCursorTrail';
+import { KineticMarquee, ScrollVelocityMarquee, DynamicIslandPill } from '../components/ui/Marquees';
+import { ScrollSpeedStrobe } from '../components/ui/ScrollSpeedStrobe';
+import { ChromaGrid, ChromaCard } from '../components/ui/ChromaGrid';
+import { ParallaxBentoGrid } from '../components/ui/ParallaxBento';
+import { SpotlightCard, BorderSpotlight } from '../components/ui/SpotlightCard';
+import { SpringBentoGrid, SpringStaggerReveal, CurtainReveal } from '../components/ui/SpringReveal';
 
 // ─── Boot log ──────────────────────────────────────────────────────────────────
 const LOG_MESSAGES = [
@@ -385,6 +393,9 @@ function Hero() {
     <div ref={containerRef} style={{ height: '120vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-4 sm:px-8">
 
+        {/* Magnetic cursor particle trail */}
+        <MagneticCursorTrail containerRef={containerRef} color="#0057FF" />
+
         {/* Aurora orbs + particles — deeper space, less screensaver */}
         <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
           <AnimatedOrbs />
@@ -483,7 +494,7 @@ function Hero() {
             className="flex flex-col items-center gap-4 mt-2"
           >
             <a href="mailto:rhett@manteissystems.com" aria-label="Email Manteis Systems to initiate a sovereignty audit" className="focus-visible:ring-2 focus-visible:ring-signal-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none inline-block w-full sm:w-auto text-center">
-              <Button variant="primary" size="lg" className="w-full sm:w-auto">INITIATE SOVEREIGNTY AUDIT</Button>
+              <MagneticButton as="a" href="mailto:rhett@manteissystems.com" className="w-full sm:w-auto">INITIATE SOVEREIGNTY AUDIT</MagneticButton>
             </a>
             <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-cream/55">
               [47.6062° N, 122.3321° W] · PACIFIC_NODE_01 · <PacificClock /> PST
@@ -982,10 +993,13 @@ function FederationSection() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative border border-white/[0.08] bg-void-raised p-3 sm:p-8"
+          className="relative border border-white/[0.08] bg-void-raised p-3 sm:p-8 group"
         >
+          <ChromaGrid className="absolute inset-0 rounded-none">
+            <div className="absolute inset-0" />
+          </ChromaGrid>
           {/* Header bar */}
-          <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06]">
+          <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/[0.06] relative z-10">
             <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/55">
               federation.topology
             </span>
@@ -1244,6 +1258,7 @@ function FederationSection() {
           {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
+              <ChromaCard key={p.title} className="bg-void-raised group">
               <motion.div
                 key={p.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -1259,6 +1274,7 @@ function FederationSection() {
                 </div>
                 <p className="text-sm text-white/50 leading-relaxed">{p.desc}</p>
               </motion.div>
+            </ChromaCard>
             );
           })}
         </div>
@@ -2156,6 +2172,7 @@ function WhatWeOffer() {
             const Icon = s.icon;
             const isPrimary = i === 0;
             return (
+              <BorderSpotlight key={s.title} color={s.accent}>
               <motion.div
                 key={s.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -2166,7 +2183,8 @@ function WhatWeOffer() {
                 className={`bg-void-raised p-8 flex flex-col gap-5 group cursor-default relative overflow-hidden ${
                   isPrimary ? 'lg:row-span-2' : ''
                 }`}
-                style={{ '--spotlight': s.accent } as React.CSSProperties}>
+                style={{ '--spotlight': s.accent } as React.CSSProperties}
+              >
                 <span
                   className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
@@ -2217,6 +2235,7 @@ function WhatWeOffer() {
                   {s.price}
                 </div>
               </motion.div>
+            </BorderSpotlight>
             );
           })}
         </div>
@@ -2402,13 +2421,9 @@ function FinalCTA() {
         transition={{ duration: 0.6, delay: 0.34 }}
         className="relative flex flex-col items-center gap-5"
       >
-        <Magnetic strength={0.3} radius={160}>
-          <a href="mailto:rhett@manteissystems.com" className="w-full sm:w-auto block sm:inline-block">
-            <Button variant="primary" size="lg" className="w-full sm:w-auto">
-              INITIATE SOVEREIGNTY AUDIT
-            </Button>
-          </a>
-        </Magnetic>
+        <MagneticButton as="a" href="mailto:rhett@manteissystems.com" className="w-full sm:w-auto">
+            INITIATE SOVEREIGNTY AUDIT
+          </MagneticButton>
         <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/50">
           NO COMMITMENT · RESPONSE WITHIN 24 HOURS · PACIFIC TIME
         </span>
@@ -2424,10 +2439,17 @@ export default function Home() {
       <NoiseGrain opacity={0.035} />
       <ScrollProgress />
       <CursorGlow />
+      <ScrollSpeedStrobe />
+      <DynamicIslandPill />
       <Nav />
       <Hero />
-      <Marquee />
+      <KineticMarquee />
+
       <VideoSection />
+
+      {/* Scroll-velocity marquee of terms */}
+      <ScrollVelocityMarquee />
+
       <ThreePillars />
       <SovereignNodeDiagram />
       <FederationSection />
@@ -2451,3 +2473,5 @@ export default function Home() {
     </main>
   );
 }
+
+function replaceMarqueeAndWireEffects() { return null; }
