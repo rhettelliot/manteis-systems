@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import NextImage from 'next/image';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useMotionTemplate } from 'motion/react';
 import { Cpu, Music, Heart, Terminal, Shield, Zap, ArrowRight, GitBranch, ShieldCheck, Layers } from 'lucide-react';
@@ -1854,6 +1854,79 @@ function CaseStudy() {
     { value: 'ACTIVE', label: 'Since Q1 2026' },
   ];
 
+  const MetricCard = useCallback(
+    ({
+      metric: m,
+      index: i,
+      inView: cardInView,
+    }: {
+      metric: (typeof metrics)[0];
+      index: number;
+      inView: boolean;
+    }) => {
+      const cardRef = useRef<HTMLDivElement>(null);
+      const x = useMotionValue(0);
+      const y = useMotionValue(0);
+      const borderX = useMotionTemplate`${x}px`;
+      const borderY = useMotionTemplate`${y}px`;
+
+      const numericMatch = m.value.match(/^(-?\d+(?:\.\d+)?)(\s*\D.*)?$/);
+      const numericTarget = numericMatch ? parseFloat(numericMatch[1]) : null;
+      const numericSuffix = numericMatch ? numericMatch[2] || '' : '';
+
+      return (
+        <motion.div
+          ref={cardRef}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={cardInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.55, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 100, damping: 20 } }}
+          onMouseMove={(e) => {
+            const rect = cardRef.current?.getBoundingClientRect();
+            if (!rect) return;
+            x.set(e.clientX - rect.left);
+            y.set(e.clientY - rect.top);
+          }}
+          className="relative p-4 sm:p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group overflow-hidden"
+        >
+          {/* Spotlight border effect */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(400px circle at ${borderX} ${borderY}, #0057FF22 0%, transparent 40%)`,
+              maskImage: `linear-gradient(#000 0 0), linear-gradient(#000 0 0)`,
+              maskComposite: 'xor',
+              WebkitMaskComposite: 'xor',
+            }}
+            aria-hidden
+          />
+
+          {/* Left-edge signal indicator */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+            style={{
+              background: `linear-gradient(180deg, #0057FF 0%, #0057FF80 50%, transparent 100%)`,
+              boxShadow: `0 0 12px #0057FF80, 0 0 24px #0057FF40`,
+            }}
+            aria-hidden
+          />
+
+          <div className="relative z-10 font-display font-bold text-xl sm:text-2xl text-signal-blue tracking-tight mb-1">
+            {numericTarget !== null ? (
+              <Counter to={numericTarget} suffix={numericSuffix} duration={1200} delay={0.3 + i * 0.1} />
+            ) : (
+              m.value
+            )}
+          </div>
+          <div className="relative z-10 font-mono text-[9px] tracking-[0.15em] uppercase text-white/55 leading-relaxed">
+            {m.label}
+          </div>
+        </motion.div>
+      );
+    },
+    []
+  );
+
   return (
     <section ref={ref} className="relative px-4 sm:px-8 py-20 md:py-32 border-t border-cream/[0.06] bg-void-elevated scanlines">
       <div className="absolute top-4 right-4 sm:right-8 section-number z-10" aria-hidden>07</div>
@@ -1932,10 +2005,11 @@ function CaseStudy() {
                   </div>
                   <div className="h-1 bg-white/[0.06] overflow-hidden" role="progressbar" aria-valuenow={ph.pct} aria-valuemin={0} aria-valuemax={100} aria-label={ph.name}>
                     <motion.div
-                      className={`h-full ${ph.pct === 100 ? 'bg-signal-teal' : 'bg-signal-blue'}`}
-                      initial={{ width: '0%' }}
-                      animate={inView ? { width: `${ph.pct}%` } : {}}
+                      className={`h-full w-full ${ph.pct === 100 ? 'bg-signal-teal' : 'bg-signal-blue'}`}
+                      initial={{ scaleX: 0 }}
+                      animate={inView ? { scaleX: ph.pct / 100 } : {}}
                       transition={{ duration: 1.3, delay: 0.5 + i * 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ transformOrigin: 'left' }}
                     />
                   </div>
                 </div>
@@ -1945,21 +2019,7 @@ function CaseStudy() {
 
           <div className="grid grid-cols-2 gap-px border border-white/[0.08] lg:min-w-[320px] h-fit">
             {metrics.map((m, i) => (
-              <motion.div
-                key={m.label}
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.55, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ borderTopColor: '#3B82F6' }}
-                className="p-4 sm:p-6 bg-void-elevated border-t border-transparent transition-colors duration-300 hover:bg-void-raised group"
-              >
-                <div className="font-display font-bold text-xl sm:text-2xl text-signal-blue tracking-tight mb-1">
-                  {m.value}
-                </div>
-                <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/55 leading-relaxed">
-                  {m.label}
-                </div>
-              </motion.div>
+              <MetricCard key={m.label} metric={m} index={i} inView={inView} />
             ))}
           </div>
         </div>
