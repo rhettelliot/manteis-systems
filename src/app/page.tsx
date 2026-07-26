@@ -70,14 +70,14 @@ function DitheredPanel({ children, className }: { children: React.ReactNode; cla
 
 // ─── ANIMATION VARIANTS ─────────────────────────────────────────────────
 const fadeUp = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 1, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-80px" },
   transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 const clipReveal = {
-  initial: { opacity: 0, clipPath: "inset(0 0 100% 0)" },
+  initial: { opacity: 1, clipPath: "inset(0 0 0% 0)" },
   whileInView: { opacity: 1, clipPath: "inset(0 0 0% 0)" },
   viewport: { once: true, margin: "-60px" },
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
@@ -223,7 +223,7 @@ function Hero() {
           <motion.p {...fadeUp} className="meta mb-8">MNTS-CON-001 · CONVERSION EDITION · 2026</motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 32 }}
+            initial={{ opacity: 1, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -385,7 +385,7 @@ function Assessment() {
 
               <motion.h3
                 key={currentQIndex}
-                initial={{ opacity: 0, x: 12 }}
+                initial={{ opacity: 1, x: 12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="text-[clamp(22px,3vw,34px)] leading-[1.15] tracking-[-0.02em] font-semibold text-[--color-ink] mb-8"
@@ -414,7 +414,7 @@ function Assessment() {
           ) : (
             <motion.div
               ref={resultRef}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="max-w-2xl"
@@ -462,7 +462,7 @@ function Assessment() {
                 </form>
               ) : (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.98 }}
+                  initial={{ opacity: 1, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="border border-[--color-signal]/30 bg-[--color-signal]/5 p-6 flex items-start gap-4"
                 >
@@ -735,8 +735,21 @@ function Architect() {
         </div>
 
         <div className="col-span-12 md:col-span-7 p-6 md:p-10 flex flex-col justify-center">
-          <div className="aspect-[4/3] w-full bg-[--color-surface] border border-[--color-border] flex items-center justify-center mb-6">
-            <span className="meta">PHOTO PLACEHOLDER</span>
+          <div className="aspect-[4/3] w-full bg-[--color-surface] border border-[--color-border] flex flex-col items-center justify-center mb-6 relative overflow-hidden">
+            {/* Concentric rings as visual fill instead of empty placeholder */}
+            <svg viewBox="0 0 400 300" className="w-full h-full absolute inset-0" preserveAspectRatio="xMidYMid slice" aria-hidden>
+              <circle cx="200" cy="150" r="120" fill="none" stroke="rgba(244,243,238,0.06)" strokeWidth="1" />
+              <circle cx="200" cy="150" r="95" fill="none" stroke="rgba(244,243,238,0.08)" strokeWidth="1.5" />
+              <circle cx="200" cy="150" r="70" fill="none" stroke="rgba(255,85,0,0.20)" strokeWidth="2" />
+              <circle cx="200" cy="150" r="45" fill="none" stroke="rgba(244,243,238,0.10)" strokeWidth="1" />
+              <circle cx="200" cy="150" r="20" fill="none" stroke="rgba(255,85,0,0.35)" strokeWidth="1.5" />
+              <line x1="0" y1="150" x2="400" y2="150" stroke="rgba(244,243,238,0.04)" strokeWidth="1" />
+              <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(244,243,238,0.04)" strokeWidth="1" />
+            </svg>
+            <div className="relative z-10 text-center">
+              <span className="font-display text-[clamp(40px,6vw,64px)] font-light tracking-[-0.04em] text-[--color-ink-ghost]">R.M</span>
+              <span className="meta block mt-2">SEATTLE · EST. 1998</span>
+            </div>
           </div>
           <p className="font-body text-[15px] text-[--color-ink-3] leading-[1.7] max-w-[55ch]">
             Specializing in: local AI infrastructure · zero-trust security · agent automation · fleet management.
