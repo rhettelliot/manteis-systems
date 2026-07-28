@@ -137,17 +137,15 @@ const ASSESSMENT_QUESTIONS: Question[] = [
   },
 ];
 
-const CHECKLIST_POINTS = [
-  "Define which workflows AI will own vs. augment.",
-  "Inventory where sensitive data lives and moves.",
-  "Choose local vs. cloud inference for each use case.",
-  "Select agent orchestration and memory architecture.",
-  "Map integration points to existing systems.",
-  "Establish identity, access, and zero-trust controls.",
-  "Plan for endpoint and fleet management.",
-  "Budget hardware, hosting, and ongoing management.",
-  "Document compliance and data-retention requirements.",
-  "Build a rollout, training, and measurement plan.",
+const GUIDE_SECTIONS = [
+  "The Sovereignty Problem — why cloud AI fails regulated industries",
+  "The Local-First Stack — Ollama, ChromaDB, Docker, n8n, MCP",
+  "Architecture Blueprint — a production reference diagram",
+  "Security: The Fortress Protocol — zero-trust before deployment",
+  "Cost Analysis: Sovereign vs Cloud — the 3-year economics",
+  "Deployment Roadmap — a 6-week implementation plan",
+  "The Manteis Engagement Model — audit, deploy, manage",
+  "Decision Framework — should your organization go sovereign?",
 ];
 
 // ─── NAV ──────────────────────────────────────────────────────────────────
@@ -782,11 +780,12 @@ function FreeResource() {
           <div className="col-span-12 md:col-span-6 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-center">
             <p className="meta mb-6">/ FREE RESOURCE</p>
             <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink] mb-6">
-              The AI Infrastructure Checklist for 2026.
+              The Sovereign AI Infrastructure Guide.
             </h2>
             <p className="font-body text-lg text-[--color-ink-2] leading-[1.7] max-w-[55ch]">
-              A 10-point checklist for businesses evaluating AI infrastructure. Use it to audit your
-              readiness before any vendor conversation.
+              A 10-page guide for regulated industries. The complete stack, architecture blueprint,
+              security protocol, and 3-year cost analysis. Everything you need to evaluate sovereign AI
+              before any vendor conversation.
             </p>
           </div>
 
@@ -794,7 +793,7 @@ function FreeResource() {
             {!submitted ? (
               <form onSubmit={handleSubmit} className="border border-[--color-border] p-5 md:p-6 bg-[--color-canvas]/80">
                 <p className="font-body text-[15px] font-semibold text-[--color-ink] mb-4 flex items-center gap-2">
-                  <Download size={16} className="text-[--color-signal]" /> Download the checklist
+                  <Download size={16} className="text-[--color-signal]" /> Download the guide (PDF, 10 pages)
                 </p>
                 <div className="flex flex-col gap-4 mb-4">
                   <input
@@ -814,7 +813,7 @@ function FreeResource() {
                   />
                 </div>
                 <button type="submit" className="btn w-full inline-flex items-center justify-center gap-2">
-                  Get the checklist
+                  Get the guide
                 </button>
                 <p className="meta mt-4">No spam. Unsubscribe anytime.</p>
               </form>
@@ -824,13 +823,25 @@ function FreeResource() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="border border-[--color-signal]/30 bg-[--color-signal]/5 p-6"
               >
-                <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">Check your inbox — your checklist is on its way.</p>
-                <p className="font-body text-[14px] text-[--color-ink-2]">If you don't see it within a few minutes, check your spam folder.</p>
+                <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">
+                  Your guide is ready — download it now.
+                </p>
+                <a
+                  href="/sovereign-ai-infrastructure-guide.pdf"
+                  download
+                  className="btn inline-flex items-center gap-2 mt-4"
+                >
+                  <Download size={16} /> Download PDF
+                </a>
+                <p className="font-body text-[14px] text-[--color-ink-2] mt-4">
+                  We&apos;ve also emailed you a copy. Check your inbox in a few minutes.
+                </p>
               </motion.div>
             )}
 
             <div className="mt-8 grid grid-cols-1 gap-3">
-              {CHECKLIST_POINTS.map((p, i) => (
+              <p className="meta mb-2">Inside the guide:</p>
+              {GUIDE_SECTIONS.map((p, i) => (
                 <div key={p} className="flex items-start gap-3">
                   <span className="meta w-6">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-body text-[14px] text-[--color-ink-2]">{p}</span>
