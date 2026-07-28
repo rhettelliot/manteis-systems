@@ -342,9 +342,24 @@ function Assessment() {
     setCompany("");
   };
 
-  const handleGateSubmit = (e: React.FormEvent) => {
+  const handleGateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    try {
+      await fetch("/api/lead-capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Assessment Response",
+          email,
+          company,
+          pain_points: `AI Readiness Assessment — Score: ${score}/100 (${tier.label}). Recommendation: ${recommendation}`,
+          source: "website-assessment-gate",
+        }),
+      });
+    } catch {
+      // Non-blocking — still show results
+    }
     setSubmitted(true);
   };
 
@@ -764,9 +779,24 @@ function FreeResource() {
   const [company, setCompany] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    try {
+      await fetch("/api/lead-capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Resource Download",
+          email,
+          company,
+          pain_points: "Requested Sovereign AI Infrastructure Guide download",
+          source: "website-resource-gate",
+        }),
+      });
+    } catch {
+      // Non-blocking — still show the download
+    }
     setSubmitted(true);
   };
 
@@ -858,16 +888,36 @@ function FreeResource() {
 // ─── CONTACT ────────────────────────────────────────────────────────────
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const handleChange = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [field]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
-    setSubmitted(true);
+    setStatus("submitting");
+    try {
+      const res = await fetch("https://manteis.systems/api/lead-capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          pain_points: form.message,
+          source: "website-contact-form",
+        }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -906,7 +956,7 @@ function Contact() {
               Send a Message
             </h3>
 
-            {!submitted ? (
+            {status === "idle" || status === "submitting" ? (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input
                   type="text"
@@ -939,11 +989,15 @@ function Contact() {
                   placeholder="What's your biggest AI infrastructure challenge?"
                   className="w-full bg-[--color-canvas] border border-[--color-border] px-4 py-3 font-body text-[15px] text-[--color-ink] placeholder:text-[--color-ink-3] focus:border-[--color-signal] focus:outline-none resize-none"
                 />
-                <button type="submit" className="btn inline-flex items-center justify-center gap-2 mt-2">
-                  <Send size={16} /> Send message
+                <button type="submit" disabled={status === "submitting"} className="btn inline-flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                  {status === "submitting" ? (
+                    <><span className="w-4 h-4 border-2 border-[--color-ink]/30 border-t-[--color-signal] rounded-full animate-spin" /> Sending...</>
+                  ) : (
+                    <><Send size={16} /> Send message</>
+                  )}
                 </button>
               </form>
-            ) : (
+            ) : status === "success" ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -951,6 +1005,18 @@ function Contact() {
               >
                 <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">Message sent.</p>
                 <p className="font-body text-[14px] text-[--color-ink-2]">I'll reply within one business day. If it's urgent, email directly at rhett@manteissystems.com.</p>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="border border-red-500/30 bg-red-500/5 p-6 h-full flex flex-col justify-center"
+              >
+                <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">Something went wrong.</p>
+                <p className="font-body text-[14px] text-[--color-ink-2] mb-4">Please try again or email directly at rhett@manteissystems.com.</p>
+                <button onClick={() => setStatus("idle")} className="btn inline-flex items-center justify-center gap-2">
+                  Try again
+                </button>
               </motion.div>
             )}
           </div>
