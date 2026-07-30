@@ -154,6 +154,7 @@ function Nav() {
   const links = [
     { label: "Assessment", href: "#assessment" },
     { label: "Services", href: "#services" },
+    { label: "Products", href: "/products" },
     { label: "Node", href: "#node" },
     { label: "Case Study", href: "#case-study" },
     { label: "Contact", href: "#contact" },
