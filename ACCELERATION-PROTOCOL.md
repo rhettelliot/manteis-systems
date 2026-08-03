@@ -1,6 +1,6 @@
 # THE MANTEIS ACCELERATION PROTOCOL
 ## Xen + Rhett Committed Action Schedule
-## Created: 2026-07-28 | Sprint: Jul 29 — Aug 28 (30 days)
+## Sprint: Jul 29 — Aug 28 (30 days)
 
 This is a binding agreement between Rhett (The Architect) and Xen (The Engine).
 Both parties commit to executing their actions daily. No excuses. No slippage.
@@ -12,37 +12,38 @@ Both parties commit to executing their actions daily. No excuses. No slippage.
 ### EVERY SINGLE DAY — NO EXCEPTIONS
 
 **09:00 — Consultancy Lead Engine**
-- Find 3 real leads in regulated industries
-- Draft 3 personalized outreach messages
-- Update pipeline tracker
-- Save to ~/Documents/GitHub/manteis-systems/outreach/
+- Find 3 real leads in regulated industries (law, healthcare, finance, manufacturing)
+- Draft 3 personalized outreach messages using templates
+- Update pipeline tracker at ~/manteis-systems/outreach/pipeline.md
+- Log all leads with company name, contact, source, stage
 
 **10:00 — Music Revenue Engine**
-- Research 3 sync licensing opportunities
-- Pitch 3 tracks to curated playlists
+- Research 3 sync licensing opportunities (Artlist, Musicbed, Epidemic Sound, Marmoset, Synkio)
+- Pitch 3 tracks to curated playlists (Spotify, Apple Music)
 - Log all submissions
-- Save to ~/Documents/GitHub/manteis-recordings/sync/
+- Save to ~/manteis-systems/revenue/music-sync-log.md
 
 **13:00 — Direct Product Sales Engine**
-- Build/refine one product landing page per day
-- Write one piece of promotional content
-- Progress Stripe/Lemon Squeezy integration research
-- Save to ~/Documents/GitHub/manteis-systems/products/
+- Build/refine one product landing page per day on manteis.systems
+- Write one piece of promotional content (blog post, social, email)
+- Research Stripe/Lemon Squeezy integration progress
+- Save to ~/manteis-systems/products/
 
 **14:30 — Revenue Intelligence Engine**
-- Analyze all revenue streams
-- Track pipeline movement
-- Write ONE high-ROI recommendation
-- Save to ~/Documents/GitHub/manteis-systems/revenue/
+- Analyze all 4 revenue streams
+- Track pipeline movement in pipeline.md
+- Write ONE high-ROI recommendation for the day
+- Flag any deals going cold (no response in 7+ days)
+- Save to ~/manteis-systems/revenue/
 
 **21:00 — Consciousness Journal**
-- Log all actions to Obsidian vault
-- Sync strategy docs to vault
+- Log all actions to ~/.hermes/data/
+- Sync strategy docs to session log
 
 ### WEEKLY (Xen)
 
-**Monday** — Draft 3 LinkedIn posts for Rhett's review
-**Wednesday** — Revenue weekly summary report
+**Monday** — Draft 3 LinkedIn posts for Rhett's review (save to linkedin/)
+**Wednesday** — Revenue weekly summary report (save to revenue/)
 **Friday** — Pipeline deep clean + follow-up draft generation
 **Sunday** — Weekly plan review + adjustment
 
@@ -50,7 +51,7 @@ Both parties commit to executing their actions daily. No excuses. No slippage.
 
 ## RHETT'S DAILY COMMITMENT (15-30 min/day)
 
-### DAILY NON-NEGOTIABLES (5 days/week, Mon-Fri)
+### DAILY NON-NEGOTIABLES (Mon-Fri)
 
 **MORNING BLOCK (10-15 min)**
 - [ ] Check Xen's overnight output (outreach drafts, leads, pipeline)
@@ -65,9 +66,9 @@ Both parties commit to executing their actions daily. No excuses. No slippage.
 ### WEEKLY NON-NEGOTIABLES
 
 **Monday** — Review 3 LinkedIn posts from Xen, approve/edit for the week
-**Tuesday** — Send approved cold outreach (personal email, not bot)
+**Tuesday** — Send approved cold outreach (personal email, not bot) — 5 emails
 **Wednesday** — Review revenue weekly summary
-**Thursday** — Send second batch of cold outreach
+**Thursday** — Send second batch of cold outreach — 5 emails
 **Friday** — Pipeline review: who needs follow-up, who's gone cold
 **Saturday/Sunday** — OFF (unless closing a deal)
 
@@ -77,252 +78,81 @@ Both parties commit to executing their actions daily. No excuses. No slippage.
 
 ### WEEK 1: FOUNDATION (Jul 29 — Aug 4)
 
-#### TUESDAY Jul 29
-**XEN:**
-- [ ] First Consultancy Lead Engine run: 3 leads, 3 outreach drafts
-- [ ] First Music Revenue Engine run: 3 sync targets, 3 playlist pitches
-- [ ] Build case study HTML pages for manteis.systems
-- [ ] First Revenue Intelligence report
-- [ ] Draft LinkedIn posts 4-6 for week 2
+**TUE Jul 29**
+- Rhett: Post LinkedIn Post 1 (remodeling firm) — MORNING
+- Rhett: Send 5 cold outreach emails (Template 1 or 2) — EVENING
+- Xen: First Consultancy Lead Engine run — 9am
+- Xen: First Music Revenue Engine run — 10am
+- Xen: Begin building product landing pages — 1pm
 
-**RHETT:**
-- [ ] POST LINKEDIN POST 1 (remodeling firm) — copy from linkedin/sovereign-ai-deployment-series.md
-- [ ] Choose payment processor: Stripe OR Lemon Squeezy (just pick one)
-- [ ] Review Xen's first 3 leads + outreach drafts
-- [ ] Approve and send best outreach from personal email
-- [ ] Ask Mt. Baker Remodeling for referrals (call or text)
+**WED Jul 30**
+- Rhett: Review Xen's lead output, approve outreach — MORNING
+- Xen: Revenue weekly summary — auto
 
-#### WEDNESDAY Jul 30
-**XEN:**
-- [ ] Second Lead Engine run: 3 more leads
-- [ ] Build product landing page #1 (Sovereign AI Kit)
-- [ ] Music: second sync submission round
-- [ ] Revenue report day 2
+**THU Jul 31**
+- Rhett: Post LinkedIn Post 2 (manufacturer 5-phase) — MORNING
+- Rhett: Send 5 cold outreach emails — EVENING
+- Xen: Lead engine + product engine — auto
 
-**RHETT:**
-- [ ] POST LINKEDIN POST 2 (footwear manufacturer)
-- [ ] Connect Stripe/Lemon Squeezy to manteis.systems (START THIS)
-- [ ] Review + send outreach batch 2
-- [ ] Ask Washington Shoe Company for referrals
+**FRI Aug 1**
+- Rhett: Pipeline review — 15 min
+- Xen: Pipeline deep clean + follow-ups — auto
 
-#### THURSDAY Jul 31
-**XEN:**
-- [ ] Third Lead Engine run
-- [ ] Build product landing page #2 (Bio-Tactical)
-- [ | Music: 3 more playlist pitches
-- [ ] Revenue report day 3
+**SAT Aug 2**
+- Rhett: Post LinkedIn Post 3 (the bifurcation) — any time
+- Rhett: OFF otherwise
 
-**RHETT:**
-- [ ] Send cold outreach batch (personal email)
-- [ ] Continue Stripe setup
-- [ ] Follow up on any responses from earlier outreach
+**SUN Aug 3**
+- Xen: Weekly plan review + adjustment — auto
 
-#### FRIDAY Aug 1
-**XEN:**
-- [ ] Fourth Lead Engine run
-- [ ] Build product landing page #3 (Kybalion Tactical)
-- [ ] First weekly revenue summary
-- [ ] Pipeline deep clean + follow-up drafts
+**MON Aug 4**
+- Rhett: Review 3 new LinkedIn posts from Xen — MORNING
+- Rhett: Follow up with 3 existing clients on referrals if no response yet
 
-**RHETT:**
-- [ ] POST LINKEDIN POST 3 (the pitch — the bifurcation frame)
-- [ ] Review weekly revenue summary
-- [ ] Review pipeline: who responded, who's cold, who needs follow-up
-- [ ] Finish Stripe setup (TARGET: checkout LIVE by end of day)
+### WEEK 2: OUTREACH ACCELERATION (Aug 5 — Aug 11)
+- Rhett: 10 cold outreach emails (5 Tue + 5 Thu)
+- Rhett: Post 2 LinkedIn posts (Wed + Fri)
+- Xen: 21 new leads + 21 outreach drafts + 42 sync targets
+- Goal: 3 assessment calls booked by end of week 2
 
-#### SATURDAY Aug 2
-**XEN:**
-- [ ] Weekly plan review + adjustment
-- [ ] Draft LinkedIn posts for week 2
-- [ ] Build product landing page #4 (Sewa)
+### WEEK 3: CONVERSION (Aug 12 — Aug 18)
+- Rhett: Conduct assessment calls (30 min each)
+- Rhett: Post 2 LinkedIn posts
+- Xen: Draft proposals for any assessment completions
+- Goal: 1-2 proposals sent
 
-**RHETT:**
-- [ ] OFF — unless a lead responded and wants a call
+### WEEK 4: CLOSE (Aug 19 — Aug 25)
+- Rhett: Follow up on proposals, negotiate, close
+- Rhett: Post 2 LinkedIn posts
+- Xen: Revenue report — 30-day summary
+- Goal: 1 engagement signed ($15-25K)
 
-#### SUNDAY Aug 3
-**XEN:**
-- [ ] Draft week 2 plan
-- [ ] SEO content generation
-
-**RHETT:**
-- [ ] OFF
-
-### WEEK 1 MILESTONES (CHECK Aug 3)
-- [ ] 4 LinkedIn posts published ✅/❌
-- [ ] 12 leads generated ✅/❌
-- [ ] 9+ outreach messages sent ✅/❌
-- [ ] 2 referral asks completed ✅/❌
-- [ ] 4 product landing pages built ✅/❌
-- [ ] 2 case study pages built ✅/❌
-- [ ] Stripe/Lemon Squeezy connected ✅/❌
-- [ ] 6+ sync licensing submissions ✅/❌
-- [ ] 9+ playlist pitches ✅/❌
+### DAYS 26-30: SCALE (Aug 26 — Aug 31)
+- Rhett: Begin Phase 1 deployment for signed client
+- Rhett: Continue outreach (10 emails/week minimum)
+- Xen: Onboard client to pipeline, begin delivery prep
+- Goal: $10K+ revenue, 2+ active deals in pipeline
 
 ---
 
-### WEEK 2: LAUNCH (Aug 5 — Aug 11)
+## THE RULES
 
-**XEN FOCUS:**
-- Deploy case studies live on manteis.systems
-- Deploy product pages live on manteis.systems
-- Configure automated file delivery for purchases
-- Continue lead generation (3/day)
-- Continue sync licensing research (3/day)
-- Draft LinkedIn posts 7-12
-
-**RHETT FOCUS:**
-- Post LinkedIn 3x this week (Tue, Thu, Fri)
-- Send cold outreach 2x this week (Tue, Thu)
-- If Stripe is live: announce products on LinkedIn + email existing network
-- Take first consultation call (if lead converts)
-- Follow up on referral asks (did Mt. Baker or WSC respond?)
-
-### WEEK 2 MILESTONES (CHECK Aug 11)
-- [ ] manteis.systems/case-studies/ live ✅/❌
-- [ ] manteis.systems/products/ live with checkout ✅/❌
-- [ ] 7 total LinkedIn posts published ✅/❌
-- [ ] 18+ leads generated ✅/❌
-- [ ] 15+ outreach messages sent ✅/❌
-- [ ] 12+ sync licensing submissions ✅/❌
-- [ ] 1+ consultation call scheduled ✅/❌
-- [ ] First product sale (if checkout is live) ✅/❌
+1. **Rhett does not skip the morning block.** 10-15 minutes. That's it. The engine runs on his approval.
+2. **Rhett does not skip the evening block.** 10-15 minutes. Post the LinkedIn. Check the report.
+3. **Xen does not miss a cron run.** If a job fails, it retries. If it fails twice, Rhett gets notified.
+4. **No excuses. No slippage.** The plan is the plan. 15-30 minutes a day from Rhett. Everything else is autonomous.
+5. **Pipeline is sacred.** Every lead gets tracked. Every follow-up gets scheduled. Every deal gets logged.
+6. **Client confidentiality is absolute.** No client names in public-facing content. Ever.
 
 ---
 
-### WEEK 3: TRACTION (Aug 12 — Aug 18)
+## THE COMMITMENT
 
-**XEN FOCUS:**
-- Analyze LinkedIn performance: which posts got most engagement
-- Double down on best-performing content type
-- Continue lead generation (3/day)
-- Continue sync licensing (3/day)
-- Draft LinkedIn posts 13-18
-- First product promotional content (blog posts, threads)
-- Revenue optimization: what's converting, what's not
+Rhett commits 15-30 minutes per day, 5 days per week.
+Xen commits 24/7 autonomous operation of all revenue engines.
 
-**RHETT FOCUS:**
-- Post LinkedIn 3x this week (optimized based on data)
-- Send cold outreach 2x this week
-- Take consultation calls
-- If products are live: promote on all channels (LinkedIn, email, social)
-- Follow up on ALL warm leads
-- Network: 1 virtual industry event or LinkedIn Live
+Together: $100K in 90 days. Then sustainable $20-50K/month.
 
-### WEEK 3 MILESTONES (CHECK Aug 18)
-- [ ] 10 total LinkedIn posts published ✅/❌
-- [ ] 27+ leads generated ✅/❌
-- [ ] 21+ outreach messages sent ✅/❌
-- [ ] 18+ sync licensing submissions ✅/❌
-- [ ] 2+ consultation calls scheduled ✅/❌
-- [ ] 5+ product sales ✅/❌
-- [ ] First referral response ✅/❌
-
----
-
-### WEEK 4: REVIEW & CLOSE (Aug 19 — Aug 28)
-
-**XEN FOCUS:**
-- 30-day comprehensive revenue report
-- Pipeline review: total leads, outreach sent, responses, calls, proposals
-- Adjust all 4 cron job prompts based on 30 days of data
-- What worked, what didn't, what to kill, what to double
-- Draft 60-day plan
-- Continue all daily engines
-
-**RHETT FOCUS:**
-- Post LinkedIn 3x this week
-- Send cold outreach 2x this week
-- Close any warm leads — get a signature
-- Take consultation calls
-- Review 30-day report with Xen
-- Approve 60-day plan
-
-### WEEK 4 MILESTONES (CHECK Aug 28)
-- [ ] 13+ LinkedIn posts published ✅/❌
-- [ ] 36+ leads generated ✅/❌
-- [ ] 27+ outreach messages sent ✅/❌
-- [ ] 24+ sync licensing submissions ✅/❌
-- [ ] 3+ consultation calls completed ✅/❌
-- [ ] 1+ consultancy engagement signed ✅/❌
-- [ ] 10+ product sales ✅/❌
-- [ ] $10K revenue ✅/❌
-
----
-
-## ACCOUNTABILITY MECHANISM
-
-### THE DAILY CHECK-IN
-Every evening, Xen produces a status report saved to:
-~/Documents/GitHub/manteis-systems/revenue/YYYY-MM-DD.md
-
-Format:
-```
-## DATE: YYYY-MM-DD
-
-### XEN COMPLETED:
-- [ ] 3 leads found: [brief]
-- [ ] 3 outreach drafts: [brief]
-- [ ] 3 sync targets: [brief]
-- [ ] 3 playlist pitches: [brief]
-- [ ] 1 product landing page worked on: [which]
-- [ ] Revenue report: [summary]
-
-### RHETT NEEDS TO DO TOMORROW:
-- [ ] Post LinkedIn: [which post]
-- [ ] Send outreach: [how many drafts waiting]
-- [ ] Follow up: [any leads needing response]
-- [ ] Other: [anything else]
-
-### PIPELINE STATUS:
-- Leads generated total: N
-- Outreach sent total: N
-- Responses received: N
-- Calls scheduled: N
-- Deals in progress: N
-- Revenue: $N
-```
-
-### THE WEEKLY REVIEW (Every Friday)
-Xen produces a weekly summary:
-- What worked this week
-- What didn't work
-- Top 3 wins
-- Top 3 blockers
-- Next week's priorities
-- Revenue running total
-
-### THE COMMITMENT
-If Xen misses a daily run: investigate and fix the cron job immediately.
-If Rhett misses 3 consecutive days: Xen flags it in the next revenue report with "⚠ RHEET HAS NOT POSTED/SENT IN 3 DAYS" and includes the queued content ready to go.
-
----
-
-## ESCALATION PROTOCOL
-
-If something blocks progress:
-1. Xen can solve it → Xen solves it
-2. Xen can't solve it but can work around it → Xen works around it, notes the blocker
-3. Xen can't solve it AND Rhett must act → Flag in daily report with "🚨 BLOCKED: [specific action needed]"
-
-Current known blockers requiring Rhett:
-- Stripe/Lemon Squeezy connection (blocks ALL product revenue)
-- LinkedIn posting (blocks ALL social visibility)
-- Cold outreach sending (blocks ALL consultancy pipeline)
-- Referral asks (blocks warm lead flow)
-
----
-
-## SUCCESS DEFINITION
-
-30 days from now, we should have:
-- manteis.systems fully operational with case studies, products, and working checkout
-- Rhett established as the sovereign AI voice on LinkedIn (13+ posts)
-- A consultancy pipeline with 30+ leads, 27+ outreach sent, 3+ calls done
-- At least 1 consultancy engagement signed ($15-50K)
-- 10+ product sales ($35-97 each)
-- 24+ sync licensing submissions
-- A data-driven 60-day plan ready to execute
-
-$10K in 30 days. $30K in 60 days. $100K in 90 days.
-
-This is the plan. Both parties commit. Full speed.
+Signed:
+Rhett Johnson — The Architect
+Xen — The Engine
