@@ -145,7 +145,7 @@ const GUIDE_SECTIONS = [
   "Cost Analysis: Sovereign vs Cloud — the 3-year economics",
   "Deployment Roadmap — a 6-week implementation plan",
   "The Manteis Engagement Model — audit, deploy, manage",
-  "Decision Framework — is sovereign AI right for you?",
+  "Decision Framework — should your organization go sovereign?",
 ];
 
 // ─── NAV ──────────────────────────────────────────────────────────────────
@@ -154,9 +154,9 @@ function Nav() {
   const links = [
     { label: "Assessment", href: "#assessment" },
     { label: "Services", href: "#services" },
-    { label: "Sovereign Node", href: "#node" },
-    { label: "Case Study", href: "#case-study" },
     { label: "Products", href: "/products" },
+    { label: "Node", href: "#node" },
+    { label: "Case Study", href: "#case-study" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -168,15 +168,15 @@ function Nav() {
       </a>
 
       {/* Desktop links */}
-      <div className="hidden md:flex items-center gap-5 lg:gap-8">
+      <div className="hidden md:flex items-center gap-8">
         {links.map((l) => (
-          <a key={l.label} href={l.href} className="font-body text-[13px] whitespace-nowrap text-[--color-ink-2] hover:text-[--color-signal] transition-colors">
+          <a key={l.label} href={l.href} className="font-body text-[13px] text-[--color-ink-2] hover:text-[--color-signal] transition-colors">
             {l.label}
           </a>
         ))}
       </div>
 
-      <span className="meta hidden xl:block">SEATTLE · 47.6062°N 122.3321°W</span>
+      <span className="meta hidden lg:block">SEATTLE · 47.6062°N 122.3321°W</span>
 
       {/* Mobile hamburger */}
       <button
@@ -217,9 +217,9 @@ function Hero() {
       <div className="solar-glow" style={{ width: 720, height: 720, bottom: -240, right: -180 }} />
       <Rings className="absolute top-24 left-[-120px] w-[420px] h-[420px] opacity-70 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto md:min-h-[calc(100vh-56px)] grid grid-cols-12 gap-0">
-        <div className="col-span-12 md:col-span-7 flex flex-col justify-center md:justify-end pt-16 pb-12 px-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
-          <motion.p {...fadeUp} className="meta mb-8">MNTS-001 · SEATTLE, WA · 2026</motion.p>
+      <div className="relative z-10 max-w-7xl mx-auto min-h-[calc(100vh-56px)] grid grid-cols-12 gap-0">
+        <div className="col-span-12 md:col-span-7 flex flex-col justify-end p-6 md:p-10 border-r border-[--color-border]">
+          <motion.p {...fadeUp} className="meta mb-8">MNTS-CON-001 · CONVERSION EDITION · 2026</motion.p>
 
           <motion.h1
             initial={{ opacity: 1, y: 32 }}
@@ -240,8 +240,8 @@ function Hero() {
             transition={{ ...fadeUp.transition, delay: 0.2 }}
             className="font-body text-lg md:text-xl text-[--color-ink-2] leading-[1.6] max-w-[58ch] mt-8 mb-10"
           >
-            Private AI, agent automation, and zero-trust security for Seattle-area
-            businesses — built on 25 years of enterprise IT.
+            25+ years of enterprise IT, deployed as private AI, automation, and
+            zero-trust security for Seattle-area businesses.
           </motion.p>
 
           <motion.div
@@ -259,7 +259,7 @@ function Hero() {
         </div>
 
         <div className="col-span-12 md:col-span-5 relative flex flex-col">
-          <div className="py-10 md:py-0 md:flex-1 flex items-center justify-center border-b border-[--color-border]">
+          <div className="flex-1 flex items-center justify-center border-b border-[--color-border]">
             <span className="display-num">25</span>
           </div>
 
@@ -522,19 +522,22 @@ function Services() {
     {
       num: "03",
       title: "AI Infrastructure",
-      desc: "Private LLMs, agent orchestration, and persistent vector memory on hardware you own. No API keys. No egress.",
+      rate: "$350/hr",
+      desc: "Private LLMs, agent orchestration, and vector memory on hardware you own. No API keys. No egress.",
       points: ["Sovereign Node provisioning", "Agent orchestration", "Vector memory architecture"],
     },
     {
       num: "04",
       title: "Security & Compliance",
-      desc: "ZTNA, endpoint hardening, MDM governance, and compliance-ready architecture for regulated operations.",
+      rate: "$350/hr",
+      desc: "ZTNA, endpoint hardening, MDM governance, and SANS-aligned audits for regulated operations.",
       points: ["Zero-trust network access", "Endpoint protection", "Compliance-ready infra"],
     },
     {
       num: "05",
       title: "Automation & Fleet",
-      desc: "Workflow automation across Intune, Jamf Pro, M365, AD, Docker, and n8n — from pilot to fleet-wide rollout.",
+      rate: "$350/hr",
+      desc: "Fleet management and workflow automation across Intune, Jamf Pro, M365, AD, Docker, and n8n.",
       points: ["Infrastructure automation", "Container orchestration", "MDM fleet management"],
     },
   ];
@@ -617,18 +620,19 @@ function SovereignNode() {
 
           <div className="col-span-12 md:col-span-7 flex flex-col">
             <div className="flex-1 p-6 md:p-10 border-b border-[--color-border] flex flex-col justify-center">
-              <p className="meta mb-6">SOVEREIGN NODE</p>
+              <p className="meta mb-6">SOVEREIGN NODE PRICING</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
                 {[
-                  { name: "Starter", note: "Pilot deployment · 1–2 workflows" },
-                  { name: "Professional", note: "Department scale · 3–8 workflows" },
-                  { name: "Enterprise", note: "Organization scale · full stack" },
+                  { name: "Starter", price: "$2,500", note: "4 agents · 1 model" },
+                  { name: "Professional", price: "$5,000", note: "10 agents · 3 models" },
+                  { name: "Enterprise", price: "$7,500", note: "Unlimited agents" },
                 ].map((t, idx) => (
                   <div key={t.name} className="bg-[--color-canvas] p-5 md:p-6 group hover:bg-[--color-surface] transition-colors">
                     <span className="meta block mb-3">0{idx + 1}</span>
                     <span className="font-body text-[15px] font-semibold text-[--color-ink] block">{t.name}</span>
+                    <span className="font-display text-[32px] font-semibold text-[--color-signal] tracking-[-0.02em] block mt-1">{t.price}</span>
                     <span className="meta block mt-2">{t.note}</span>
-                    <span className="meta block mt-1">Scoped after discovery</span>
+                    <span className="meta block mt-1">$2,000/mo managed</span>
                   </div>
                 ))}
               </div>
@@ -722,7 +726,7 @@ function Architect() {
         <div className="col-span-12 md:col-span-5 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-center">
           <p className="meta mb-6">/ THE ARCHITECT</p>
           <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink] mb-6">
-            Rhett Elliot Johnson.
+            Rhett <span className="text-[--color-signal]">Manteis.</span>
           </h2>
           <p className="font-body text-lg text-[--color-ink-2] leading-[1.7] max-w-[55ch] mb-8">
             25+ years in enterprise IT. Apple Certified Service Provider. Founder of Manteis Systems.
@@ -1019,7 +1023,7 @@ function Contact() {
           </div>
         </div>
 
-        <p className="meta text-center mt-8">Engagements are scoped after a discovery call.</p>
+        <p className="meta text-center mt-8">Standard: $2,500–$7,500 · Non-profit: $1,500–$3,000</p>
       </div>
     </section>
   );
