@@ -877,7 +877,7 @@ function Architect() {
             Specializing in: local AI infrastructure · zero-trust security · agent automation · fleet management.
           </p>
           <div className="flex items-center gap-4 mt-6">
-            <a href="https://www.linkedin.com/in/rhettjohnson" target="_blank" rel="noopener noreferrer" className="font-body text-[14px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
+            <a href="https://www.linkedin.com/in/rhettelliot" target="_blank" rel="noopener noreferrer" className="font-body text-[14px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
               LinkedIn
             </a>
             <a href="mailto:rhett@manteis.systems" className="font-body text-[14px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
@@ -1157,7 +1157,7 @@ function Footer() {
           <a href="mailto:rhett@manteis.systems" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
             rhett@manteis.systems
           </a>
-          <a href="https://www.linkedin.com/in/rhettjohnson" target="_blank" rel="noopener noreferrer" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
+          <a href="https://www.linkedin.com/in/rhettelliot" target="_blank" rel="noopener noreferrer" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
             LinkedIn
           </a>
         </div>
