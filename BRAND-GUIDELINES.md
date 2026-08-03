@@ -234,82 +234,146 @@ NO PUBLIC PRICING on the website. Every engagement is scoped to the client's bud
 
 ## 7. HARDWARE PRODUCT LINE
 
-### The Concept
-We don't sell software alone. We sell a BOX. A physical thing that arrives on a client's desk, gets plugged in, and makes them sovereign. The software is ours. The hardware is theirs.
+### The Hardware Philosophy
 
-**The approach:** We buy standard, warrantied gear from established vendors, configure it with our sovereign AI stack, put our Manteis logo stickers on it, and resell it as a Manteis Custom Config. The client sees a Manteis product. The underlying hardware is transparently standard.
+We right-size the gear for the customer and the project. We don't push one platform, one brand, or one OS. We select from a spectrum of standard, warrantied hardware — from a compact mini-PC on a desk to a quad-GPU enterprise server in a rack — and configure it with our sovereign AI stack.
 
-### Three Product Tiers
+**Sourcing:** Gear comes from Best Buy, Amazon, or direct from vendor. Near-instant solutioning. If a client needs a box tomorrow, we can drive to Best Buy, buy it, configure it, and deliver it. No supply chain delays. No custom manufacturing. No vendor lock-in.
 
-#### Manteis One — Desk Appliance
-**For:** 10-30 person firms, solo operators, small offices
-**Form factor:** Compact, desk-class, silent, one power cable, one network cable
+**OS agnostic:** The sovereign AI stack runs on macOS, Linux, and Windows. We deploy on whatever the client's IT environment already uses. Mac shop? Mac. Windows shop? Windows. Linux shop? Linux. The software layer is the same; the hardware and OS flex to the client.
 
-**Actual hardware (warrantied, standard vendor):**
-- Apple Mac Mini M4 (16GB) — $599
-  OR: Mini-PC with NVIDIA RTX 4060 (8GB VRAM) — $800-1,200
-- UPS battery backup — $150
-- 8-port managed switch — $80
-- 2TB external SSD — $150
-- Firewall (Sophos/pfSense) — $200-400 (if not already in place)
+**Branding:** We buy standard, warrantied gear, configure it, put our Manteis logo stickers on it, and deliver it as a Manteis Custom Config. The client sees a Manteis product. The underlying hardware is transparently standard and fully warrantied.
 
-**What's running on it:**
-- Ollama with selected local models
-- n8n workflow automation (5+ pre-built workflows)
-- Docker container stack (MCP servers, ChromaDB, monitoring)
-- Manteis Sovereign OS (setup wizard + dashboard)
+### The Hardware Spectrum
 
-**Out of the box:** Document processing, email classification, semantic search, workflow automation — all local, zero bytes leaving the network.
+We deploy across 10 hardware tiers. Each tier is defined by SPEC CAPABILITY, not brand or OS. We select the right tier based on the client's team size, workload complexity, model requirements, and compliance needs.
 
-**Deployment time:** 1-2 days on-site
+#### Tier 1 — Compact Mini-PC
+**Specs:** 8-core mobile CPU, 32GB DDR5 RAM, integrated GPU, OCuLink port
+**AI capability:** 8B parameter models, workflow automation, document processing
+**Best for:** Solo operators, 10-30 person firms, single-workflow deployments
+**Manteis product:** Manteis One
+**Sourcing:** Best Buy / Amazon (same-day or next-day)
 
-#### Manteis Core — Server Appliance
-**For:** 30-100 person firms, multi-department, heavier workloads
-**Form factor:** Two units — inference server (1U) + desk appliance
+#### Tier 2 — Mid-Range PC Workstation (Single GPU, 16GB VRAM)
+**Specs:** 8-core desktop CPU, 32GB DDR5 RAM, single GPU with 16GB VRAM
+**AI capability:** 14B parameter models, multi-workflow automation, moderate concurrent users
+**Best for:** 30-50 person firms, multi-department workflows, light document AI
+**Manteis product:** Manteis One / Manteis Core
+**Sourcing:** Best Buy / Amazon / direct
 
-**Actual hardware (warrantied, standard vendor):**
-- NVIDIA DGX Spark (GB10 Grace Blackwell) — $4,000-5,000
-  OR: Custom build with NVIDIA RTX 4090 (24GB VRAM) — $3,500-4,500
-  (Real example: Digital Storm Corsa at Washington Shoe Company)
-- Apple Mac Mini M4 (32GB) as orchestration node — $799
-- 16-port managed switch — $200
-- UPS 1500VA — $200
-- 4TB NAS — $400
-- Sophos XGS 87 firewall — $400-600
+#### Tier 3 — Prosumer PC Workstation (Single GPU, 16GB VRAM, high-core)
+**Specs:** High-core desktop CPU (16+ cores), 64GB DDR5 RAM, single GPU with 16GB VRAM
+**AI capability:** 14B-32B parameter models, heavier concurrent workloads, RAG pipelines
+**Best for:** 50-80 person firms, multi-department + document intelligence
+**Manteis product:** Manteis Core
+**Sourcing:** Best Buy / Amazon / direct
 
-**What's running on it:**
-- Everything in Manteis One PLUS:
-- Elastic Stack (SIEM) for security monitoring
-- Larger models (70B+ parameter)
-- Multi-user concurrent access
-- Full backup and disaster recovery
+#### Tier 4 — Compact AI Appliance (Unified Memory, 64GB)
+**Specs:** 14-core CPU, 32-core GPU, 64GB unified memory, 1TB SSD
+**AI capability:** 32B-70B parameter models via unified memory architecture, silent operation
+**Best for:** 30-80 person firms, noise-sensitive environments, creative/production workflows
+**Manteis product:** Manteis Core
+**Sourcing:** Direct from vendor / Apple Store
 
-**Deployment time:** 3-5 days on-site
+#### Tier 5 — AI Appliance (Grace Blackwell Superchip, 128GB Unified)
+**Specs:** 20-core Arm CPU, Blackwell GPU, 128GB LPDDR5X coherent unified memory
+**AI capability:** 70B+ parameter models, enterprise-grade local inference, purpose-built AI appliance
+**Best for:** 80-150 person firms, heavy inference workloads, regulated environments
+**Manteis product:** Manteis Core / Manteis Fortress
+**Sourcing:** Direct from NVIDIA / ASUS
 
-#### Manteis Fortress — Enterprise Rack
-**For:** 100+ person firms, multi-site, regulated industries, heavy compliance
-**Form factor:** Rack-mount 2U inference + 1U orchestration + desk appliance + 5 edge chips
+#### Tier 6 — High-End Desktop Workstation (Single GPU, 32GB VRAM)
+**Specs:** 16-core desktop CPU, 64GB DDR5 RAM, single GPU with 32GB GDDR7 VRAM
+**AI capability:** 70B+ parameter models at speed, complex reasoning, multi-model concurrent
+**Best for:** 100-200 person firms, heavy AI workloads, security operations
+**Manteis product:** Manteis Fortress
+**Sourcing:** Direct / custom build
 
-**Actual hardware (warrantied, standard vendor):**
-- NVIDIA DGX Spark OR dual RTX 4090 build — $5,000-8,000
-- Apple Mac Mini M4 (32GB) orchestration node — $799
-- Apple Mac Mini M4 (16GB) security/monitoring node — $599
-- Sophos XGS 87 firewall — $400-600
-- 24-port managed switch — $300
-- 2x UPS 1500VA — $400
-- 8TB NAS (RAID) — $600
-**Deployment time:** 5-10 days on-site
+#### Tier 7 — High-End Unified Memory Workstation (128GB)
+**Specs:** 24-core CPU, 60-core GPU, 128GB unified memory, 2TB SSD
+**AI capability:** 70B+ parameter models, massive unified memory for large context windows, silent operation
+**Best for:** 100-200 person firms, creative + AI hybrid workflows, noise-sensitive enterprise
+**Manteis product:** Manteis Fortress
+**Sourcing:** Direct from vendor / Apple Store
 
-### Proven Hardware Deployments (from actual case studies)
+#### Tier 8 — Dual-GPU Heavy Workstation (48GB VRAM Combined)
+**Specs:** Threadripper-class CPU, dual GPU with 48GB VRAM combined, 128GB DDR5 ECC RAM
+**AI capability:** 70B+ models at high throughput, parallel inference, training/fine-tuning
+**Best for:** 200+ person firms, multi-site operations, model fine-tuning
+**Manteis product:** Manteis Fortress
+**Sourcing:** Custom build / direct
 
-| Client (anonymized) | Hardware deployed | What it runs |
-|---------------------|-------------------|-------------|
-| Religious org, Seattle | Apple Mac Studio | Security platform + AI DAM engine |
-| Remodeling firm, PNW | Asus Gaming PC (GPU) | Ollama + Hermes + estimation engine |
-| Footwear manufacturer | Digital Storm Corsa + Geekom boxes | Full sovereign stack, 15+ containers |
-| Footwear manufacturer (same) | Digital Storm Corsa (inference) + Geekom (orchestration) | DGX-grade inference + Mac Mini-class orchestration |
+#### Tier 9 — Stacked AI Appliance (Dual Grace Blackwell, 256GB Unified)
+**Specs:** 2x Grace Blackwell superchips linked via ConnectX-7, 256GB unified memory
+**AI capability:** 100B+ parameter models, enterprise-scale local inference, no cloud needed
+**Best for:** 200+ person firms, regulated enterprise, maximum sovereignty
+**Manteis product:** Manteis Fortress (custom)
+**Sourcing:** Direct from NVIDIA
 
-**Key insight:** We don't need custom hardware. We buy standard, warrantied gear, configure it, brand it, and deliver it. The Manteis Sovereign OS software layer is what makes it "ours."
+#### Tier 10 — Multi-GPU Enterprise Server (192GB VRAM Combined)
+**Specs:** Dual server-class CPU (Xeon/EPYC), 4x GPU with 192GB VRAM combined, 512GB ECC RAM
+**AI capability:** Multi-model concurrent at enterprise scale, training, full autonomous operations
+**Best for:** 500+ person firms, multi-site enterprise, heavy compliance, full SOC
+**Manteis product:** Manteis Fortress (enterprise rack)
+**Sourcing:** Custom build / enterprise vendor
+
+---
+
+### OS Support Matrix
+
+The sovereign AI stack runs on all three major operating systems. We deploy on the client's preferred OS.
+
+| OS | Tiers supported | Notes |
+|----|----------------|-------|
+| **macOS** | Tiers 1, 4, 5, 7, 9 | Apple Silicon unified memory is a natural fit for local inference |
+| **Linux** | Tiers 1-6, 8, 10 | Ubuntu primary. Best for GPU workloads, Docker, headless server operation |
+| **Windows** | Tiers 2, 3, 6, 8, 10 | WSL2 for Docker. Client preference for existing Windows shops |
+
+**The software stack is the same on all three:** Ollama, n8n, Docker, ChromaDB, MCP servers, Hermes Agent, Elastic Stack (Phase 3+). The Manteis Sovereign OS web interface runs in the browser regardless of host OS.
+
+---
+
+### Peripherals and Infrastructure (all tiers)
+
+Every deployment includes these components regardless of hardware tier:
+
+| Component | Spec | Purpose |
+|-----------|------|---------|
+| Firewall | Enterprise-grade NGFW, IPS/IDS | Network security gateway |
+| Managed switch | 8-24 ports depending on tier | Local network segmentation |
+| UPS battery backup | 1500VA per critical node | Power resilience |
+| NAS storage | 4-8TB RAID depending on tier | Document archives, backups |
+| External SSD | 2TB+ | Model storage, fast access |
+
+---
+
+### The Right-Sizing Principle
+
+We assess the client's needs across six dimensions, then select the hardware tier:
+
+1. **Team size** — How many concurrent users?
+2. **Model requirements** — What parameter sizes do they need? (8B? 14B? 70B? 100B+)
+3. **Workload complexity** — Document processing? Multi-agent orchestration? Security operations? ERP integration?
+4. **Compliance needs** — HIPAA? SOC 2? Air-gapped? Multi-site?
+5. **OS preference** — Mac shop? Windows shop? Linux shop? We deploy on their platform.
+6. **Budget and urgency** — What can they invest? Do they need it tomorrow? Best Buy and Amazon stock tiers 1-3 for near-instant deployment.
+
+The answer determines the tier. A 25-person remodeling firm gets a Tier 1 or 2 box from Best Buy. A 200-person manufacturer gets a Tier 5 or 6. A 500-person religious organization gets a Tier 8 or 10. We always right-size — never oversell hardware, never undersell capability.
+
+---
+
+### Proven Deployments (anonymized)
+
+| Client | Tier | OS | What it runs |
+|-------|------|----|----|
+| Religious org, Seattle | Tier 4 (unified memory appliance) | macOS | Security platform + AI DAM engine |
+| Remodeling firm, PNW | Tier 2 (mid-range GPU workstation) | Windows | Local LLMs + estimation engine + automation |
+| Footwear manufacturer | Tier 5 (AI appliance) + Tier 1 (mini-PC) | Linux | Full sovereign stack, 15+ containers, 15+ workflows |
+| Religious org, PNW | Tier 4 (unified memory appliance) | macOS | Security monitoring + AI DAM + support agent |
+| Footwear manufacturer (ERP) | Same stack + Phase 5 | Linux | Natural language ERP interface + automation |
+
+---
 
 ### The White-Label Software Layer (Manteis Sovereign OS)
 
