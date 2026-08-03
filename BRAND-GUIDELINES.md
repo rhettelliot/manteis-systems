@@ -35,10 +35,11 @@ The ONLY products on manteis.systems are:
 1. Manteis One (desk appliance)
 2. Manteis Core (server appliance)
 3. Manteis Fortress (enterprise rack)
-4. Manteis Sovereign OS (software layer)
-5. Sovereign AI Starter Kit (blueprint)
-6. AI Readiness Assessment (free)
-7. The Sovereign AI Method (5-phase deployment framework)
+4. Manteis Cloud (subscription VPS + RunPod GPU)
+5. Manteis Sovereign OS (software layer)
+6. Sovereign AI Starter Kit (blueprint)
+7. AI Readiness Assessment (free)
+8. The Sovereign AI Method (5-phase deployment framework)
 
 ---
 
@@ -396,12 +397,104 @@ The real product. The hardware is commodity. The software layer is the moat.
 
 **The principle:** The interface looks like a consumer product. Like setting up a Sonos speaker or a Synology NAS. No IT degree required. Plug in, open browser, click through wizard, done.
 
+### The Software Stack (What Actually Runs On The Box)
+
+The sovereign AI stack is the same across all hardware tiers and all operating systems. This is what we configure, brand, and deliver:
+
+| Layer | Component | Role |
+|------|-----------|------|
+| **Agent Runtime** | Hermes (Nous Research) | The autonomous intelligence layer. Runs scheduled loops, triages, and multi-step operations. The active operator that makes the box think. |
+| **LLM Inference** | Ollama | Local model serving. Runs open-weight models (GLM, Kimi, DeepSeek, Llama, Mistral) entirely on the client's hardware. No API keys. No egress. |
+| **Workflow Automation** | n8n | Visual workflow engine. 5+ pre-built workflows out of the box: document processing, email classification, intelligent routing, approval chains. |
+| **Containerization** | Docker | Full containerized stack. MCP servers, ChromaDB, monitoring agents, any custom service — all containerized, all reproducible. |
+| **Vector Memory** | ChromaDB / Qdrant | Persistent semantic search. Indexes company documents, SOPs, knowledge bases. Enables RAG pipelines and agent memory. |
+| **Tool Protocol** | MCP (Model Context Protocol) | Standardized protocol connecting AI models to tools and data sources. The integration layer that lets the agent reach Jira, Snipe-IT, M365, AD, SQL, and any custom system. |
+| **Security Monitoring** | Elastic Stack (Phase 3+) | SIEM aggregating logs, telemetry, and security events. AI-powered threat triage. Full SOC without hiring a SOC team. |
+| **Web Interface** | Manteis Sovereign OS | React/Next.js web app served at sovereign.local. Setup wizard, dashboard, chat, workflow toggles, security panel. The white-label layer the client actually interacts with. |
+| **Knowledge Index** | LanceDB / local vector store | Indexes the client's documents, SOPs, and operational data for agent search and retrieval. |
+
+**The stack is OS-agnostic:** runs on macOS (Docker Desktop / colima), Linux (Docker native), and Windows (Docker Desktop / WSL2). The web interface runs in the browser regardless of host OS.
+
+### The Reference Architecture — wscOS (Proof It Works)
+
+The Manteis Sovereign OS is not theoretical. It is already built, deployed, and operating in production at a real manufacturer. The reference implementation is called wscOS.
+
+**What wscOS proves:**
+- A 43-tool LLM agent can cover the full IT surface: helpdesk (Jira), SQL/data (WSSQL01 + A2000 Oracle), M365/Entra/Exchange/Teams, Active Directory, Hyper-V, storage/Veeam, EDI monitoring, network inventory, security events
+- Hermes (Nous Research) is the active intelligence layer — running autonomous scheduled loops, triages, and operations via MCP
+- Read-only by construction, human-gated writes — the agent proposes, a human approves, executors run with full audit trail
+- Dual DGX Spark nodes (Grace Blackwell, 128GB unified memory each) linked via 200G QSFP fabric for private inference
+- 11-view operations dashboard: Agent Chat, Dashboard, Tickets, Sprint Board, Assets, Offboarding, Reports, M365 Health, Network Map, Approvals, Knowledge Base
+- 26 runnable skill prompts: /triage, /network-engineering, /incident, /morning-brief, /security-ops, /onboard-user, /backup-verify, /license-audit
+- LanceDB knowledge index over the entire repo + Obsidian vault
+- Partial autopilot via risk-tiered auto-approval (low-risk proposals execute unattended through a double gate; production-touching actions always require human approval)
+
+**What this means for clients:**
+When we deliver a Manteis One/Core/Fortress, we're delivering a configured version of a stack that is already running a real business. Not a demo. Not a pilot. Not a prototype. A production system with 43 tools, 11 dashboard views, 26 skills, and a proven governance model — running today, operating IT for a real manufacturer.
+
+The wscOS reference architecture lives at: ~/Documents/GitHub/wscOS/
+- architecture.md — full topology, integrations, AI platform, agent architecture
+- README.md — overview, tool inventory, how to run
+- CLAUDE.md — development guide, trust model, build instructions
+
 ### Hardware Branding
 - Manteis logo stickers on the physical hardware
 - Matte black enclosure/case where possible
 - Orange (#FF5500) status LED — pulses when AI is thinking, solid when idle, off when powered down
 - Quick start card: "1. Plug in power. 2. Plug in network. 3. Open sovereign.local. 4. You're sovereign."
 - The unboxing IS the marketing — film it, post it
+
+---
+
+### Manteis Cloud — Subscription Sovereign AI
+
+Not every client wants hardware on their desk. Some want sovereign AI without the procurement, setup, and maintenance. Manteis Cloud is the subscription mirror of the on-prem offering — same stack, same privacy posture, same sovereignty principles — delivered as a managed service.
+
+**The concept:** We provision a private VPS pre-configured with the full sovereign AI stack. The client gets their own isolated instance — not a shared tenant. For heavy inference workloads, we integrate RunPod GPU instances that spin up on demand and tear down when idle. The client pays a monthly subscription. They get sovereign AI without owning hardware.
+
+**What the client gets:**
+- A private VPS (not shared, not multi-tenant) running:
+  - Hermes Agent (autonomous operations, skills, cron)
+  - Ollama (local model inference on the VPS)
+  - n8n (workflow automation)
+  - ChromaDB / Qdrant (vector memory)
+  - Docker container stack (MCP servers, monitoring)
+  - Manteis Sovereign OS web interface (dashboard, chat, workflows, security)
+- RunPod GPU integration for heavy lifting:
+  - 70B+ parameter models that need dedicated GPU
+  - GPU instances spin up on demand, tear down when idle
+  - Client only pays for GPU time they use
+  - Models run on dedicated GPU pods — not shared inference endpoints
+- Stripe / Lemon Squeezy payment integration:
+  - Self-serve signup and payment on manteis.systems
+  - Monthly subscription billing
+  - Tiered plans (Starter / Professional / Enterprise)
+  - Cancel anytime — no lock-in
+
+**Privacy posture:**
+- Each client gets their own VPS — data is isolated, not shared
+- RunPod GPU instances are dedicated, not shared inference endpoints
+- No data is stored on Manteis infrastructure between GPU sessions
+- The VPS can be deployed in the client's preferred region
+- Optional: client provides their own VPS, we configure it (bring-your-own-cloud)
+
+**Subscription tiers (internal, not on the public site):**
+
+| Tier | VPS Spec | GPU | Price/mo | Best for |
+|------|----------|-----|----------|----------|
+| Starter | 4 vCPU, 8GB RAM | On-demand RunPod | $99/mo | Solo operators, small teams, evaluation |
+| Professional | 8 vCPU, 16GB RAM | On-demand RunPod (priority) | $249/mo | 10-50 person teams, production workflows |
+| Enterprise | 16 vCPU, 32GB RAM | Dedicated GPU pod | $499/mo | 50+ person teams, heavy inference, compliance |
+
+**Payment:** Stripe for subscription billing (B2B, invoicing, global). Lemon Squeezy as alternative for simpler tax handling. Self-serve signup on manteis.systems/cloud — paste payment info, VPS provisions automatically, Sovereign OS is live in minutes.
+
+**The white-label principle is the same:** The client interacts with the Manteis Sovereign OS dashboard. They don't see the VPS provider, the GPU provider, or the payment processor. They see Manteis. They see sovereign AI, running in their browser, on their terms.
+
+**On-prem vs Cloud positioning:**
+- On-prem (Manteis One/Core/Fortress): "You own it. Forever. Zero bytes leave your network."
+- Cloud (Manteis Cloud): "We host it. You control it. Zero shared infrastructure."
+- The choice depends on the client's compliance requirements, budget, and preference for ownership vs convenience.
+- Some clients start on Manteis Cloud, then migrate to on-prem when they're ready. The software stack is identical — migration is a configuration change, not a rewrite.
 
 ---
 
@@ -489,7 +582,7 @@ For manteis.systems/products/ and YouTube.
 1. Sovereign AI Starter Kit ($97) — local stack architecture diagram, deployment flow
 2. Manteis One Appliance — unboxing sequence, sovereign.local wizard, dashboard interface
 3. The Sovereign AI Method — 5-phase animated roadmap
-4. Manteis Core/Fortress — server architecture, security operations, multi-user deployment
+4. Manteis Cloud — sign up, VPS provisioning, RunPod GPU, Stripe checkout
 
 **NOT included (Egregore track, do not appear here):**
 - ~~Bio-Tactical Neural Countermeasures~~ (Egregore: Breathwork)
@@ -548,29 +641,317 @@ For manteis.systems/products/ and YouTube.
 - Open source contributions
 - Q&A and community
 
-### Script Template for YouTube Videos
+### YouTube Script Library — First 8 Videos
 
-```
-[HOOK — 0:00-0:15]
-State the problem. Make it personal. One sentence.
+**Video 1: "What is Sovereign AI?" (10 min)**
 
-[INTRO — 0:15-0:30]
-Who I am. Why this matters. What you'll learn.
+[HOOK — 0:00]
+"There are two kinds of AI infrastructure. The kind you rent, and the kind you own. This is about the kind you own."
 
-[BODY — 0:30 to 80% of runtime]
-The content. Show, don't tell. Real screens, real hardware, real code.
-Break into 3-5 clear sections with text cards between them.
+[INTRO — 0:15]
+"I'm Rhett Johnson. I've been in enterprise IT for 25 years. I deploy sovereign AI for businesses that can't or won't send their data to the cloud. This video explains what that means, why it matters, and how it works."
 
-[CASE STUDY / PROOF — 80-90% of runtime]
-Real numbers. Real deployment. What happened.
+[BODY — 0:30]
+Section 1: The Bifurcation (2 min)
+- Cloud AI: you rent intelligence, data leaves your network, costs scale with usage
+- Sovereign AI: you own intelligence, data stays on your hardware, costs are one-time
+- The businesses that need sovereign: law, healthcare, finance, manufacturing, religious orgs
 
-[CTA — last 10%]
-What to do next. manteis.systems. Book a Discovery Call.
-Subscribe for weekly sovereign AI content.
+Section 2: The Stack (3 min)
+- Hermes: the agent runtime (not a chatbot, an autonomous operator)
+- Ollama: local model serving (same models, your hardware)
+- ChromaDB: vector memory (semantic search, RAG)
+- n8n: workflow automation
+- Docker: containerization
+- MCP: tool protocol (connects AI to your systems)
+- Show the architecture diagram on screen
+
+Section 3: The Proof (3 min)
+- 43-tool agent running IT operations at a real manufacturer
+- 11-view operations dashboard
+- Read-only by construction, human-gated writes
+- Show the wscOS dashboard (screenshots, no client data)
+
+[CTA — 9:00]
+"If this resonates, take the free AI Readiness Assessment at manteis.systems. Five questions, instant score. Or book a discovery call. Subscribe for weekly sovereign AI content."
 
 [END CARD]
-Logo. URL. Subscribe button.
-```
+manteis.systems / Subscribe
+
+---
+
+**Video 2: "The Sovereign AI Method — 5 Phases Explained" (15 min)**
+
+[HOOK — 0:00]
+"Most AI consultants sell hours. We sell phases. Here are all five."
+
+[INTRO — 0:15]
+"Rhett Johnson, Manteis Systems. This is our deployment framework — the same one we use on every client, from 25-person firms to 500-employee organizations."
+
+[BODY — 0:30]
+Phase 1: Business Process Automation (3 min)
+- What gets built: local LLMs, 5+ workflows, document automation, intelligent routing
+- Show: n8n workflow editor, a real workflow running
+- Exit criteria: 50-70% manual processing reduction
+
+Phase 2: Autonomous IT Operations (3 min)
+- What gets built: AI agent triages tickets, guides technicians, executes fixes with human approval
+- Show: Jira ticket triage, the approval queue
+- Exit criteria: 50%+ tier-1 tickets auto-resolved
+
+Phase 3: Autonomous Security Operations (3 min)
+- What gets built: SIEM, AI triage, automated containment, endpoint agents
+- Show: Elastic Stack dashboard, security alerts
+- Exit criteria: SOC without hiring a SOC team
+
+Phase 4: Proactive Infrastructure (2 min)
+- What gets built: predictive monitoring, self-healing
+- Show: infrastructure health dashboard
+- Exit criteria: 70%+ fewer reactive tickets
+
+Phase 5: AI-Powered ERP Tooling (2 min)
+- What gets built: natural language ERP interface, intelligent data entry, modern frontends
+- Show: natural language query against a legacy system
+- Exit criteria: users interact with ERP through modern interfaces
+
+[CTA — 14:00]
+"Each phase is a separate engagement. No lock-in. manteis.systems to start. Subscribe."
+
+---
+
+**Video 3: "What's in the Box? Manteis One Unboxing" (8 min)**
+
+[HOOK — 0:00]
+"This box arrives on your desk. You plug it in. You're sovereign. Let me show you."
+
+[INTRO — 0:15]
+"Rhett Johnson, Manteis Systems. This is the Manteis One — our desk appliance for small teams and solo operators."
+
+[BODY — 0:30]
+Section 1: The Unboxing (2 min)
+- Open the box. Show the hardware. Quick start card.
+- "1. Plug in power. 2. Plug in network. 3. Open sovereign.local. 4. You're sovereign."
+
+Section 2: The Setup Wizard (2 min)
+- Browser opens to sovereign.local
+- Network config, model selection (simple cards: "Fast and efficient" / "Deep reasoning" / "Code specialist")
+- Workflow activation (toggle switches)
+- "Zero bytes will leave your network" confirmation
+
+Section 3: The Dashboard (2 min)
+- AI status: running, 0 bytes left network
+- Chat interface: local AI chat, looks like ChatGPT but runs on this hardware
+- Workflow toggles: on/off switches
+- Security panel: firewall status, all clear
+
+[CTA — 7:00]
+"This is Tier 1 hardware — a compact mini-PC you can buy at Best Buy. We configure it, brand it, and deliver it. manteis.systems to learn more."
+
+---
+
+**Video 4: "Hardware Right-Sizing: Which AI Hardware is Right?" (12 min)**
+
+[HOOK — 0:00]
+"You don't need a data center to run sovereign AI. You need the right-sized box. Here are 10 options."
+
+[INTRO — 0:15]
+"Rhett Johnson. I deploy AI hardware from Best Buy purchases to enterprise GPU servers. This is how we right-size for each client."
+
+[BODY — 0:30]
+Walk through 3-4 representative tiers:
+- Tier 1: Compact mini-PC, 32GB RAM, integrated GPU — $600-1,200, Best Buy same-day, 8B models
+- Tier 3: Prosumer workstation, 64GB RAM, 16GB VRAM GPU — $2,000-3,500, 14B-32B models
+- Tier 5: AI appliance, 128GB unified memory — $4,000-5,000, 70B+ models
+- Tier 8: Dual-GPU workstation, 48GB VRAM — $8,000-15,000, training and fine-tuning
+
+Key principle: right-size for team size, model requirements, workload, compliance, OS preference, budget.
+
+[CTA — 11:00]
+"Take the assessment at manteis.systems — it'll tell you which tier fits your team. Subscribe for weekly content."
+
+---
+
+**Video 5: "How We Automated a 200-Person Manufacturer with Zero Cloud" (15 min)**
+
+[HOOK — 0:00]
+"15 Docker containers. 15 automated workflows. An AI agent that triages IT tickets and executes fixes. Zero bytes in the cloud. Here's how we did it."
+
+[INTRO — 0:15]
+"Rhett Johnson, Manteis Systems. This is an anonymized case study from a real deployment at a footwear manufacturer in the Pacific Northwest."
+
+[BODY — 0:30]
+Section 1: The Problem (2 min)
+- Manual order processing, siloed systems, no automation, data sovereignty requirements
+
+Section 2: The Stack (4 min)
+- Hardware: AI appliance (Tier 5) + mini-PC orchestration node
+- Software: Ollama, n8n, Docker, ChromaDB, Hermes Agent, Elastic Stack
+- 15+ containers in production
+
+Section 3: What We Built (5 min)
+- Phase 1: automated order pipeline, email classification, inventory intelligence
+- Phase 2: autonomous IT support agent — ticket triage, technician guidance, scripted fixes
+- Phase 3: Elastic Stack SIEM, AI-powered threat detection
+- Phase 4: printer fleet monitoring, predictive maintenance
+- Phase 5: natural language ERP interface on legacy A2000
+
+Section 4: Results (2 min)
+- 70% reduction in manual processing time
+- 0 cloud AI spend
+- 300%+ Year 1 ROI
+- 15+ workflows in production
+
+[CTA — 14:00]
+"This is one of five deployments. See all five at manteis.systems. Book a discovery call. Subscribe."
+
+---
+
+**Video 6: "Sovereign AI vs Cloud AI: The 3-Year Cost Breakdown" (10 min)**
+
+[HOOK — 0:00]
+"$432,000 over three years with cloud AI. $85,000 over three years with sovereign AI. You own one. You rent the other. Let's break it down."
+
+[INTRO — 0:15]
+"Rhett Johnson. These are real numbers from a real 60-person firm. Not estimates — actuals."
+
+[BODY — 0:30]
+Section 1: The Cloud Bill (3 min)
+- Per-seat pricing: $200/user/month x 60 users = $144K/year
+- API costs: $2K-5K/month for document processing, embeddings, fine-tuning
+- Year 1: $144K + $36K = $180K
+- Year 2: same (prices go up, not down)
+- Year 3: same
+- 3-year total: $432K-540K. You own nothing.
+
+Section 2: The Sovereign Bill (3 min)
+- Hardware (Tier 3): $3,000-5,000 (one-time, you own it)
+- Deployment (Phase 1): $15,000-25,000 (one-time)
+- Year 1 total: ~$30K + hardware = $35-30K
+- Year 2: $0 (optional retainer $2-5K/mo)
+- Year 3: $0 (same optional retainer)
+- 3-year total: $35-85K. You own everything.
+
+Section 3: The Break-Even (2 min)
+- Break-even: month 3-6
+- After break-even: the sovereign system is free
+- The cloud system never gets cheaper
+
+[CTA — 9:00]
+"Run your own numbers at manteis.systems. Take the free assessment. Subscribe."
+
+---
+
+**Video 7: "Manteis Cloud: Sovereign AI Without the Hardware" (8 min)**
+
+[HOOK — 0:00]
+"Not ready to buy hardware? You can still be sovereign. Here's how Manteis Cloud works."
+
+[INTRO — 0:15]
+"Rhett Johnson. This is our subscription offering — same stack, same privacy, no hardware to buy."
+
+[BODY — 0:30]
+Section 1: How It Works (3 min)
+- Private VPS (not shared, not multi-tenant)
+- Full sovereign stack: Hermes, Ollama, n8n, ChromaDB, MCP, Sovereign OS
+- RunPod GPU integration for heavy inference (spin up on demand, tear down when idle)
+- Self-serve signup: Stripe checkout, VPS provisions automatically, live in minutes
+
+Section 2: The Privacy Posture (2 min)
+- Your own VPS — data is isolated
+- GPU instances are dedicated, not shared inference endpoints
+- No data stored between GPU sessions
+- Deploy in your preferred region
+
+Section 3: On-Prem vs Cloud (2 min)
+- On-prem: you own it, zero bytes leave your network
+- Cloud: we host it, zero shared infrastructure
+- Start on cloud, migrate to on-prem when ready (same software stack)
+
+[CTA — 7:00]
+"Sign up at manteis.systems/cloud. Three tiers from $99/mo. Cancel anytime. Subscribe."
+
+---
+
+**Video 8: "The wscOS Deep Dive: A 43-Tool AI Agent Running a Real IT Department" (15 min)**
+
+[HOOK — 0:00]
+"This is not a demo. This is a production system running IT for a real manufacturer right now. 43 tools. 11 dashboard views. 26 skills. Zero cloud."
+
+[INTRO — 0:15]
+"Rhett Johnson. This is wscOS — the reference architecture for everything Manteis Systems deploys. It's the proof that sovereign AI works at enterprise scale."
+
+[BODY — 0:30]
+Section 1: The Architecture (4 min)
+- Hermes as the autonomous intelligence layer
+- 43 tools: Jira, Snipe-IT, M365 Graph, Entra security, AD, Hyper-V, SQL guard, EDI, network map
+- Read-only by construction, human-gated writes
+- Dual DGX Spark nodes, 128GB unified memory each, 200G fabric
+
+Section 2: The Dashboard (4 min)
+- Walk through the 11 views: Agent Chat, Dashboard, Tickets, Sprint Board, Assets, Offboarding, Reports, M365 Health, Network Map, Approvals, Knowledge Base
+- Show the approval queue (agent proposes, human approves)
+- Show the TV mode (?tv=true)
+
+Section 3: The Skills (4 min)
+- 26 runnable skills: /triage, /network-engineering, /incident, /morning-brief, /security-ops
+- Show /triage running against live Jira queue
+- Show /morning-brief generating the daily summary
+
+Section 4: The Governance Model (2 min)
+- Partial autopilot: risk-tiered auto-approval
+- Low-risk: ticket comments auto-approved through double gate
+- Production-touching: always requires human approval
+- Full JSON audit trail on every action
+
+[CTA — 14:00]
+"This is what we deploy for every client. Not a demo. A production system. manteis.systems to start."
+
+---
+
+### Short-Form Social Media Content Library
+
+**30 assets/month across 3 series, distributed via AutoSocial Studio**
+
+#### Series A: "Own It" (10 assets)
+
+| # | Concept | Visual | Caption hook |
+|---|---------|--------|-------------|
+| 1 | Rented vs owned | Abstract split: chaotic blue cloud vs organized orange grid | "One of these you rent forever. The other you own." |
+| 2 | Subscription avalanche | Blue lines stacking endlessly vs single orange line | "Cloud AI: $144K/year. Forever. Sovereign AI: $85K once. You own it." |
+| 3 | The perimeter | Orange boundary, contained nodes, blocked blue dots | "Zero bytes leave your network. That's not a feature. That's the architecture." |
+| 4 | The stack | 4-layer architecture diagram with orange signal points | "Six open-source tools. Production AI. Zero cloud." |
+| 5 | The signal | Single orange node at center of a grid | "Your intelligence. Your hardware. Your network." |
+| 6-10 | Vertical reformats of 1-5 | 9:16 tighter crops | Same hooks, shorter |
+
+#### Series B: Case Study Highlights (10 assets)
+
+| # | Concept | Visual | Caption hook |
+|---|---------|--------|-------------|
+| 1 | 70% less manual work | Abstract flowchart: 5 nodes, blue-to-orange-to-green | "70% less manual processing. 15+ automated workflows. 0 cloud." |
+| 2 | The ticket that fixed itself | Horizontal flowchart: ticket -> triage -> fix -> resolved | "The AI triages it. The human approves it. The AI executes it." |
+| 3 | The local SOC | Security dashboard grid with orange shield | "Enterprise security without hiring a SOC team." |
+| 4 | ERP awakening | Two overlapping rectangles, legacy behind AI layer | "Natural language on a legacy ERP. The backend stays. The frontend transforms." |
+| 5 | 300% ROI | Cost comparison bars: long blue vs short orange | "$85K one-time vs $432K over 3 years. You do the math." |
+| 6-10 | Vertical reformats of 1-5 | 9:16 tighter crops | Same hooks |
+
+#### Series C: Product Promos (10 assets)
+
+| # | Concept | Visual | Caption hook |
+|---|---------|--------|-------------|
+| 1 | Sovereign stack | Isometric 4-layer architecture diagram | "The Manteis Sovereign AI stack." |
+| 2 | The operator | Geometric human silhouette with orange perimeter | "Hermes: the agent that runs your IT. Not a chatbot. An operator." |
+| 3 | The perimeter | Orange boundary with contained network nodes | "Sovereign AI. Your data. Your network. Your rules." |
+| 4 | Manteis Cloud | Abstract cloud icon with orange boundary | "Sovereign AI without the hardware. From $99/mo." |
+| 5 | The method | 5-phase timeline with orange signal points | "5 phases. Fixed scope. No lock-in. The Sovereign AI Method." |
+| 6-10 | Vertical reformats of 1-5 | 9:16 tighter crops | Same hooks |
+
+#### Distribution Schedule
+- 2 posts/day per platform (noon + 6pm)
+- TikTok, Instagram, YouTube Shorts (all 9:16)
+- Twitter/X (1:1 or 16:9)
+- LinkedIn (manual, 2-3x/week, carousels)
+- All visual media: abstract technical aesthetic per Section 4
+- All captions: direct, professional, no fluff per Section 5
 
 ---
 
