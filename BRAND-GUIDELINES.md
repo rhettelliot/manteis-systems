@@ -35,11 +35,10 @@ The ONLY products on manteis.systems are:
 1. Manteis One (desk appliance)
 2. Manteis Core (server appliance)
 3. Manteis Fortress (enterprise rack)
-4. Manteis Edge (ESP32 chip)
-5. Manteis Sovereign OS (software layer)
-6. Sovereign AI Starter Kit (blueprint)
-7. AI Readiness Assessment (free)
-8. The Sovereign AI Method (5-phase deployment framework)
+4. Manteis Sovereign OS (software layer)
+5. Sovereign AI Starter Kit (blueprint)
+6. AI Readiness Assessment (free)
+7. The Sovereign AI Method (5-phase deployment framework)
 
 ---
 
@@ -94,42 +93,74 @@ The ONLY products on manteis.systems are:
 ## 4. VISUAL MEDIA AESTHETIC
 
 ### The Rule
-Every visual communicates OWNERSHIP, not scale.
+All Manteis Systems visual media is ABSTRACT, TECHNICAL, and GEOMETRIC. No photographs. No desks. No coffee cups. No workstations. No people (except as geometric outlines). The aesthetic is a classified technical document, a control panel, a blueprint — Swiss Brutalism meets dark-mode sci-fi HUD.
 
-### What Sovereign AI Looks Like
-- YOUR desk, YOUR hardware, YOUR office, YOUR network
-- A single workstation with orange LED glow, a coffee cup, a plant
-- A $8 ESP32 chip next to a $5 bill — "sovereignty down to the silicon"
-- Intimate, owned, personal spaces — NOT corporate, NOT scaled
-- A human hand pressing the approval button — humans in control
-- A fox figurine guarding YOUR workspace
-- Receipts on a desk: $144K/year cloud vs $85K one-time sovereign
+### The Visual Language
+- Dark slate #0D0F12 background with thin white grid lines at 8% opacity
+- Concentric circles, crosshairs, and radar-scope patterns in orange #FF5500
+- Network topology diagrams — hub-and-spoke nodes, thin connecting lines
+- Large faint background numbers (01, 02, 03...) in cream at 15% opacity
+- Monospace technical labels (COMPONENT ID, SPEC, DATA POINT, CLASS)
+- Wireframe geometry — isometric shapes, circuit traces, PCB layouts
+- HUD elements — viewfinder brackets, targeting reticles, coordinate markers
+- Data visualizations — bar charts, waveforms, flowcharts rendered as geometric line art
+- Split compositions for comparison (cloud vs sovereign) divided by thin white lines
+- Zero border radius. Sharp corners everywhere. No organic shapes.
+
+### The Sovereign Side
+- Organized, structured, precise — a single orange node at center with a clean grid of connections
+- Circuit-board aesthetics — energy/data flowing through controlled pathways
+- Perimeter diagrams — rectangular orange boundaries, everything contained inside
+- Architecture stacks — layered rectangles representing compute/storage/orchestration/integration
+
+### The Cloud Side (contrast only)
+- Chaotic, scattered, tangled — blue #007AFF dots and crisscrossing lines with no clear center
+- Feels distant, uncontrolled, rented
+- Cloud ONLY appears as the COLD DISTANT CONTRAST — the thing you're escaping
+- Blue is NEVER used on the sovereign side
 
 ### NEVER Use
+- Photographs of desks, workstations, offices, people, coffee cups, plants
 - Server rooms, data centers, server racks
 - Corporate IT infrastructure at scale
-- Cloud-scale imagery on the sovereign side
-- Anything that says "big enterprise"
+- Anything that says "big enterprise" or "cozy workspace"
 - Gradient text on headings
 - Particle systems, cursor trails, matrix codes
 - Decorative glitches or scanlines on empty space
 - Stock photos of people shaking hands or pointing at screens
+- Organic shapes, soft gradients, glassmorphism, blurred glows
+- ESP32 chips, $8 chip concepts, microcontroller photography — this is NOT a product
 
-### Cloud Imagery
-Cloud ONLY appears as the COLD DISTANT CONTRAST — the thing you're escaping. Blue, clinical, remote, rented. Never on the sovereign side. The cloud is the villain, not the alternative.
+### Reference Images
+The canonical reference images live at:
+`~/Downloads/ManteisSystems Trailer + Product Demo/TRAILER/`
 
-### The Solar Ignition Gradient
-Light is a radiant energy source, not a flat background color. Built by stacking 2-3 vector shapes with progressive blur (100px, 220px, 300px) — never a single flat gradient.
+These 6 images define the visual direction:
+1. "The Grid" — concentric circles on a grid, single orange signal point at center
+2. "The Sovereign Node" — hub-and-spoke network topology, orange center, grey nodes, background number 03
+3. "The Dashboard" — dark mode control panel, grid of data panels with thin borders
+4. "The Perimeter" — rectangular orange boundary, nodes contained inside, blue dots blocked outside
+5. "The Comparison" — split composition: left chaotic blue cloud, right organized orange sovereign
+6. "The Signal" — abstract orange square at center, circuit traces, monospace component labels
+
+Product demo reference images at:
+`~/Downloads/ManteisSystems Trailer + Product Demo/`
+- 1.1.png — 4-layer architecture stack diagram (Integration/Orchestration/Storage/Compute)
+- 3.1.png — Human silhouette in orange box, blue data particles (security/perimeter concept)
+- 4.1.png — Waveform/audio visualization with orange playhead cursor
+- hf_...png — Three wireframe geometric shapes in orange/cream/blue (style variation study)
 
 ### Image Generation Rules
-1. Every prompt specifies: subject, lighting, camera angle, color palette, mood, style
-2. Sovereign aesthetic: intimate, owned, local, personal, powerful-in-small
+1. Every prompt specifies: subject, color palette, geometric style, grid structure
+2. Abstract technical aesthetic: schematics, blueprints, HUD, data visualization — NOT photographic
 3. Test on flow.google.com FIRST — generate 2-3 variations, pick the best
 4. Only send winning prompts to Higgsfield (GPT Image 2 = 2cr, Seedance = 14-23cr)
-5. NO TEXT in generated images — Remotion handles all text
-6. Palette: #0D0F12 black, #FF5500 orange, #007AFF blue (cloud side only), #00D455 green
-7. No serif fonts in any generated image
-8. The power is in the SOFTWARE, not the room
+5. NO TEXT in generated images — Remotion handles all text overlays
+6. Palette: #0D0F12 background, #FF5500 orange signal, #007AFF blue (cloud side only), #F4F3EE cream, #9EA4B0 muted grey
+7. No serif fonts. No photographs. No organic shapes. No desks. No people as real figures.
+8. Grid lines at 8% opacity must appear in every image
+9. Large faint background numbers (cream at 15%) should appear in most images
+10. Monospace technical labels are decorative elements — Remotion adds real text
 
 ---
 
@@ -267,24 +298,7 @@ We don't sell software alone. We sell a BOX. A physical thing that arrives on a 
 - 24-port managed switch — $300
 - 2x UPS 1500VA — $400
 - 8TB NAS (RAID) — $600
-- 5x ESP32-S3 edge AI chips — $40
-- Rack or wall-mount enclosure — $200
-
-**What's running on it:**
-- Everything in Manteis Core PLUS:
-- Full autonomous security operations stack
-- Endpoint agents for fleet security
-- Multi-site monitoring
-- ESP32 edge AI deployments
-- Full disaster recovery with automated failover
-
 **Deployment time:** 5-10 days on-site
-
-#### Manteis Edge — ESP32 Chip
-**For:** Edge AI at the $8 level. Sold individually or as add-on.
-**What it is:** An ESP32-S3 microcontroller in a Manteis-branded case running a 28.9M parameter LLM offline. No server. No cloud. No network. Just a chip.
-
-**The proof point:** "Sovereignty down to the silicon. When the network goes down, the chip still thinks."
 
 ### Proven Hardware Deployments (from actual case studies)
 
@@ -387,47 +401,46 @@ The flagship. For manteis.systems homepage and YouTube channel launch.
 
 [0:38-0:48] Five phase cards animate in sequentially: Phase 1: Automation. Phase 2: IT Operations. Phase 3: Security. Phase 4: Infrastructure. Phase 5: ERP Tooling.
 
-[0:48-0:55] Macro shot: $8 ESP32 chip next to a $5 bill on a dark desk. Orange glow from the chip. Text: "$8 edge AI. Sovereignty down to the silicon."
+[0:48-0:55] Slow push: the grid, the network, the dashboard — all one system. Text: "Your intelligence should be an asset, not a subscription."
 
-[0:55-1:02] Slow push: the workstation, the chip, the dashboard — all on one desk. One person's workspace. Text: "Your intelligence should be an asset, not a subscription."
+[0:55-1:02] Logo reveal: "Manteis Systems" wordmark. Orange bar. URL: manteis.systems
 
-[1:02-1:05] Logo reveal: "Manteis Systems" wordmark. Orange bar. URL: manteis.systems
-
-**Storyboard images needed (6):**
-1. The Sovereign Workstation — establishing shot, dark desk, orange glow, personal office
-2. The Manufacturing Floor — industrial computer on factory floor, warm amber light
-3. The Local Dashboard — laptop screen with sovereign OS, dark room, screen glow
-4. The Local Network (abstract) — small glowing nodes, self-contained, nothing leaves
-5. The Contrast — cloud (cold, distant, blue) vs yours (warm, close, orange)
-6. The $8 Chip — macro photography, ESP32 next to coffee cup, orange glow
+**Storyboard images needed (6 — all abstract technical, matching the reference images):**
+1. The Grid — concentric circles on a dark grid, single orange signal point at center
+2. The Sovereign Node — hub-and-spoke network topology, orange center, grey nodes
+3. The Dashboard — dark mode control panel, grid of data panels with thin borders
+4. The Perimeter — rectangular orange boundary, nodes inside, blue dots blocked outside
+5. The Comparison — split: left chaotic blue cloud, right organized orange sovereign
+6. The Signal — abstract orange square at center, circuit traces, monospace component labels
 
 **Video clips needed (3, Seedance 2.0):**
-1. Workstation waking up — LEDs blink to life, monitor illuminates (5s)
-2. Factory floor intelligence — screen shows workflows executing, camera pans to machinery (5s)
-3. Data staying local — orange particles flowing within closed network boundary (5s)
+1. Grid forming — orange concentric circles drawing themselves on a dark grid background (5s)
+2. Network activating — hub-and-spoke nodes lighting up sequentially from center outward (5s)
+3. Data perimeter closing — orange boundary line drawing around contained nodes (5s)
 
 ### Product Demo Videos (4 x 15-30s)
 For manteis.systems/products/ and YouTube.
 
 **Products to demo (Manteis Systems products ONLY):**
-1. Sovereign AI Starter Kit ($97) — local stack isometric + one-command deploy
-2. Manteis One Appliance — unboxing, plug in, sovereign.local wizard, dashboard
+1. Sovereign AI Starter Kit ($97) — local stack architecture diagram, deployment flow
+2. Manteis One Appliance — unboxing sequence, sovereign.local wizard, dashboard interface
 3. The Sovereign AI Method — 5-phase animated roadmap
-4. Manteis Edge — $8 chip running LLM offline, macro shot
+4. Manteis Core/Fortress — server architecture, security operations, multi-user deployment
 
 **NOT included (Egregore track, do not appear here):**
 - ~~Bio-Tactical Neural Countermeasures~~ (Egregore: Breathwork)
 - ~~Kybalion Tactical~~ (Egregore: Kybalion)
 - ~~Sewa Kundalini Teachings~~ (Egregore: Sewa)
+- ~~Manteis Edge / ESP32 $8 chip~~ (not a real product — removed)
 
 ### Social Content (30 assets/month)
 
 **Series A: "Own It" (10 assets)**
-1. Rented vs owned desk split
-2. Subscription avalanche (receipts piling up)
-3. Your fortress perimeter (personal workspace with orange barrier)
-4. The deed (ownership document on a desk)
-5. The $8 revelation (chip vs $5 bill)
+1. Rented vs owned — abstract split: chaotic blue cloud vs organized orange grid
+2. Subscription avalanche — blue lines stacking vs single orange line
+3. Your fortress perimeter — orange boundary, contained nodes, blocked blue dots
+4. The deed — abstract document with orange seal, technical spec sheet
+5. The signal — single orange node at center of a grid, powerful and contained
 6-10. Vertical reformats with tighter crops
 
 **Series B: Case Study Highlights (10 assets)**
@@ -439,11 +452,11 @@ For manteis.systems/products/ and YouTube.
 6-10. Vertical reformats
 
 **Series C: Product Promos (10 assets)**
-1. The sovereign stack (isometric desk scene)
-2. The sovereign operator (person at their desk, AI running locally)
-3. The box (Manteis One unboxing moment)
-4. The chip (Manteis Edge macro shot)
-5. The fox on YOUR desk (fox figurine guarding workspace)
+1. The sovereign stack — isometric 4-layer architecture diagram
+2. The sovereign operator — geometric human silhouette with orange perimeter
+3. The architecture — wireframe stack diagram with orange signal points
+4. The perimeter — orange boundary with contained network nodes
+5. The crosshair — concentric circles matching the RJ monogram from the site
 6-10. Vertical reformats
 
 ### YouTube Educational Content (Weekly)
@@ -462,7 +475,7 @@ For manteis.systems/products/ and YouTube.
 
 **Week 4: Case Studies**
 - Video 7: "How We Automated a 200-Person Manufacturer with Zero Cloud" (15 min) — anonymized, real metrics
-- Video 8: "$8 Edge AI: Running an LLM on a Microcontroller" (8 min) — ESP32 demo
+- Video 8: "Sovereign AI vs Cloud AI: The 3-Year Cost Breakdown" (10 min) — real numbers, real comparison
 
 **Ongoing weekly:**
 - Sovereign AI how-tos
