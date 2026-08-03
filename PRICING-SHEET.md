@@ -4,109 +4,160 @@
 
 ---
 
-## Hardware Products
+## Engagement Model
 
-| Tier | Price | Target Market |
-|------|-------|---------------|
-| **Starter** | $3,995 | Solo practitioners, small business, developers |
-| **Professional** | $12,995 | Mid-market, clinics, agencies, schools |
-| **Enterprise** | $24,995 | Healthcare systems, government, defense, enterprise |
+Manteis Systems operates on a **consultative engagement model**. Every deployment is scoped to the client's budget, timeline, and requirements. We don't believe in one-size-fits-all pricing — we build solutions that fit.
 
-**Hardware includes:**
-- Pre-configured sovereign AI stack (Ollama, Hermes, ChromaDB, n8n)
-- Docker Compose setup
-- 30-90 day support
-- Documentation and training
-
-**Add-ons:**
-- Extended warranty: $995-$2,995/year
-- Additional GPU: $2,500-$5,000
-- Remote management: $500/month
-- On-site training: $2,500/day
+**How it works:**
+1. Discovery call to understand needs, constraints, and budget
+2. Custom proposal with phased approach
+3. Engagement structured around deliverables, not arbitrary tiers
+4. Flexible payment terms aligned to milestones
 
 ---
 
-## Consulting Services
+## Service Categories
 
-| Service | Price | Notes |
-|---------|-------|-------|
-| **AI Strategy Assessment** | $5,000-$15,000 | 2-4 week engagement, deliverables: roadmap, architecture doc, ROI analysis |
-| **Infrastructure Deployment** | $25,000-$150,000 | Full sovereign AI deployment, hardware + software + training |
-| **Custom Development** | $150-$250/hour | Custom AI agents, integrations, automation |
-| **Security Audit** | $10,000-$30,000 | Zero Trust assessment, SOC 2 prep, penetration testing |
-| **Education/Training** | $5,000-$25,000 | Team training, workshops, certification prep |
+### 1. Sovereign AI Deployment
+**What it includes:**
+- Hardware procurement and configuration
+- Software stack deployment (Ollama, ChromaDB, n8n, Docker, Hermes)
+- Network setup and security hardening
+- Team training and documentation
+- 30-90 day post-deployment support
 
----
+**Typical investment ranges:**
+- **Pilot/Starter:** $15,000-$50,000 — single workflow, small team, Mac Mini/compact hardware
+- **Standard:** $50,000-$150,000 — multi-workflow deployment, mid-market hardware, 5-20 users
+- **Enterprise:** $150,000-$500,000+ — full sovereign stack, enterprise hardware, 50+ users, custom development
 
-## Maintenance & Support
-
-| Tier | Monthly | Response Time | Includes |
-|------|---------|---------------|----------|
-| **Essential** | $1,000 | 24 hours | Email support, monthly health checks, software updates |
-| **Professional** | $2,000 | 4 hours | Priority support, weekly health checks, quarterly review |
-| **Enterprise** | $3,000 | 1 hour | 24/7 on-call, daily health checks, monthly strategy, custom SLA |
-
----
-
-## Cloud SaaS — Manteis Cloud
-
-| Tier | Monthly | Annual | Includes |
-|------|---------|--------|----------|
-| **Starter** | $99 | $990 | 1 user, 10GB storage, basic models, email support |
-| **Professional** | $249 | $2,490 | 5 users, 100GB storage, advanced models, priority support |
-| **Enterprise** | $499 | $4,990 | 20 users, 500GB storage, custom models, 24/7 support, SLA |
-
-**Overage pricing:**
-- Additional storage: $10/GB/month
-- Additional compute: $0.50/GPU-hour
-- Custom model training: $500-$5,000/model
+**What drives cost:**
+- Number of workflows/use cases
+- Hardware requirements
+- Integration complexity
+- Custom development needs
+- Support and training scope
 
 ---
 
-## Education
+### 2. AI Automation & Integration
+**What it includes:**
+- Workflow automation design and implementation
+- Custom AI agent development
+- System integrations (ERP, CRM, DAM, MDM, etc.)
+- MCP server development
+- n8n workflow automation
 
-| Product | Price | Notes |
-|---------|-------|-------|
-| **Sovereign AI 101** | Free | Lead magnet, email course |
-| **Deploying Ollama in Production** | $99 | Self-paced course |
-| **Building AI Agents with Hermes** | $199 | Self-paced course |
-| **Zero Trust AI Architecture** | $299 | Self-paced course |
-| **Sovereign AI for Enterprise IT** | $499 | Self-paced course |
-| **Certification** | $999 | Manteis Certified Sovereign AI Engineer |
-| **Enterprise Training** | $5,000-$25,000 | Custom on-site or virtual training |
+**Typical investment ranges:**
+- **Single workflow:** $5,000-$15,000
+- **Multi-workflow package:** $25,000-$75,000
+- **Enterprise automation:** $75,000-$250,000+
+
+**What drives cost:**
+- Number of workflows
+- Integration complexity
+- Custom agent development
+- Training and fine-tuning requirements
 
 ---
 
-## Bundles
+### 3. Security & Compliance
+**What it includes:**
+- Zero Trust architecture design
+- SOC 2/HIPAA/compliance assessment
+- Security hardening
+- Elastic Stack SIEM deployment
+- Autonomous SOC implementation
 
-| Bundle | Price | Savings | Includes |
-|--------|-------|---------|----------|
-| **Starter Kit + Training** | $4,995 | $1,000 | Starter hardware + Sovereign AI 101 + Ollama course |
-| **Professional Kit + Training** | $14,995 | $3,000 | Professional hardware + all 4 courses + certification |
-| **Enterprise Kit + Training** | $29,995 | $5,000 | Enterprise hardware + all 4 courses + certification + on-site training |
-| **Sovereign AI in a Box** | $49,995 | $10,000 | Enterprise hardware + Professional maintenance (1 year) + all courses + certification + setup |
+**Typical investment ranges:**
+- **Security Assessment:** $10,000-$30,000
+- **SIEM Deployment:** $25,000-$100,000
+- **Full SOC Implementation:** $100,000-$300,000+
+
+---
+
+### 4. Managed Services & Support
+**What it includes:**
+- Ongoing infrastructure management
+- Proactive monitoring and maintenance
+- Security updates and patches
+- Strategic guidance and optimization
+- Priority support
+
+**Typical monthly investment:**
+- **Essential:** $1,000-$2,000/month — email support, monthly health checks, software updates
+- **Professional:** $2,000-$5,000/month — priority support, weekly health checks, quarterly reviews
+- **Enterprise:** $5,000-$15,000/month — 24/7 on-call, daily monitoring, monthly strategy, custom SLA
+
+**What drives cost:**
+- Number of systems/devices managed
+- Support response time requirements
+- Monitoring and alerting scope
+- On-site vs. remote support
+
+---
+
+### 5. Education & Training
+**What it includes:**
+- Team training on sovereign AI stack
+- Workflow development workshops
+- Certification preparation
+- Custom training materials
+
+**Typical investment:**
+- **Workshop (1 day):** $5,000-$10,000
+- **Training package (1 week):** $15,000-$30,000
+- **Enterprise training (ongoing):** $30,000-$100,000+
+
+---
+
+### 6. Hardware Procurement & Configuration
+**What it includes:**
+- Hardware sourcing and procurement
+- Configuration and setup
+- Testing and validation
+- Documentation and handoff
+
+**Hardware options:**
+- **Compact/Mac Mini class:** $3,000-$8,000 hardware + $1,500-$3,000 configuration
+- **Tower/Workstation class:** $8,000-$25,000 hardware + $3,000-$8,000 configuration
+- **Enterprise/Rackmount class:** $25,000-$100,000+ hardware + $8,000-$20,000 configuration
+- **Custom builds:** Scoped per requirements
+
+**Note:** We source hardware based on client requirements and budget. We work with multiple suppliers to get the best value. Hardware costs are passed through at cost + configuration fee.
+
+---
+
+## Retainer Models
+
+For ongoing support and maintenance, we offer flexible retainer arrangements:
+
+| Model | Monthly Range | Includes |
+|-------|---------------|----------|
+| **Essential** | $1,000-$2,000 | Email support, monthly health checks, software updates |
+| **Professional** | $2,000-$5,000 | Priority support, weekly health checks, quarterly reviews, education platform access |
+| **Enterprise** | $5,000-$15,000 | 24/7 on-call, daily monitoring, monthly strategy sessions, custom SLA, hardware discounts |
 
 ---
 
 ## Payment Terms
 
+- **Consulting/Implementation:** 50% deposit, 25% at milestone 1, 25% at completion
 - **Hardware:** 50% deposit, 50% on delivery
-- **Consulting:** Net 30, monthly invoicing for ongoing engagements
-- **Maintenance:** Monthly auto-pay via Stripe
-- **SaaS:** Monthly or annual subscription via Stripe/Lemon Squeezy
-- **Education:** One-time payment via Stripe
+- **Managed Services:** Monthly auto-pay via Stripe
+- **Training:** 50% deposit, 50% on delivery
+- **Enterprise contracts:** Custom terms based on scope and duration
 
 ---
 
-## Enterprise Custom Pricing
+## Getting Started
 
-For engagements over $100K, we offer:
-- Custom pricing based on scope
-- Multi-year contracts with volume discounts
-- Dedicated account management
-- Custom SLA and support terms
+1. **Book a discovery call** — we discuss your needs, constraints, and budget
+2. **Receive a custom proposal** — scoped to your requirements with clear deliverables and timeline
+3. **Flexible engagement** — we structure the engagement around your budget and timeline
+4. **Deliver results** — we build, deploy, and train, then hand off or continue as managed services
 
-Contact: rhett@manteis.systems
+**Contact:** rhett@manteis.systems
 
 ---
 
