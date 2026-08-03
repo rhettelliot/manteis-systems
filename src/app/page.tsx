@@ -167,7 +167,7 @@ function Nav() {
     { label: "Assessment", href: "#assessment" },
     { label: "Services", href: "#services" },
     { label: "Sovereign Node", href: "#node" },
-    { label: "Case Study", href: "#case-study" },
+    { label: "Case Studies", href: "#case-studies" },
     { label: "Products", href: "/products" },
     { label: "Contact", href: "#contact" },
   ];
@@ -617,28 +617,32 @@ function SovereignNode() {
             </h2>
             <p className="font-body text-lg text-[--color-ink-2] leading-[1.7] max-w-[55ch]">
               A dedicated local server running private inference, persistent vector memory, and custom agents.
-              Every query stays on your machine.
+              Every query stays on your machine. Scaled from a compact desktop unit to a full enterprise rack —
+              built around your budget and your operational reality.
             </p>
           </div>
 
           <div className="col-span-12 md:col-span-7 flex flex-col">
             <div className="flex-1 p-6 md:p-10 border-b border-[--color-border] flex flex-col justify-center">
-              <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Sovereign Node pricing</p>
+              <p className="font-body text-[13px] text-[--color-ink-3] mb-6">What's on the box</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
                 {[
-                  { name: "Starter", price: "$2,500", note: "4 agents · 1 model" },
-                  { name: "Professional", price: "$5,000", note: "10 agents · 3 models" },
-                  { name: "Enterprise", price: "$7,500", note: "Unlimited agents" },
+                  { name: "Compact", note: "Desktop-class · 4 agents · 1 model", desc: "For small teams and solo operators" },
+                  { name: "Professional", note: "Tower-class · 10 agents · 3 models", desc: "For mid-market and growing operations" },
+                  { name: "Enterprise", note: "Rack-class · Unlimited agents", desc: "For regulated and large-scale deployments" },
                 ].map((t, idx) => (
                   <div key={t.name} className="bg-[--color-canvas] p-5 md:p-6 group hover:bg-[--color-surface] transition-colors">
-                    <span className="font-body text-[13px] text-[--color-ink-3] block mb-3">0{idx + 1}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mb-3">{String(idx + 1).padStart(2, "0")}</span>
                     <span className="font-body text-[15px] font-semibold text-[--color-ink] block">{t.name}</span>
-                    <span className="font-display text-[32px] font-semibold text-[--color-signal] tracking-[-0.02em] block mt-1">{t.price}</span>
                     <span className="font-body text-[13px] text-[--color-ink-3] block mt-2">{t.note}</span>
-                    <span className="font-body text-[13px] text-[--color-ink-3] block mt-1">$2,000/mo managed</span>
+                    <span className="font-body text-[14px] text-[--color-ink-2] block mt-3">{t.desc}</span>
                   </div>
                 ))}
               </div>
+              <p className="font-body text-[14px] text-[--color-ink-3] mt-6 max-w-[60ch]">
+                Every engagement is scoped to your budget, timeline, and requirements. From a single workflow pilot
+                to a full enterprise rollout — the architecture scales, the cost flexes, the sovereignty stays absolute.
+              </p>
             </div>
 
             <div className="p-6 md:p-10">
@@ -664,55 +668,157 @@ function SovereignNode() {
   );
 }
 
-// ─── CASE STUDY ─────────────────────────────────────────────────────────
-function CaseStudy() {
+// ─── CASE STUDIES ─────────────────────────────────────────────────────
+const CASE_STUDIES = [
+  {
+    sector: "Manufacturing",
+    size: "200+ employees",
+    location: "Pacific Northwest",
+    summary:
+      "A footwear manufacturer and retailer needed full-stack AI automation across supply chain, IT operations, and security — without sending proprietary data to the cloud.",
+    what_built:
+      "On-prem sovereign AI platform with 15+ Docker services, 15+ n8n workflows, an autonomous IT support agent that triages and resolves Jira tickets, and an Elastic Stack security operations center with AI-powered threat detection.",
+    metrics: [
+      { v: "70%", l: "Reduction in manual processing time" },
+      { v: "15+", l: "Automated workflows deployed" },
+      { v: "0", l: "Cloud AI spend" },
+      { v: "300%+", l: "Year 1 ROI" },
+    ],
+    deployment: "Live",
+    deployed_date: "2026",
+  },
+  {
+    sector: "Religious Organization",
+    size: "500+ employees",
+    location: "Seattle, WA",
+    summary:
+      "A multi-site religious organization with parishes and schools needed to modernize support, manage decades of media archives, and build a security posture — all with a small IT team.",
+    what_built:
+      "Three distinct AI systems: a Microsoft Copilot Studio support agent for their custom ParishStaq application, a custom computer vision pipeline that auto-tags and searches decades of media archives with facial recognition, and an Elastic Stack + Claude AI security monitoring platform with automated threat triage.",
+    metrics: [
+      { v: "80%", l: "Reduction in manual asset tagging time" },
+      { v: "95%", l: "Accuracy in automated tagging" },
+      { v: "10K+", l: "Assets tagged in first week" },
+      { v: "24/7", l: "Security monitoring with 1 FTE" },
+    ],
+    deployment: "Live",
+    deployed_date: "2026",
+  },
+  {
+    sector: "Construction & Remodeling",
+    size: "25 employees",
+    location: "Pacific Northwest",
+    summary:
+      "A custom home renovation company was losing hours every week to manual project estimation, siloed documentation, and slow client communication.",
+    what_built:
+      "A Mac Mini M2 Pro Sovereign Node running Ollama, Hermes Agent, and ChromaDB. AI-powered estimation engine analyzes past project data to generate accurate quotes in minutes. Automated client communication via n8n. Full semantic search across all project documents.",
+    metrics: [
+      { v: "60%", l: "Reduction in estimation time" },
+      { v: "3 hrs", l: "Per week recovered per employee" },
+      { v: "$50K+", l: "Labor savings in first 6 months" },
+      { v: "2.1 mo", l: "Payback period" },
+    ],
+    deployment: "Live",
+    deployed_date: "Q1 2026",
+  },
+  {
+    sector: "Religious Organization",
+    size: "500+ employees",
+    location: "Pacific Northwest",
+    summary:
+      "A religious organization needed enterprise-grade security monitoring and digital asset management but couldn't afford a dedicated SOC team or media tagging staff.",
+    what_built:
+      "Elastic Stack security platform with Claude AI integration for automated threat detection and triage. Custom AI engine for Extensis Portfolio DAM with computer vision tagging, description generation, and semantic search. 150+ custom security detection rules tuned for nonprofit threat landscape.",
+    metrics: [
+      { v: "90%", l: "Reduction in false positives" },
+      { v: "80%", l: "Reduction in manual log analysis" },
+      { v: "<100ms", l: "Semantic search latency" },
+      { v: "$30K", l: "Annual labor cost saved" },
+    ],
+    deployment: "Live",
+    deployed_date: "2026",
+  },
+  {
+    sector: "Manufacturing & Retail",
+    size: "100-500 employees",
+    location: "Pacific Northwest",
+    summary:
+      "A footwear manufacturer wanted to modernize a legacy A2000 ERP system and build intelligent frontends without ripping out their existing backend.",
+    what_built:
+      "Natural language ERP interface so users describe what they need in plain language. AI pre-fills and validates data entry. Modern web frontends on top of legacy backend. Automated custom reporting. Autonomous IT agent that monitors printer fleet, predicts supply depletion, and generates proactive maintenance tickets.",
+    metrics: [
+      { v: "70%", l: "Reduction in manual processing" },
+      { v: "Same-day", l: "Customer response (was same-day, now within-the-hour)" },
+      { v: "0", l: "Bytes of proprietary data sent externally" },
+      { v: "15+", l: "Docker services in production" },
+    ],
+    deployment: "Live",
+    deployed_date: "2026",
+  },
+];
+
+function CaseStudies() {
+  const [active, setActive] = useState(0);
+  const cs = CASE_STUDIES[active];
+
   return (
-    <section id="case-study" className="relative border-t border-[--color-border]">
+    <section id="case-studies" className="relative border-t border-[--color-border]">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
-        <div className="col-span-12 md:col-span-4 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-between">
-          <div>
-            <p className="font-body text-[15px] text-[--color-ink-3] mb-4">Case Study</p>
-            <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] max-w-[40ch]">
-              PNW contractor · anonymized · live deployment
-            </p>
+        <div className="col-span-12 md:col-span-3 p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
+          <p className="font-body text-[15px] text-[--color-ink-3]">Case Studies</p>
+        </div>
+        <div className="col-span-12 md:col-span-9 p-6 md:p-10 flex flex-col justify-center border-b border-[--color-border]">
+          <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink]">
+            Five deployments. One philosophy.
+          </h2>
+          <p className="font-body text-lg text-[--color-ink-2] leading-[1.65] max-w-[65ch] mt-4">
+            From a 25-person remodeling firm to a 500-employee religious organization. Every client anonymized,
+            every result real. The pattern is always the same: sovereign infrastructure, local intelligence, zero cloud dependency.
+          </p>
+        </div>
+      </div>
+
+      {/* Tab selector */}
+      <div className="max-w-7xl mx-auto flex flex-wrap border-b border-[--color-border]">
+        {CASE_STUDIES.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={`px-6 py-4 font-body text-[13px] md:text-[14px] border-r border-[--color-border] last:border-r-0 transition-colors text-left max-w-[200px] md:max-w-none ${
+              i === active ? "bg-[--color-surface] text-[--color-ink] border-b-2 border-b-[--color-signal]" : "text-[--color-ink-3] hover:text-[--color-ink-2]"
+            }`}
+          >
+            <span className="font-body text-[11px] text-[--color-ink-3] block">{String(i + 1).padStart(2, "0")}</span>
+            {c.sector}
+          </button>
+        ))}
+      </div>
+
+      {/* Active case study */}
+      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
+        <div className="col-span-12 md:col-span-5 p-6 md:p-10 border-r border-[--color-border]">
+          <p className="font-body text-[13px] text-[--color-ink-3] mb-2">{cs.size} · {cs.location}</p>
+          <h3 className="text-[clamp(22px,3vw,34px)] leading-[1.15] tracking-[-0.02em] font-semibold text-[--color-ink] mb-6">
+            {cs.sector}
+          </h3>
+          <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] mb-6">{cs.summary}</p>
+          <p className="font-body text-[14px] text-[--color-ink-2] leading-[1.7] mb-6">{cs.what_built}</p>
+          <div className="flex items-center gap-3 mt-4">
+            <span className="w-2 h-2 bg-[--color-signal] animate-pulse" />
+            <span className="font-body text-[14px] font-semibold text-[--color-signal]">Deployment: {cs.deployment}</span>
+            <span className="font-body text-[13px] text-[--color-ink-3] ml-2">{cs.deployed_date}</span>
           </div>
         </div>
 
-        <div className="col-span-12 md:col-span-8 p-6 md:p-10 flex flex-col justify-center">
-          <blockquote className="text-[clamp(28px,4vw,48px)] leading-[1.15] tracking-[-0.03em] font-semibold text-[--color-ink] mb-10 max-w-[75ch]">
-            &ldquo;They don&apos;t need another app.
-            <span className="text-[--color-ink-3]"> They need an Agent.&rdquo;</span>
-          </blockquote>
-
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-7 flex flex-col gap-5">
-              <p className="font-body text-[17px] text-[--color-ink-2] leading-[1.7] max-w-[65ch]">
-                The owner was losing 3+ hours a week to repetitive overhead: copying estimates,
-                chasing email threads, and manually updating job status across disconnected tools.
-              </p>
-              <p className="font-body text-[17px] text-[--color-ink-2] leading-[1.7] max-w-[65ch]">
-                A single Sovereign Node now handles client intake, quote follow-ups, project updates,
-                and communication coordination — locally, privately, without new cloud subscriptions.
-              </p>
-              <div className="flex items-center gap-3 mt-2">
-                <span className="w-2 h-2 bg-[--color-signal] animate-pulse" />
-                <span className="font-body text-[14px] font-semibold text-[--color-signal]">Deployment: Live</span>
+        <div className="col-span-12 md:col-span-7 p-6 md:p-10">
+          <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Results</p>
+          <div className="grid grid-cols-2 gap-0 border-t border-l border-[--color-border]">
+            {cs.metrics.map((m) => (
+              <div key={m.l} className="p-5 md:p-6 border-r border-b border-[--color-border]">
+                <div className="text-[clamp(28px,4vw,44px)] font-semibold text-[--color-ink] tracking-[-0.02em] leading-none">{m.v}</div>
+                <div className="font-body text-[13px] text-[--color-ink-3] mt-2 leading-[1.5]">{m.l}</div>
               </div>
-            </div>
-
-            <div className="col-span-12 md:col-span-5 md:border-l md:border-[--color-border] md:pl-8 flex flex-col gap-6">
-              {[
-                { v: "3 hrs", l: "Per week recovered" },
-                { v: "0", l: "Cloud subscriptions added" },
-                { v: "1", l: "Sovereign Node provisioned" },
-                { v: "Q1 2026", l: "Deployment date" },
-              ].map((m) => (
-                <div key={m.l}>
-                  <div className="text-3xl font-semibold text-[--color-ink] tracking-[-0.02em]">{m.v}</div>
-                  <div className="font-body text-[13px] text-[--color-ink-3] mt-1">{m.l}</div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -770,6 +876,14 @@ function Architect() {
           <p className="font-body text-[15px] text-[--color-ink-3] leading-[1.7] max-w-[55ch]">
             Specializing in: local AI infrastructure · zero-trust security · agent automation · fleet management.
           </p>
+          <div className="flex items-center gap-4 mt-6">
+            <a href="https://www.linkedin.com/in/rhettjohnson" target="_blank" rel="noopener noreferrer" className="font-body text-[14px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
+              LinkedIn
+            </a>
+            <a href="mailto:rhett@manteis.systems" className="font-body text-[14px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
+              Email
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -1025,7 +1139,7 @@ function Contact() {
           </div>
         </div>
 
-        <p className="font-body text-[13px] text-[--color-ink-3] text-center mt-8">Standard: $2,500–$7,500 · Non-profit: $1,500–$3,000</p>
+        <p className="font-body text-[13px] text-[--color-ink-3] text-center mt-8">From small business to enterprise — every engagement is scoped to your budget, timeline, and requirements.</p>
       </div>
     </section>
   );
@@ -1039,10 +1153,15 @@ function Footer() {
         <span className="font-body text-[13px] text-[--color-ink-3]">
           Manteis Systems · AI Infrastructure Consulting · Seattle, WA
         </span>
-        <a href="mailto:rhett@manteis.systems" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
-          rhett@manteis.systems
-        </a>
-        <span className="font-body text-[13px] text-[--color-ink-3]">© 2026</span>
+        <div className="flex items-center gap-6">
+          <a href="mailto:rhett@manteis.systems" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
+            rhett@manteis.systems
+          </a>
+          <a href="https://www.linkedin.com/in/rhettjohnson" target="_blank" rel="noopener noreferrer" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
+            LinkedIn
+          </a>
+        </div>
+        <span className="font-body text-[13px] text-[--color-ink-3]">&copy; 2026</span>
       </div>
     </footer>
   );
@@ -1057,7 +1176,7 @@ export default function HomePage() {
       <Assessment />
       <Services />
       <SovereignNode />
-      <CaseStudy />
+      <CaseStudies />
       <Architect />
       <FreeResource />
       <Contact />
