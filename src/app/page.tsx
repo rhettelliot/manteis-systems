@@ -740,7 +740,7 @@ function Architect() {
               { v: "25", l: "Years enterprise IT" },
               { v: "15+", l: "Docker containers managed" },
               { v: "30+", l: "n8n workflows automated" },
-              { v: "9", l: "Music releases (range matters)" },
+              { v: "9", l: "Music releases" },
             ].map((s) => (
               <div key={s.l}>
                 <span className="font-display text-[28px] font-semibold text-[--color-ink] tracking-[-0.02em]">{s.v}</span>
