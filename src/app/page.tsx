@@ -145,8 +145,20 @@ const GUIDE_SECTIONS = [
   "Cost Analysis: Sovereign vs Cloud — the 3-year economics",
   "Deployment Roadmap — a 6-week implementation plan",
   "The Manteis Engagement Model — audit, deploy, manage",
-  "Decision Framework — should your organization go sovereign?",
+  "Decision Framework — is sovereign AI right for you?",
 ];
+
+// ─── SECTION MARKER — one index per section, 01→08 ──────────────────────
+// Compact variant for full-bleed sections; the numbered rail (Assessment,
+// Services, Case Study) uses the large display-num treatment instead.
+function SectionMarker({ num, label, className = "" }: { num: string; label: string; className?: string }) {
+  return (
+    <div className={`flex items-baseline gap-3 ${className}`}>
+      <span className="display-num text-[32px] md:text-[40px] !leading-none">{num}</span>
+      <p className="font-body text-[13px] text-[--color-ink-3]">/ {label}</p>
+    </div>
+  );
+}
 
 // ─── NAV ──────────────────────────────────────────────────────────────────
 function Nav() {
@@ -154,9 +166,9 @@ function Nav() {
   const links = [
     { label: "Assessment", href: "#assessment" },
     { label: "Services", href: "#services" },
-    { label: "Products", href: "/products" },
-    { label: "Node", href: "#node" },
+    { label: "Sovereign Node", href: "#node" },
     { label: "Case Study", href: "#case-study" },
+    { label: "Products", href: "/products" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -168,15 +180,15 @@ function Nav() {
       </a>
 
       {/* Desktop links */}
-      <div className="hidden md:flex items-center gap-8">
+      <div className="hidden md:flex items-center gap-5 lg:gap-8">
         {links.map((l) => (
-          <a key={l.label} href={l.href} className="font-body text-[13px] text-[--color-ink-2] hover:text-[--color-signal] transition-colors">
+          <a key={l.label} href={l.href} className="font-body text-[13px] whitespace-nowrap text-[--color-ink-2] hover:text-[--color-signal] transition-colors">
             {l.label}
           </a>
         ))}
       </div>
 
-      <span className="meta hidden lg:block">SEATTLE · 47.6062°N 122.3321°W</span>
+      <span className="font-body text-[13px] text-[--color-ink-3] hidden xl:block">Seattle, WA</span>
 
       {/* Mobile hamburger */}
       <button
@@ -217,9 +229,9 @@ function Hero() {
       <div className="solar-glow" style={{ width: 720, height: 720, bottom: -240, right: -180 }} />
       <Rings className="absolute top-24 left-[-120px] w-[420px] h-[420px] opacity-70 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto min-h-[calc(100vh-56px)] grid grid-cols-12 gap-0">
-        <div className="col-span-12 md:col-span-7 flex flex-col justify-end p-6 md:p-10 border-r border-[--color-border]">
-          <motion.p {...fadeUp} className="meta mb-8">MNTS-CON-001 · CONVERSION EDITION · 2026</motion.p>
+      <div className="relative z-10 max-w-7xl mx-auto md:min-h-[calc(100vh-56px)] grid grid-cols-12 gap-0">
+        <div className="col-span-12 md:col-span-7 flex flex-col justify-center md:justify-end pt-16 pb-12 px-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
+          <motion.p {...fadeUp} className="font-body text-[15px] text-[--color-ink-3] mb-8">Seattle, WA · 2026</motion.p>
 
           <motion.h1
             initial={{ opacity: 1, y: 32 }}
@@ -240,8 +252,8 @@ function Hero() {
             transition={{ ...fadeUp.transition, delay: 0.2 }}
             className="font-body text-lg md:text-xl text-[--color-ink-2] leading-[1.6] max-w-[58ch] mt-8 mb-10"
           >
-            25+ years of enterprise IT, deployed as private AI, automation, and
-            zero-trust security for Seattle-area businesses.
+            Private AI, agent automation, and zero-trust security for Seattle-area
+            businesses — built on 25 years of enterprise IT.
           </motion.p>
 
           <motion.div
@@ -259,12 +271,13 @@ function Hero() {
         </div>
 
         <div className="col-span-12 md:col-span-5 relative flex flex-col">
-          <div className="flex-1 flex items-center justify-center border-b border-[--color-border]">
+          <div className="py-10 md:py-0 md:flex-1 flex flex-col items-center justify-center border-b border-[--color-border]">
             <span className="display-num">25</span>
+            <span className="font-body text-[13px] text-[--color-ink-3] mt-3">Years in enterprise IT</span>
           </div>
 
           <div className="p-6 md:p-10 border-b border-[--color-border]">
-            <p className="meta mb-4">YEARS ENTERPRISE IT</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mb-4">Practice</p>
             <div className="grid grid-cols-2 gap-y-3 gap-x-6">
               {[
                 { k: "Location", v: "Seattle, WA" },
@@ -273,7 +286,7 @@ function Hero() {
                 { k: "Status", v: "Accepting clients" },
               ].map((row) => (
                 <div key={row.k} className="flex flex-col">
-                  <span className="meta">{row.k}</span>
+                  <span className="font-body text-[13px] text-[--color-ink-3]">{row.k}</span>
                   <span className="font-body text-[15px] text-[--color-ink] font-medium">{row.v}</span>
                 </div>
               ))}
@@ -281,8 +294,7 @@ function Hero() {
           </div>
 
           <div className="p-6 md:p-10 flex items-end justify-between">
-            <span className="display-num text-[80px] md:text-[120px] !leading-none">01</span>
-            <span className="meta max-w-[100px] text-right">SYSTEMS CONSULTANCY EDITION 2026</span>
+            <span className="font-body text-[15px] text-[--color-ink-3] max-w-[110px] text-right">Private AI infrastructure</span>
           </div>
         </div>
       </div>
@@ -368,25 +380,24 @@ function Assessment() {
     <section id="assessment" className="relative border-t border-[--color-border]">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
         <div className="col-span-12 md:col-span-3 p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
-          <span className="display-num text-[64px] md:text-[96px] !leading-none">02</span>
-          <p className="meta mt-4">AI READINESS</p>
+          <p className="font-body text-[15px] text-[--color-ink-3]">AI Readiness Assessment</p>
         </div>
         <div className="col-span-12 md:col-span-9 p-6 md:p-10 flex flex-col justify-center border-b border-[--color-border]">
           <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink]">
             Find your AI readiness tier.
           </h2>
           <p className="font-body text-lg text-[--color-ink-2] leading-[1.65] max-w-[65ch] mt-4">
-            Five questions. Instant score. Personalized recommendation. No backend required.
+            Five questions. An instant score, and a recommendation you can act on.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
-        <div className="col-span-12 md:col-span-8 p-6 md:p-10 border-r border-[--color-border]">
+        <div className="col-span-12 md:col-span-8 p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
           {!showResults ? (
             <div className="max-w-2xl">
               <div className="flex items-center justify-between mb-6">
-                <span className="meta">QUESTION 0{currentQIndex + 1} / 05</span>
+                <span className="font-body text-[13px] text-[--color-ink-3]">Question {currentQIndex + 1} of 5</span>
                 <div className="flex gap-1">
                   {ASSESSMENT_QUESTIONS.map((_, i) => (
                     <div
@@ -435,11 +446,11 @@ function Assessment() {
             >
               <div className="flex items-end gap-6 mb-6">
                 <div>
-                  <span className="meta block mb-2">READINESS SCORE</span>
+                  <span className="font-body text-[13px] text-[--color-ink-3] block mb-2">Readiness score</span>
                   <span className="font-display text-[clamp(72px,10vw,140px)] leading-[0.85] font-semibold text-[--color-signal] tracking-[-0.05em]">{score}</span>
                 </div>
                 <div className="pb-4">
-                  <span className="meta block mb-1">TIER</span>
+                  <span className="font-body text-[13px] text-[--color-ink-3] block mb-1">Tier</span>
                   <span className={`font-body text-2xl font-semibold ${tier.color}`}>{tier.label}</span>
                 </div>
               </div>
@@ -496,7 +507,7 @@ function Assessment() {
         </div>
 
         <div className="col-span-12 md:col-span-4 p-6 md:p-10 flex flex-col justify-center">
-          <p className="meta mb-6">HOW SCORING WORKS</p>
+          <p className="font-body text-[13px] text-[--color-ink-3] mb-6">How scoring works</p>
           <ul className="flex flex-col gap-4">
             {[
               { v: "0–34", l: "Exploring: pilot-ready, low risk" },
@@ -520,24 +531,18 @@ function Assessment() {
 function Services() {
   const services = [
     {
-      num: "03",
       title: "AI Infrastructure",
-      rate: "$350/hr",
-      desc: "Private LLMs, agent orchestration, and vector memory on hardware you own. No API keys. No egress.",
+      desc: "Private LLMs, agent orchestration, and persistent vector memory on hardware you own. No API keys. No egress.",
       points: ["Sovereign Node provisioning", "Agent orchestration", "Vector memory architecture"],
     },
     {
-      num: "04",
       title: "Security & Compliance",
-      rate: "$350/hr",
-      desc: "ZTNA, endpoint hardening, MDM governance, and SANS-aligned audits for regulated operations.",
+      desc: "ZTNA, endpoint hardening, MDM governance, and compliance-ready architecture for regulated operations.",
       points: ["Zero-trust network access", "Endpoint protection", "Compliance-ready infra"],
     },
     {
-      num: "05",
       title: "Automation & Fleet",
-      rate: "$350/hr",
-      desc: "Fleet management and workflow automation across Intune, Jamf Pro, M365, AD, Docker, and n8n.",
+      desc: "Workflow automation across Intune, Jamf Pro, M365, AD, Docker, and n8n — from pilot to fleet-wide rollout.",
       points: ["Infrastructure automation", "Container orchestration", "MDM fleet management"],
     },
   ];
@@ -546,8 +551,7 @@ function Services() {
     <section id="services" className="relative border-t border-[--color-border]">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
         <div className="col-span-12 md:col-span-3 p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border]">
-          <span className="display-num text-[64px] md:text-[96px] !leading-none">03</span>
-          <p className="meta mt-4">SERVICES</p>
+          <p className="font-body text-[15px] text-[--color-ink-3]">Services</p>
         </div>
         <div className="col-span-12 md:col-span-9 p-6 md:p-10 flex flex-col justify-center border-b border-[--color-border]">
           <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink]">
@@ -567,18 +571,17 @@ function Services() {
             transition={{ ...clipReveal.transition, delay: i * 0.05 }}
             className="grid grid-cols-12 gap-0 border-b border-[--color-border] hover:bg-white/[0.015] transition-colors group"
           >
-            <div className="col-span-12 md:col-span-1 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[--color-border]">
-              <span className="display-num text-[48px] md:text-[64px] !leading-none group-hover:text-[--color-signal] transition-colors">{s.num}</span>
+            <div className="col-span-12 md:col-span-1 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[--color-border] flex md:flex-col items-baseline md:items-start gap-3 md:gap-1">
+              <span className="font-body text-[14px] font-semibold text-[--color-ink-3] md:order-first group-hover:text-[--color-signal] transition-colors">{String(i + 1).padStart(2, "0")}</span>
             </div>
             <div className="col-span-12 md:col-span-4 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[--color-border]">
-              <h3 className="text-[clamp(22px,2.5vw,34px)] leading-[1.1] tracking-[-0.02em] font-semibold text-[--color-ink] mb-3">{s.title}</h3>
-              <p className="font-body text-[15px] font-semibold text-[--color-signal]">{s.rate}</p>
+              <h3 className="text-[clamp(22px,2.5vw,34px)] leading-[1.1] tracking-[-0.02em] font-semibold text-[--color-ink]">{s.title}</h3>
             </div>
             <div className="col-span-12 md:col-span-4 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[--color-border]">
               <p className="font-body text-base text-[--color-ink-2] leading-[1.7] max-w-[50ch]">{s.desc}</p>
             </div>
             <div className="col-span-12 md:col-span-3 p-6 md:p-8">
-              <p className="meta mb-3">DELIVERABLES</p>
+              <p className="font-body text-[13px] text-[--color-ink-3] mb-3">Deliverables</p>
               <ul className="flex flex-col gap-2">
                 {s.points.map((p) => (
                   <li key={p} className="font-body text-[14px] text-[--color-ink-2] flex items-start gap-2.5">
@@ -604,7 +607,7 @@ function SovereignNode() {
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 gap-0 min-h-[70vh]">
           <div className="col-span-12 md:col-span-5 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-center">
-            <p className="meta mb-6">/ SOVEREIGN NODE</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Sovereign Node</p>
             <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink] mb-6">
               Your AI.
               <br />
@@ -620,7 +623,7 @@ function SovereignNode() {
 
           <div className="col-span-12 md:col-span-7 flex flex-col">
             <div className="flex-1 p-6 md:p-10 border-b border-[--color-border] flex flex-col justify-center">
-              <p className="meta mb-6">SOVEREIGN NODE PRICING</p>
+              <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Sovereign Node pricing</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
                 {[
                   { name: "Starter", price: "$2,500", note: "4 agents · 1 model" },
@@ -628,18 +631,18 @@ function SovereignNode() {
                   { name: "Enterprise", price: "$7,500", note: "Unlimited agents" },
                 ].map((t, idx) => (
                   <div key={t.name} className="bg-[--color-canvas] p-5 md:p-6 group hover:bg-[--color-surface] transition-colors">
-                    <span className="meta block mb-3">0{idx + 1}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mb-3">0{idx + 1}</span>
                     <span className="font-body text-[15px] font-semibold text-[--color-ink] block">{t.name}</span>
                     <span className="font-display text-[32px] font-semibold text-[--color-signal] tracking-[-0.02em] block mt-1">{t.price}</span>
-                    <span className="meta block mt-2">{t.note}</span>
-                    <span className="meta block mt-1">$2,000/mo managed</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mt-2">{t.note}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mt-1">$2,000/mo managed</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="p-6 md:p-10">
-              <p className="meta mb-6">TECHNICAL SPECIFICATION</p>
+              <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Technical specification</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-[--color-border]">
                 {[
                   { k: "Inference", v: "Local open-weight models" },
@@ -648,7 +651,7 @@ function SovereignNode() {
                   { k: "Agents", v: "Custom MCP toolchains" },
                 ].map((spec) => (
                   <div key={spec.k} className="p-4 border-r border-b border-[--color-border]">
-                    <span className="meta block mb-1">{spec.k}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mb-1">{spec.k}</span>
                     <span className="font-body text-[15px] text-[--color-ink]">{spec.v}</span>
                   </div>
                 ))}
@@ -668,12 +671,11 @@ function CaseStudy() {
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
         <div className="col-span-12 md:col-span-4 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-between">
           <div>
-            <p className="meta mb-4">/ CASE STUDY</p>
+            <p className="font-body text-[15px] text-[--color-ink-3] mb-4">Case Study</p>
             <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] max-w-[40ch]">
               PNW contractor · anonymized · live deployment
             </p>
           </div>
-          <span className="display-num text-[80px] md:text-[140px] !leading-none mt-8 md:mt-0">3</span>
         </div>
 
         <div className="col-span-12 md:col-span-8 p-6 md:p-10 flex flex-col justify-center">
@@ -724,9 +726,9 @@ function Architect() {
     <section id="architect" className="relative border-t border-[--color-border]">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
         <div className="col-span-12 md:col-span-5 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-center">
-          <p className="meta mb-6">/ THE ARCHITECT</p>
+          <p className="font-body text-[15px] text-[--color-ink-3] mb-6">The Architect</p>
           <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink] mb-6">
-            Rhett <span className="text-[--color-signal]">Manteis.</span>
+            Rhett <span className="text-[--color-signal]">Johnson.</span>
           </h2>
           <p className="font-body text-lg text-[--color-ink-2] leading-[1.7] max-w-[55ch] mb-8">
             25+ years in enterprise IT. Apple Certified Service Provider. Founder of Manteis Systems.
@@ -742,7 +744,7 @@ function Architect() {
             ].map((s) => (
               <div key={s.l}>
                 <span className="font-display text-[28px] font-semibold text-[--color-ink] tracking-[-0.02em]">{s.v}</span>
-                <span className="meta block mt-1">{s.l}</span>
+                <span className="font-body text-[13px] text-[--color-ink-3] block mt-1">{s.l}</span>
               </div>
             ))}
           </div>
@@ -761,8 +763,8 @@ function Architect() {
               <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(244,243,238,0.04)" strokeWidth="1" />
             </svg>
             <div className="relative z-10 text-center">
-              <span className="font-display text-[clamp(40px,6vw,64px)] font-light tracking-[-0.04em] text-[--color-ink-ghost]">R.M</span>
-              <span className="meta block mt-2">SEATTLE · EST. 1998</span>
+              <span className="font-display text-[clamp(40px,6vw,64px)] font-light tracking-[-0.04em] text-[--color-ink-ghost]">RJ</span>
+              <span className="font-body text-[13px] text-[--color-ink-3] block mt-2">Seattle, WA</span>
             </div>
           </div>
           <p className="font-body text-[15px] text-[--color-ink-3] leading-[1.7] max-w-[55ch]">
@@ -809,7 +811,7 @@ function FreeResource() {
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 gap-0 min-h-[60vh]">
           <div className="col-span-12 md:col-span-6 p-6 md:p-10 border-r border-[--color-border] flex flex-col justify-center">
-            <p className="meta mb-6">/ FREE RESOURCE</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Free Resource</p>
             <h2 className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.04em] font-semibold text-[--color-ink] mb-6">
               The Sovereign AI Infrastructure Guide.
             </h2>
@@ -846,7 +848,7 @@ function FreeResource() {
                 <button type="submit" className="btn w-full inline-flex items-center justify-center gap-2">
                   Get the guide
                 </button>
-                <p className="meta mt-4">No spam. Unsubscribe anytime.</p>
+                <p className="font-body text-[13px] text-[--color-ink-3] mt-4">No spam. Unsubscribe anytime.</p>
               </form>
             ) : (
               <motion.div
@@ -871,10 +873,10 @@ function FreeResource() {
             )}
 
             <div className="mt-8 grid grid-cols-1 gap-3">
-              <p className="meta mb-2">Inside the guide:</p>
+              <p className="font-body text-[13px] text-[--color-ink-3] mb-2">Inside the guide:</p>
               {GUIDE_SECTIONS.map((p, i) => (
                 <div key={p} className="flex items-start gap-3">
-                  <span className="meta w-6">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-body text-[13px] text-[--color-ink-3] w-6">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-body text-[14px] text-[--color-ink-2]">{p}</span>
                 </div>
               ))}
@@ -938,21 +940,21 @@ function Contact() {
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 border border-[--color-border]">
           <div className="p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border] flex flex-col justify-center">
-            <p className="meta mb-4">OPTION 01</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mb-4">Option 1</p>
             <h3 className="text-[clamp(24px,3vw,36px)] leading-[1.1] tracking-[-0.02em] font-semibold text-[--color-ink] mb-4">
               Book a Discovery Call
             </h3>
             <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] mb-8">
               Fastest path forward. Tell me what you're working with and I'll propose the right first step.
             </p>
-            <a href="mailto:rhett@manteissystems.com" className="btn inline-flex items-center justify-center gap-2">
+            <a href="mailto:rhett@manteis.systems" className="btn inline-flex items-center justify-center gap-2">
               Email to book a call
             </a>
-            <p className="meta mt-4">rhett@manteissystems.com</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mt-4">rhett@manteis.systems</p>
           </div>
 
           <div className="p-6 md:p-10">
-            <p className="meta mb-4">OPTION 02</p>
+            <p className="font-body text-[13px] text-[--color-ink-3] mb-4">Option 2</p>
             <h3 className="text-[clamp(24px,3vw,36px)] leading-[1.1] tracking-[-0.02em] font-semibold text-[--color-ink] mb-6">
               Send a Message
             </h3>
@@ -1005,7 +1007,7 @@ function Contact() {
                 className="border border-[--color-signal]/30 bg-[--color-signal]/5 p-6 h-full flex flex-col justify-center"
               >
                 <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">Message sent.</p>
-                <p className="font-body text-[14px] text-[--color-ink-2]">I'll reply within one business day. If it's urgent, email directly at rhett@manteissystems.com.</p>
+                <p className="font-body text-[14px] text-[--color-ink-2]">I'll reply within one business day. If it's urgent, email directly at rhett@manteis.systems.</p>
               </motion.div>
             ) : (
               <motion.div
@@ -1014,7 +1016,7 @@ function Contact() {
                 className="border border-red-500/30 bg-red-500/5 p-6 h-full flex flex-col justify-center"
               >
                 <p className="font-body text-[17px] font-semibold text-[--color-ink] mb-2">Something went wrong.</p>
-                <p className="font-body text-[14px] text-[--color-ink-2] mb-4">Please try again or email directly at rhett@manteissystems.com.</p>
+                <p className="font-body text-[14px] text-[--color-ink-2] mb-4">Please try again or email directly at rhett@manteis.systems.</p>
                 <button onClick={() => setStatus("idle")} className="btn inline-flex items-center justify-center gap-2">
                   Try again
                 </button>
@@ -1023,7 +1025,7 @@ function Contact() {
           </div>
         </div>
 
-        <p className="meta text-center mt-8">Standard: $2,500–$7,500 · Non-profit: $1,500–$3,000</p>
+        <p className="font-body text-[13px] text-[--color-ink-3] text-center mt-8">Standard: $2,500–$7,500 · Non-profit: $1,500–$3,000</p>
       </div>
     </section>
   );
@@ -1037,10 +1039,10 @@ function Footer() {
         <span className="font-body text-[13px] text-[--color-ink-3]">
           Manteis Systems · AI Infrastructure Consulting · Seattle, WA
         </span>
-        <a href="mailto:rhett@manteissystems.com" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
-          rhett@manteissystems.com
+        <a href="mailto:rhett@manteis.systems" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
+          rhett@manteis.systems
         </a>
-        <span className="meta">© 2026</span>
+        <span className="font-body text-[13px] text-[--color-ink-3]">© 2026</span>
       </div>
     </footer>
   );
