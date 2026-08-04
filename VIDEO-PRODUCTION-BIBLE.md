@@ -331,7 +331,7 @@ Zero bytes have left your network. That's not a feature. That's the architecture
 
 The man-TEE-iss AI Method. Five phases. Fixed scope. No lock-in.
 
-Phase one: automation. Phase two: IT operations. Phase three: security. Phase four: infrastructure. Phase five: full stack integration.
+Phase one: context layer. Phase two: IT operations. Phase three: security. Phase four: infrastructure. Phase five: full stack integration.
 
 Your intelligence should be an asset, not a subscription.
 
