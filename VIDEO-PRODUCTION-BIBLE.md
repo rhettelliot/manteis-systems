@@ -336,14 +336,16 @@ You invest once. You own everything.
 
 This is not theoretical.
 
-Fifteen automated workflows in production at a real manufacturer.
+Real deployments. Real businesses.
+
+Zero bytes in the cloud.
 
 
 Forty-three tools. Eleven dashboard views.
 
 An AI agent that triages tickets, executes fixes, and monitors security.
 
-Zero bytes in the cloud.
+All on hardware you own.
 
 
 Autonomous security operations.
