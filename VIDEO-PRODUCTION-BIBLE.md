@@ -298,7 +298,7 @@ Dark slate #0D0F12, the grid lines at 8% opacity are fading away, the orange #FF
 
 ### LAUNCH TRAILER VOICEOVER (complete, for edge-tts / ElevenLabs)
 
-Pronunciation guide: Manteis = "man-TEE-iss" (three syllables, stress on middle)
+Pronunciation guide: Manteis = "manTEiss" (three syllables, stress on middle). Best phonetic spelling for AI TTS: manTEiss
 
 ```
 [2s silence]
@@ -329,7 +329,7 @@ The agent proposes. A human approves. Every action is audit-logged.
 
 Zero bytes have left your network. That's not a feature. That's the architecture.
 
-The man-TEE-iss AI Method. Five phases. Fixed scope. No lock-in.
+The manTEiss AI Method. Five phases. Fixed scope. No lock-in.
 
 Phase one: context layer.
 
@@ -345,7 +345,7 @@ Your intelligence should be an asset, not a subscription.
 
 On your hardware or in your cloud. Same stack. Same sovereignty.
 
-man-TEE-iss Systems. man-TEE-iss dot systems.
+manTEiss Systems. manTEiss dot systems.
 ```
 
 ### TOTAL: 24 stills needed + 1 voiceover (~200 words, ~90 seconds of speech)
