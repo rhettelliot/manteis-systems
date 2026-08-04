@@ -298,16 +298,24 @@ Dark slate #0D0F12, the grid lines at 8% opacity are fading away, the orange #FF
 
 ### LAUNCH TRAILER VOICEOVER (complete, for edge-tts / ElevenLabs)
 
-Pronunciation guide: Manteis = "manTEiss" (three syllables, stress on middle). Best phonetic spelling for AI TTS: manTEiss
+Pronunciation guide: Manteis = "man-TEE-iss" (three syllables, stress on middle). Best phonetic spelling for AI TTS: manTEiss
+
+Pacing structure:
+- Double line breaks = longer pauses (3-4 seconds)
+- Single line breaks = shorter beats (1-2 seconds)
+- No line breaks within a sentence = continuous speech
+- Opening: slow, deliberate, one word per beat (grid forming)
+- Middle: faster, stacking evidence (proof points)
+- Phases: each one its own line, breathing room between
+- Close: two couplets, then brand sign-off with pause between name and URL
 
 ```
-[2s silence]
-
 Your data.
 
 Your network.
 
 Your hardware.
+
 
 There are two kinds of AI infrastructure.
 
@@ -315,21 +323,48 @@ The kind you rent,
 
 and the kind you own.
 
-Cloud AI means your data leaves your network. You pay forever. You own nothing.
 
-Sovereign AI means your data stays. You invest once. You own everything.
+Cloud AI means your data leaves your network.
 
-This is not theoretical. Fifteen automated workflows in production at a real manufacturer.
+You pay forever. You own nothing.
 
-Forty-three tools. Eleven dashboard views. An AI agent that triages tickets, executes fixes, and monitors security. Zero bytes in the cloud.
 
-Autonomous security operations. A SOC without hiring a SOC team.
+Sovereign AI means your data stays.
 
-The agent proposes. A human approves. Every action is audit-logged.
+You invest once. You own everything.
 
-Zero bytes have left your network. That's not a feature. That's the architecture.
 
-The manTEiss AI Method. Five phases. Fixed scope. No lock-in.
+This is not theoretical.
+
+Fifteen automated workflows in production at a real manufacturer.
+
+
+Forty-three tools. Eleven dashboard views.
+
+An AI agent that triages tickets, executes fixes, and monitors security.
+
+Zero bytes in the cloud.
+
+
+Autonomous security operations.
+
+A SOC without hiring a SOC team.
+
+
+The agent proposes. A human approves.
+
+Every action is audit-logged.
+
+
+Zero bytes have left your network.
+
+That's not a feature. That's the architecture.
+
+
+The manTEiss AI Method.
+
+Five phases. Fixed scope. No lock-in.
+
 
 Phase one: context layer.
 
@@ -341,11 +376,18 @@ Phase four: infrastructure.
 
 Phase five: full stack integration.
 
+
 Your intelligence should be an asset, not a subscription.
 
-On your hardware or in your cloud. Same stack. Same sovereignty.
 
-manTEiss Systems. manTEiss dot systems.
+On your hardware or in your cloud.
+
+Same stack. Same sovereignty.
+
+
+manTEiss Systems.
+
+manTEiss dot systems.
 ```
 
 ### TOTAL: 24 stills needed + 1 voiceover (~200 words, ~90 seconds of speech)
