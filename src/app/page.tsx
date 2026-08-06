@@ -252,8 +252,8 @@ function Hero() {
             transition={{ ...fadeUp.transition, delay: 0.2 }}
             className="font-body text-lg md:text-xl text-[--color-ink-2] leading-[1.6] max-w-[58ch] mt-8 mb-10"
           >
-            Private AI, agent automation, and zero-trust security for Seattle-area
-            businesses — built on 25 years of enterprise IT.
+            Local-first AI that runs on your hardware, not someone else's cloud.
+            Private LLMs, agent automation, and zero-trust security — zero data egress.
           </motion.p>
 
           <motion.div
@@ -649,7 +649,7 @@ function SovereignNode() {
               <p className="font-body text-[13px] text-[--color-ink-3] mb-6">Technical specification</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-[--color-border]">
                 {[
-                  { k: "Inference", v: "Local open-weight models" },
+                  { k: "Inference", v: "Open-source AI (Ollama)" },
                   { k: "Memory", v: "Persistent vector store" },
                   { k: "Security", v: "ZTNA + FDE + endpoint EDR" },
                   { k: "Agents", v: "Custom MCP toolchains" },
@@ -674,6 +674,7 @@ const CASE_STUDIES = [
     sector: "Manufacturing",
     size: "200+ employees",
     location: "Pacific Northwest",
+    headline: "Zero cloud spend. 300% ROI. Here's the architecture.",
     summary:
       "A footwear manufacturer and retailer needed full-stack AI automation across supply chain, IT operations, and security — without sending proprietary data to the cloud.",
     what_built:
@@ -691,6 +692,7 @@ const CASE_STUDIES = [
     sector: "Religious Organization",
     size: "500+ employees",
     location: "Seattle, WA",
+    headline: "Enterprise AI across three systems. Run by one IT person.",
     summary:
       "A multi-site religious organization with parishes and schools needed to modernize support, manage decades of media archives, and build a security posture — all with a small IT team.",
     what_built:
@@ -708,6 +710,7 @@ const CASE_STUDIES = [
     sector: "Construction & Remodeling",
     size: "25 employees",
     location: "Pacific Northwest",
+    headline: "$50K saved in six months. Payback in two months. Runs on a Mac Mini.",
     summary:
       "A custom home renovation company was losing hours every week to manual project estimation, siloed documentation, and slow client communication.",
     what_built:
@@ -725,6 +728,7 @@ const CASE_STUDIES = [
     sector: "Religious Organization",
     size: "500+ employees",
     location: "Pacific Northwest",
+    headline: "Enterprise SOC. No SOC team. 90% fewer false positives.",
     summary:
       "A religious organization needed enterprise-grade security monitoring and digital asset management but couldn't afford a dedicated SOC team or media tagging staff.",
     what_built:
@@ -742,6 +746,7 @@ const CASE_STUDIES = [
     sector: "Manufacturing & Retail",
     size: "100-500 employees",
     location: "Pacific Northwest",
+    headline: "Zero bytes of your data left the building. Your legacy ERP now speaks plain English.",
     summary:
       "A footwear manufacturer wanted to modernize a legacy A2000 ERP system and build intelligent frontends without ripping out their existing backend.",
     what_built:
@@ -773,7 +778,7 @@ function CaseStudies() {
           </h2>
           <p className="font-body text-lg text-[--color-ink-2] leading-[1.65] max-w-[65ch] mt-4">
             From a 25-person remodeling firm to a 500-employee religious organization. Every client anonymized,
-            every result real. The pattern is always the same: sovereign infrastructure, local intelligence, zero cloud dependency.
+            every result real. The pattern is always the same: sovereign infrastructure, local intelligence, zero data egress.
           </p>
         </div>
       </div>
@@ -797,9 +802,9 @@ function CaseStudies() {
       {/* Active case study */}
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
         <div className="col-span-12 md:col-span-5 p-6 md:p-10 border-r border-[--color-border]">
-          <p className="font-body text-[13px] text-[--color-ink-3] mb-2">{cs.size} · {cs.location}</p>
+          <p className="font-body text-[13px] text-[--color-ink-3] mb-2">{cs.sector} · {cs.size} · {cs.location}</p>
           <h3 className="text-[clamp(22px,3vw,34px)] leading-[1.15] tracking-[-0.02em] font-semibold text-[--color-ink] mb-6">
-            {cs.sector}
+            {cs.headline}
           </h3>
           <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] mb-6">{cs.summary}</p>
           <p className="font-body text-[14px] text-[--color-ink-2] leading-[1.7] mb-6">{cs.what_built}</p>
