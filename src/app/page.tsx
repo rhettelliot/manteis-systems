@@ -265,7 +265,7 @@ function Hero() {
               Take Free AI Assessment <ArrowRight size={16} />
             </a>
             <a href="#contact" className="font-body text-[15px] font-semibold text-[--color-ink] hover:text-[--color-signal] transition-colors border-b border-[--color-border] pb-1">
-              Book a Discovery Call
+              Book a Sovereignty Audit
             </a>
           </motion.div>
         </div>
@@ -1061,15 +1061,23 @@ function Contact() {
           <div className="p-6 md:p-10 border-b md:border-b-0 md:border-r border-[--color-border] flex flex-col justify-center">
             <p className="font-body text-[13px] text-[--color-ink-3] mb-4">Option 1</p>
             <h3 className="text-[clamp(24px,3vw,36px)] leading-[1.1] tracking-[-0.02em] font-semibold text-[--color-ink] mb-4">
-              Book a Discovery Call
+              Book a Sovereignty Audit
             </h3>
             <p className="font-body text-[15px] text-[--color-ink-2] leading-[1.7] mb-8">
-              Fastest path forward. Tell me what you're working with and I'll propose the right first step.
+              Free 30 minutes. We audit your current infrastructure, identify where overhead
+              is bleeding your time, and map the right configuration for your operation.
             </p>
-            <a href="mailto:rhett@manteis.systems" className="btn inline-flex items-center justify-center gap-2">
-              Email to book a call
-            </a>
-            <p className="font-body text-[13px] text-[--color-ink-3] mt-4">rhett@manteis.systems</p>
+            {/* Calendly inline widget — replace CALENDLY_URL with Rhett's booking link */}
+            <div className="calendly-inline-widget" data-url="https://calendly.com/manteis-systems/sovereignty-audit" style={{ minWidth: '320px', height: '300px' }} />
+            <noscript>
+              <a href="mailto:rhett@manteis.systems" className="btn inline-flex items-center justify-center gap-2">
+                Email to book a call
+              </a>
+              <p className="font-body text-[13px] text-[--color-ink-3] mt-4">rhett@manteis.systems</p>
+            </noscript>
+            <p className="font-body text-[13px] text-[--color-ink-3] mt-4">
+              Prefer email? rhett@manteis.systems
+            </p>
           </div>
 
           <div className="p-6 md:p-10">

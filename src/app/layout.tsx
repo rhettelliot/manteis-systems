@@ -54,6 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {/* Calendly widget script */}
+        <script src="https://assets.calendly.com/assets/external/widget.js" async />
       </head>
       <body>
         <div className="grain" />
