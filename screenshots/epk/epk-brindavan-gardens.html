@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: #000000;
+    color: #FDFCDC;
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 32px;
+    width: 8.5in;
+    min-height: 11in;
+  }
+  .container { display: flex; gap: 24px; }
+  .left { flex: 1; }
+  .right { width: 200px; flex-shrink: 0; }
+  .cover-art { width: 200px; height: 200px; object-fit: cover; margin-bottom: 12px; border-radius: 2px; }
+  .label {
+    font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: #FF5500; margin-bottom: 2px;
+  }
+  .artist-name {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    color: #FDFCDC; margin-bottom: 4px; line-height: 1.1;
+  }
+  .genre {
+    font-family: 'SF Mono', 'Menlo', monospace; font-size: 9px;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(253,252,220,0.5); margin-bottom: 16px;
+  }
+  .tagline {
+    font-size: 11px; font-style: italic; color: rgba(253,252,220,0.7);
+    margin-bottom: 16px; border-left: 2px solid #FF5500; padding-left: 10px;
+  }
+  .section-label {
+    font-family: 'SF Mono', 'Menlo', monospace; font-size: 8px;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: #FF5500; margin-bottom: 6px; margin-top: 14px;
+  }
+  .bio { font-size: 10px; color: rgba(253,252,220,0.75); line-height: 1.55; margin-bottom: 12px; }
+  .track { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(253,252,220,0.08); }
+  .track:last-child { border-bottom: none; }
+  .track-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .track-title { font-weight: 600; font-size: 10px; color: #FDFCDC; }
+  .track-meta { font-family: 'SF Mono', monospace; font-size: 8px; color: rgba(253,252,220,0.4); }
+  .track-desc { font-size: 9px; color: rgba(253,252,220,0.5); line-height: 1.4; }
+  .info-row { display: flex; justify-content: space-between; font-size: 9px; margin-bottom: 3px; }
+  .info-label { font-family: 'SF Mono', monospace; color: rgba(253,252,220,0.4); text-transform: uppercase; letter-spacing: 0.1em; font-size: 7px; }
+  .info-value { color: rgba(253,252,220,0.7); }
+  .links { font-size: 8px; color: rgba(253,252,220,0.5); line-height: 1.6; font-family: 'SF Mono', monospace; word-break: break-all; }
+  .footer {
+    margin-top: 24px; border-top: 1px solid rgba(253,252,220,0.1); padding-top: 8px;
+    display: flex; justify-content: space-between;
+    font-family: 'SF Mono', monospace; font-size: 7px;
+    text-transform: uppercase; letter-spacing: 0.15em; color: rgba(253,252,220,0.3);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="label">// MANTEIS RECORDINGS · ELECTRONIC PRESS KIT</div>
+      <div class="artist-name">Brindavan Gardens</div>
+      <div class="genre">Spiritual / Shoegaze / Dream · Seattle, WA · EST. 2025</div>
+      <div class="tagline">Devotional reverb. Sound as spiritual practice — the sacred made audible through drones, mantras, and the resonance of contemplation.</div>
+      <div class="section-label">// BIOGRAPHY</div>
+      <div class="bio">Brindavan Gardens is the spiritual sound practice of Manteis Recordings. Named after the gardens of Vrindavan — where devotion meets the earth — the project treats sound as a spiritual technology, not entertainment. The debut album Upekṣā (5 tracks) takes its name from the Buddhist concept of equanimity — the non-reactive awareness that holds all experience without grasping or pushing away. Where shoegaze wraps distortion around melody, Brindavan Gardens wraps silence around resonance. The spaces between the sounds are as intentional as the sounds themselves.</div>
+      <div class="section-label">// KEY TRACKS FOR SYNC PLACEMENT</div>
+      
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Upekṣā</span>
+        <span class="track-meta">60 BPM · 10:15</span>
+      </div>
+      <div class="track-desc">Sustained devotional drone with bell resonance. Spiritual sequences, nature documentary.</div>
+    </div>
+
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Mantra</span>
+        <span class="track-meta">70 BPM · 7:38</span>
+      </div>
+      <div class="track-desc">Vocal drone with harmonic overtone singing. Ritual sequences, pilgrimage, transcendence.</div>
+    </div>
+
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Equanimity</span>
+        <span class="track-meta">50 BPM · 12:00</span>
+      </div>
+      <div class="track-desc">Long-form ambient with nature field recordings. Meditation guidance, emotional stillness.</div>
+    </div>
+    </div>
+    <div class="right">
+      <img class="cover-art" src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F1942337--ED237CDF-A4C2-49FD-95453D10913EE6BE--0--2605763--BrindavanGardens.png?fm=jpg&mark-y=568&mark-x=620&mark-w=180&q=75&w=800&mark=http%3A%2F%2Fgather.fandalism.com%2Fdistrokid-sticker-sm.png&s=1b42e2bbe8687dc3ec70320a30d8ccdd" alt="Cover Art" />
+      <div class="section-label">// DETAILS</div>
+      <div class="info-row"><span class="info-label">Label</span><span class="info-value">Manteis Rec.</span></div>
+      <div class="info-row"><span class="info-label">Releases</span><span class="info-value">1 (MR-007)</span></div>
+      <div class="info-row"><span class="info-label">Location</span><span class="info-value">Seattle, WA</span></div>
+      <div class="info-row"><span class="info-label">Founded</span><span class="info-value">2025</span></div>
+      <div class="section-label">// STREAMING</div>
+      <div class="links">
+        Spotify: open.spotify.com/artist/1oPtOn5okI3nLDvWWGgd3F<br/>
+        Bandcamp: manteisrecordings.bandcamp.com<br/>
+        SoundCloud: soundcloud.com/rhettelliot<br/>
+        Web: manteisrecordings.com/epk/brindavan-gardens
+      </div>
+      <div class="section-label">// CONTACT</div>
+      <div class="links">
+        Booking: manteisrecordings@mac.com<br/>
+        Press: manteisrecordings@mac.com
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>Manteis Recordings · Seattle, WA</span>
+    <span>manteisrecordings.com</span>
+  </div>
+</body>
+</html>

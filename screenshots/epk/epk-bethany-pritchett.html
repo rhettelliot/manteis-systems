@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: #000000;
+    color: #FDFCDC;
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 32px;
+    width: 8.5in;
+    min-height: 11in;
+  }
+  .container { display: flex; gap: 24px; }
+  .left { flex: 1; }
+  .right { width: 200px; flex-shrink: 0; }
+  .cover-art { width: 200px; height: 200px; object-fit: cover; margin-bottom: 12px; border-radius: 2px; }
+  .label {
+    font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: #FF5500; margin-bottom: 2px;
+  }
+  .artist-name {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    color: #FDFCDC; margin-bottom: 4px; line-height: 1.1;
+  }
+  .genre {
+    font-family: 'SF Mono', 'Menlo', monospace; font-size: 9px;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(253,252,220,0.5); margin-bottom: 16px;
+  }
+  .tagline {
+    font-size: 11px; font-style: italic; color: rgba(253,252,220,0.7);
+    margin-bottom: 16px; border-left: 2px solid #FF5500; padding-left: 10px;
+  }
+  .section-label {
+    font-family: 'SF Mono', 'Menlo', monospace; font-size: 8px;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: #FF5500; margin-bottom: 6px; margin-top: 14px;
+  }
+  .bio { font-size: 10px; color: rgba(253,252,220,0.75); line-height: 1.55; margin-bottom: 12px; }
+  .track { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(253,252,220,0.08); }
+  .track:last-child { border-bottom: none; }
+  .track-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .track-title { font-weight: 600; font-size: 10px; color: #FDFCDC; }
+  .track-meta { font-family: 'SF Mono', monospace; font-size: 8px; color: rgba(253,252,220,0.4); }
+  .track-desc { font-size: 9px; color: rgba(253,252,220,0.5); line-height: 1.4; }
+  .info-row { display: flex; justify-content: space-between; font-size: 9px; margin-bottom: 3px; }
+  .info-label { font-family: 'SF Mono', monospace; color: rgba(253,252,220,0.4); text-transform: uppercase; letter-spacing: 0.1em; font-size: 7px; }
+  .info-value { color: rgba(253,252,220,0.7); }
+  .links { font-size: 8px; color: rgba(253,252,220,0.5); line-height: 1.6; font-family: 'SF Mono', monospace; word-break: break-all; }
+  .footer {
+    margin-top: 24px; border-top: 1px solid rgba(253,252,220,0.1); padding-top: 8px;
+    display: flex; justify-content: space-between;
+    font-family: 'SF Mono', monospace; font-size: 7px;
+    text-transform: uppercase; letter-spacing: 0.15em; color: rgba(253,252,220,0.3);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="label">// MANTEIS RECORDINGS · ELECTRONIC PRESS KIT</div>
+      <div class="artist-name">Bethany Pritchett</div>
+      <div class="genre">Alternative / Vocal / Synthesist · Seattle, WA · EST. 2025</div>
+      <div class="tagline">Voice, synthesizer, and the words that hold them together. Music made in a small room in Seattle with one window and one microphone.</div>
+      <div class="section-label">// BIOGRAPHY</div>
+      <div class="bio">Bethany Pritchett makes music in a small room in Seattle — voice, synthesizer, and the words that hold them together. No studio polish. No band. Just one person writing honestly and arranging sound around it. Her debut album, Good Morning, Good Fortune Elephant, is five songs recorded at home with one window and one microphone. The result is intimate in the literal sense — music that records the interior of a person, not the performance of one. The work exists at the intersection of alternative songwriting and ambient sensibility.</div>
+      <div class="section-label">// KEY TRACKS FOR SYNC PLACEMENT</div>
+      
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Good Morning, Good Fortune Elephant</span>
+        <span class="track-meta">85 BPM · 4:22</span>
+      </div>
+      <div class="track-desc">Intimate vocal-led alternative with synth texture. Character moments, quiet intimacy.</div>
+    </div>
+
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Window</span>
+        <span class="track-meta">75 BPM · 3:48</span>
+      </div>
+      <div class="track-desc">Minimal synth-pop with breath-room vocal. Vulnerability, morning light.</div>
+    </div>
+
+    <div class="track">
+      <div class="track-header">
+        <span class="track-title">Elephant</span>
+        <span class="track-meta">80 BPM · 5:15</span>
+      </div>
+      <div class="track-desc">Building alternative with layered vocal harmonies. Emotional crescendo, character transformation.</div>
+    </div>
+    </div>
+    <div class="right">
+      <img class="cover-art" src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F1942337--F3FF13CD-BE7B-4015-9DB06C8AA806E798--0--174274--GMGFE.JPG?fm=jpg&mark-y=568&mark-x=620&mark-w=180&q=75&w=800&mark=http%3A%2F%2Fgather.fandalism.com%2Fdistrokid-sticker-sm.png&s=1782847f528536d24e582566ee2d12d4" alt="Cover Art" />
+      <div class="section-label">// DETAILS</div>
+      <div class="info-row"><span class="info-label">Label</span><span class="info-value">Manteis Rec.</span></div>
+      <div class="info-row"><span class="info-label">Releases</span><span class="info-value">1 (MR-009)</span></div>
+      <div class="info-row"><span class="info-label">Location</span><span class="info-value">Seattle, WA</span></div>
+      <div class="info-row"><span class="info-label">Founded</span><span class="info-value">2025</span></div>
+      <div class="section-label">// STREAMING</div>
+      <div class="links">
+        Spotify: open.spotify.com/artist/0hpTO28w4Qjc3xA9oKKQGk<br/>
+        Bandcamp: manteisrecordings.bandcamp.com<br/>
+        SoundCloud: soundcloud.com/rhettelliot<br/>
+        Web: manteisrecordings.com/epk/bethany-pritchett
+      </div>
+      <div class="section-label">// CONTACT</div>
+      <div class="links">
+        Booking: manteisrecordings@mac.com<br/>
+        Press: manteisrecordings@mac.com
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>Manteis Recordings · Seattle, WA</span>
+    <span>manteisrecordings.com</span>
+  </div>
+</body>
+</html>
