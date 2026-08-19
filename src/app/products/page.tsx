@@ -6,13 +6,15 @@ import { Menu, X, ArrowRight, Check, Download } from "lucide-react";
 import Link from "next/link";
 
 // ─── PRODUCT DATA ─────────────────────────────────────────────────────────
-// Stripe Payment Links — replace placeholder URLs after Rhett creates them
+// Stripe Payment Links — env-driven so Rhett can update without redeploying.
+// Set in .env.local as NEXT_PUBLIC_STRIPE_LINK_STARTER_KIT etc.
+// If env var is missing, button shows "COMING SOON".
 const STRIPE_LINKS: Record<string, string> = {
-  starterKit: "STRIPE_LINK_PLACEHOLDER_STARTER_KIT",
-  btnc: "STRIPE_LINK_PLACEHOLDER_BTNC",
-  kybalion: "STRIPE_LINK_PLACEHOLDER_KYBALION",
-  sewa: "STRIPE_LINK_PLACEHOLDER_SEWA",
-  bundle: "STRIPE_LINK_PLACEHOLDER_BUNDLE",
+  starterKit: process.env.NEXT_PUBLIC_STRIPE_LINK_STARTER_KIT || "",
+  btnc: process.env.NEXT_PUBLIC_STRIPE_LINK_BTNC || "",
+  kybalion: process.env.NEXT_PUBLIC_STRIPE_LINK_KYBALION || "",
+  sewa: process.env.NEXT_PUBLIC_STRIPE_LINK_SEWA || "",
+  bundle: process.env.NEXT_PUBLIC_STRIPE_LINK_BUNDLE || "",
 };
 
 interface Product {
@@ -239,17 +241,17 @@ function ProductCard({ product }: { product: Product }) {
           </span>
           <span className="text-[12px] text-[--color-ink-3] ml-2 font-mono">one-time</span>
         </div>
-        {stripeLink.startsWith("STRIPE_LINK_PLACEHOLDER") ? (
-          <span className="font-mono text-[11px] tracking-wide text-[--color-ink-3] px-4 py-2.5 border border-[--color-border]">
-            COMING SOON
-          </span>
-        ) : (
+        {stripeLink ? (
           <a
             href={stripeLink}
             className="inline-flex items-center gap-2 font-mono text-[12px] font-semibold tracking-wide uppercase px-5 py-2.5 bg-[--color-signal] text-[--color-canvas] hover:bg-[--color-solar-amber] transition-colors"
           >
             Buy <ArrowRight size={14} />
           </a>
+        ) : (
+          <span className="font-mono text-[11px] tracking-wide text-[--color-ink-3] px-4 py-2.5 border border-[--color-border]">
+            COMING SOON
+          </span>
         )}
       </div>
     </motion.div>
@@ -338,17 +340,17 @@ export default function ProductsPage() {
               </span>
             </div>
 
-            {bundleLink.startsWith("STRIPE_LINK_PLACEHOLDER") ? (
-              <span className="inline-block font-mono text-[12px] tracking-wide text-[--color-ink-3] px-6 py-3 border border-[--color-border]">
-                COMING SOON
-              </span>
-            ) : (
+            {bundleLink ? (
               <a
                 href={bundleLink}
                 className="inline-flex items-center gap-2 font-mono text-[13px] font-semibold tracking-wide uppercase px-7 py-3.5 bg-[--color-signal] text-[--color-canvas] hover:bg-[--color-solar-amber] transition-colors"
               >
                 Buy Complete Bundle <ArrowRight size={15} />
               </a>
+            ) : (
+              <span className="inline-block font-mono text-[12px] tracking-wide text-[--color-ink-3] px-6 py-3 border border-[--color-border]">
+                COMING SOON
+              </span>
             )}
           </motion.div>
         </div>

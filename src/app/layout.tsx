@@ -14,17 +14,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://manteis.systems"),
-  title: "Manteis Systems — AI Consultant in Seattle | Local AI Infrastructure & Cybersecurity",
-  description: "Private local AI infrastructure, agent automation, and zero-trust security consulting. 25+ years of enterprise IT deployed as Sovereign Nodes for Pacific Northwest businesses.",
+  metadataBase: new URL("https://www.manteis.systems"),
+  title: "Manteis Systems",
+  description: "AI consultant in Seattle — local AI infrastructure",
   keywords: ["AI consultant Seattle", "AI infrastructure", "local AI", "fractional CTO", "cybersecurity Seattle", "AI automation", "private AI", "Sovereign Node"],
+  robots: "index, follow",
   openGraph: {
-    title: "Manteis Systems — AI Consultant in Seattle",
-    description: "Private local AI infrastructure, agent automation, and zero-trust security consulting.",
-    url: "https://manteis.systems",
+    title: "Manteis Systems",
+    description: "AI consultant in Seattle — local AI infrastructure",
+    url: "https://www.manteis.systems",
     siteName: "Manteis Systems",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manteis Systems",
+    description: "AI consultant in Seattle — local AI infrastructure",
+  },
+  icons: {
+    icon: { url: "/favicon.svg", type: "image/svg+xml" },
+    shortcut: { url: "/favicon.svg", type: "image/svg+xml" },
+    apple: { url: "/favicon.svg", type: "image/svg+xml" },
+  },
+  manifest: "/manifest.json",
 };
 
 const jsonLd = {
@@ -53,9 +65,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {/* Calendly widget script */}
         <script src="https://assets.calendly.com/assets/external/widget.js" async />
+        {/* Google Analytics — GA4 */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              async
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         <div className="grain" />
