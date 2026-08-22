@@ -174,7 +174,7 @@ function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-6 md:px-10 bg-[--color-canvas]/90 border-b border-[--color-border] backdrop-blur-sm">
-      <a href="#" className="flex items-center gap-3">
+      <a href="/" className="flex items-center gap-3">
         <div className="w-1.5 h-5 bg-[--color-signal]" />
         <span className="font-display text-sm font-semibold text-[--color-ink] tracking-tight">Manteis Systems</span>
       </a>
@@ -1172,6 +1172,9 @@ function Footer() {
           </a>
           <a href="https://www.linkedin.com/in/rhettelliot" target="_blank" rel="noopener noreferrer" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
             LinkedIn
+          </a>
+          <a href="https://manteisrecordings.com" target="_blank" rel="noopener noreferrer" className="font-body text-[13px] text-[--color-ink-3] hover:text-[--color-signal] transition-colors">
+            Manteis Recordings
           </a>
         </div>
         <span className="font-body text-[13px] text-[--color-ink-3]">&copy; 2026</span>
