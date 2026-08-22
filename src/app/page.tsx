@@ -851,11 +851,20 @@ function Architect() {
               { v: "25", l: "Years enterprise IT" },
               { v: "15+", l: "Docker containers managed" },
               { v: "30+", l: "n8n workflows automated" },
-              { v: "9", l: "Music releases" },
+              { v: "9", l: "Music releases", link: "https://manteisrecordings.com" },
             ].map((s) => (
               <div key={s.l}>
-                <span className="font-display text-[28px] font-semibold text-[--color-ink] tracking-[-0.02em]">{s.v}</span>
-                <span className="font-body text-[13px] text-[--color-ink-3] block mt-1">{s.l}</span>
+                {s.link ? (
+                  <a href={s.link} target="_blank" rel="noopener noreferrer" className="group block">
+                    <span className="font-display text-[28px] font-semibold text-[--color-ink] tracking-[-0.02em] group-hover:text-[--color-signal] transition-colors">{s.v}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] group-hover:text-[--color-signal] transition-colors block mt-1">{s.l} ↗</span>
+                  </a>
+                ) : (
+                  <>
+                    <span className="font-display text-[28px] font-semibold text-[--color-ink] tracking-[-0.02em]">{s.v}</span>
+                    <span className="font-body text-[13px] text-[--color-ink-3] block mt-1">{s.l}</span>
+                  </>
+                )}
               </div>
             ))}
           </div>
