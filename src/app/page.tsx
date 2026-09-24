@@ -784,12 +784,12 @@ function CaseStudies() {
       </div>
 
       {/* Tab selector */}
-      <div className="max-w-7xl mx-auto flex flex-wrap border-b border-[--color-border]">
+      <div className="max-w-7xl mx-auto flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-visible border-b border-[--color-border] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {CASE_STUDIES.map((c, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
-            className={`px-6 py-4 font-body text-[13px] md:text-[14px] border-r border-[--color-border] last:border-r-0 transition-colors text-left max-w-[200px] md:max-w-none ${
+            className={`shrink-0 px-5 md:px-6 py-4 font-body text-[13px] md:text-[14px] border-r border-[--color-border] last:border-r-0 transition-colors text-left whitespace-nowrap ${
               i === active ? "bg-[--color-surface] text-[--color-ink] border-b-2 border-b-[--color-signal]" : "text-[--color-ink-3] hover:text-[--color-ink-2]"
             }`}
           >
